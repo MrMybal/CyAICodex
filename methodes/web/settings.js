@@ -4,6 +4,7 @@ $('#local-clients').innerHTML=Object.entries(localLabels).map(([id,label])=>uiHT
 async function refreshPreferences(){
   const p=await api('/preferences'),f=$('#preferences-form');
   await refreshConnectorSettings();
+  await refreshUpdates();
   $('#local-context').innerHTML=contextOptions(uiFragment('Global uniquement'));
   for(const name of ['local_no_token','local_writable','default_writable','include_global'])f.elements[name].checked=p[name];
   for(const name of ['codex_path','claude_code_path','opencode_path','ollama_url'])f.elements[name].value=p[name];

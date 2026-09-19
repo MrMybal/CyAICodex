@@ -24,6 +24,7 @@ from .local_clients import client_command, local_status, launch_login, ollama_ur
 from .mcp_setup import MCPSetup, CLIENTS
 from .i18n import language, translate, translated_status, render_index, browser_catalog
 from . import connectors
+from .updates import Updater
 
 connection_context = ContextVar("connection", default=None)
 WEB = Path(__file__).parent / "web"
@@ -74,6 +75,13 @@ class SetupRequest(BaseModel):
 
 class StartupRequest(BaseModel):
     enabled: bool
+
+
+class UpdateSettings(BaseModel):
+    automatic: bool = True
+    use_git: bool = False
+    token: str = Field(default='', max_length=1000)
+    clear_token: bool = False
 
 
 class LanguageRequest(BaseModel):
@@ -274,15 +282,31 @@ def create_app(folder, port=8765):
         return f"Pour cette tâche : {task}\nConsulte get_context, cherche les méthodes pertinentes avec search_methods, puis lis-les avec get_method avant de commencer."
 
     login = CodexLogin(store)
+    updater = Updater(store, port)
+    async def watch_updates():
+        await asyncio.sleep(15)
+        while True:
+            if updater.settings()['automatic']:
+                await asyncio.to_thread(updater.check)
+            await asyncio.sleep(6 * 60 * 60)
+
     @asynccontextmanager
     async def lifespan(app):
-        async with mcp.session_manager.run():
-            yield
-        await login.close()
+        watcher = asyncio.create_task(watch_updates())
+        try:
+            async with mcp.session_manager.run():
+                yield
+        finally:
+            watcher.cancel()
+            from contextlib import suppress
+            with suppress(asyncio.CancelledError):
+                await watcher
+            await login.close()
 
     app = FastAPI(title="CyAICodex", lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
     app.state.store = store
     app.state.images = images
+    app.state.updater = updater
     app.add_middleware(LocalSecurity, store=store, port=port)
 
     @app.exception_handler(ValueError)
@@ -414,7 +438,7 @@ def create_app(folder, port=8765):
         import sys
         root = Path(sys.executable).parent if getattr(sys, 'frozen', False) else Path(__file__).resolve().parent.parent
         return {**store.new_connection(**data), "url": f"http://127.0.0.1:{port}/mcp",
-                'bridge_path': str(root/'CyAICodex-MCP.exe')}
+                'bridge_path': str(root/'CyAICodex.exe'), 'command': setup.launch_command()}
 
     @app.put('/api/connections/{connection_id}')
     async def connection_permissions(connection_id: str, request: Request):
@@ -554,6 +578,22 @@ def create_app(folder, port=8765):
     def read_startup():
         import os
         return {"enabled": startup_enabled(), "supported": os.name == "nt"}
+
+    @app.get('/api/updates')
+    def update_status():
+        return updater.snapshot()
+
+    @app.put('/api/updates/settings')
+    def update_settings(body: UpdateSettings):
+        return updater.configure(body.model_dump())
+
+    @app.post('/api/updates/check')
+    def check_updates():
+        return updater.check()
+
+    @app.post('/api/updates/install')
+    def install_update():
+        return updater.install()
 
     @app.put("/api/startup")
     def update_startup(body: StartupRequest):

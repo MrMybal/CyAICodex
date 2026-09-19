@@ -6,11 +6,11 @@ Application locale pour Windows : une bibliothèque de pratiques réutilisables,
 
 ## Démarrer
 
-Version Windows 0.5 : double-cliquer sur **CyAICodex.exe** ou sur le raccourci **CyAICodex** du Bureau. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Demarrer.vbs` utilise aussi l’exécutable lorsqu’il est présent.
+Version Windows 0.6 : télécharger **CyAICodex-Setup-0.6.0.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Demarrer.vbs` utilise aussi l’exécutable lorsqu’il est présent.
 
-Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Installer.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Construire-Exe.ps1` génère l’exécutable autonome dans `dist/CyAICodex.exe`, avec les ressources visuelles intégrées. Quitter l’application avant de remplacer son exécutable lors d’une mise à jour. Voir aussi `Lisez-moi-v0.5.txt`.
+Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Installer.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Construire-Exe.ps1` génère l’exécutable autonome dans `dist/CyAICodex.exe`, avec les ressources visuelles intégrées. Quitter l’application avant de remplacer son exécutable lors d’une mise à jour. Avec Inno Setup 6, `Construire-Installateur.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `Lisez-moi-v0.6.txt`.
 
-Fermer l’onglet ne coupe pas le serveur. Le menu de l’icône permet de rouvrir l’application, d’activer **Démarrer avec Windows**, ou de quitter et arrêter le serveur. Le démarrage automatique se règle aussi dans **Connexions → Disponibilité du serveur**. Le réglage est partagé avec le menu de l’icône Windows. Il lance le serveur sans ouvrir le navigateur à l’ouverture de la session utilisateur (pas avant la connexion Windows). Les données restent dans le dossier `data/` à côté du logiciel ; ne pas déplacer ce dossier si un démarrage automatique pointe dessus.
+Fermer l’onglet ne coupe pas le serveur. Le menu de l’icône permet de rouvrir l’application, d’activer **Démarrer avec Windows**, ou de quitter et arrêter le serveur. Le démarrage automatique se règle aussi dans **Connexions → Disponibilité du serveur**. Le réglage est partagé avec le menu de l’icône Windows. Il lance le serveur sans ouvrir le navigateur à l’ouverture de la session utilisateur (pas avant la connexion Windows). La version installée conserve les données dans `%LOCALAPPDATA%\CyAICodex\data`, indépendamment des fichiers de l’application. La version portable utilise `data/` à côté de son exécutable. La désinstallation conserve la bibliothèque.
 
 L’interface s’ouvre avec un lien de session depuis l’icône. L’adresse seule peut demander de la rouvrir depuis l’icône. Le jeton de lancement est échangé contre un cookie HttpOnly SameSite=Strict et immédiatement retiré de la barre d’adresse.
 
@@ -36,7 +36,7 @@ Transport : **Streamable HTTP**, endpoint par défaut `http://127.0.0.1:8765/mcp
 
 Outils : `get_context`, `search_methods`, `get_method`, `create_method`, `update_method`. Une ressource `methodes://context` et le prompt `appliquer_methodes` sont également proposés. Les outils déclarent leurs annotations de lecture/écriture.
 
-Formats générés : JSON MCP HTTP, entrée TOML pour Codex, commande `claude mcp add` pour Claude Code. Chaque client doit prendre en charge Streamable HTTP et les en-têtes d’authentification ; le JSON générique n’est pas un format universel pour toutes les applications.
+Dans **Connexions → Configurer et tester**, Codex, Claude Desktop et OpenCode utilisent le même **CyAICodex.exe** avec `--mcp-stdio`. Ce transport intégré démarre le serveur à la demande et partage la bibliothèque entre les clients. Aucune passerelle séparée n’est nécessaire. Les clients HTTP restent compatibles avec le serveur déjà lancé. Les formats génériques ne remplacent pas la configuration propre à chaque client.
 
 Instruction conseillée dans les règles du client IA :
 
@@ -74,7 +74,7 @@ Les clés locales sont chiffrées par Windows DPAPI, et ne sont jamais renvoyée
 
 Le serveur reste accessible uniquement depuis ce PC, lié à `127.0.0.1` avec contrôle Host/Origin. Ce n’est pas un service cloud : ChatGPT web ou un autre service distant ne peuvent pas joindre directement cette adresse. Un relais distant avec authentification demanderait une intégration supplémentaire. Le serveur s’arrête si Windows est éteint ou en veille.
 
-Cette version fournit une recherche lexicale locale, sans embeddings, recherche sémantique ni synchronisation multi-appareils. L’interface s’ouvre dans le navigateur ; il n’y a pas encore d’installeur `.exe` signé. Les méthodes sont stockées en clair dans SQLite pour permettre leur récupération ; protéger l’accès au compte et au disque Windows reste pertinent.
+Cette version fournit une recherche lexicale locale, sans embeddings, recherche sémantique ni synchronisation multi-appareils. L’interface s’ouvre dans le navigateur ; l’installateur et l’exécutable ne sont pas encore signés avec un certificat Authenticode. Les méthodes sont stockées en clair dans SQLite pour permettre leur récupération ; protéger l’accès au compte et au disque Windows reste pertinent.
 
 Le dossier `data/`, l’environnement Python et les fichiers `.env` sont exclus dans `.gitignore`. Conserver les réglages propres au poste dans ce dossier local.
 
@@ -112,7 +112,7 @@ L’onglet **Paramètres** permet d’activer l’accès MCP sans jeton (désact
 La détection de Codex consulte aussi son installation desktop, sans dépendre uniquement du PATH hérité d’Explorer. Des chemins .exe personnalisés sont possibles dans Paramètres.
 
 - **Claude Code / compte Claude** : client local officiel, avec bouton de connexion interactif. Le compte Claude Desktop n’est pas automatiquement une connexion Claude Code. L’assistant utilise le mode print avec images, sans outils et sans persistance de session. Il faut connecter son compte une fois.
-- **Claude Desktop / application** : choisir son format dans la configuration d’une connexion MCP. Le bloc utilise `CyAICodex-MCP.exe`, un relais stdio vers le serveur local. Conserver les deux exécutables ensemble. Fusionner le bloc `mcpServers` dans la configuration Claude Desktop sans remplacer les autres serveurs, puis redémarrer Claude. Le relais ne démarre pas le serveur : CyAICodex doit être actif.
+- **Claude Desktop / application** : cliquer sur **Configurer et tester** dans Connexions, puis redémarrer Claude. Le même `CyAICodex.exe` assure le transport stdio et démarre le serveur local si nécessaire. Les autres serveurs configurés sont conservés.
 - **OpenCode** : client local et ses fournisseurs configurés ; connexion via le bouton dédié. Modèle au format `fournisseur/modèle`. `ollama/qwen3:0.6b` utilise directement l’adresse Ollama définie dans Paramètres. Un format MCP OpenCode est également proposé dans Connexions.
 - **Ollama** : serveur HTTP local, aucun secret API requis. Vérifier pour lister les modèles installés, puis utiliser le modèle dans l’assistant. Les petits modèles uniquement textuels ne permettent pas d’analyser les images. Pour les références visuelles, choisir un modèle vision.
 
@@ -199,3 +199,17 @@ Références : [Antigravity](https://antigravity.google/docs/cli/headless/),
 [CodeBuddy](https://www.codebuddy.ai/docs/cli/cli-reference),
 [OpenRouter](https://openrouter.ai/docs/api/reference/overview),
 [LM Studio](https://lmstudio.ai/docs/developer/openai-compat/chat-completions).
+
+## Version 0.6 — installation et mises à jour
+
+L’installateur est propre au compte Windows, sans élévation administrateur. Il crée une entrée dans le menu Démarrer, propose un raccourci sur le bureau et le démarrage avec Windows. Le même exécutable gère l’interface, le serveur et le transport MCP stdio. La fermeture d’un client MCP ne ferme pas l’application dans la zone de notification.
+
+Pour migrer depuis une version portable, quitter l’ancienne application et lancer l’installateur avec `/LEGACYDATA="chemin complet du dossier data"`. La bibliothèque est copiée avec une sauvegarde SQLite cohérente ; l’original reste intact. Une bibliothèque déjà présente à destination n’est jamais remplacée. Les configurations MCP reconnues sont adaptées au nouveau chemin en conservant leurs jetons et les autres serveurs. En cas de configuration non reconnue, utiliser **Connexions → Configurer et tester**.
+
+**Paramètres → Mises à jour** vérifie la dernière release stable au démarrage et toutes les six heures (option désactivable). Le bouton **Télécharger et installer** récupère l’installateur, vérifie sa taille et son empreinte SHA-256 GitHub, puis ouvre l’assistant d’installation. L’installation ferme temporairement les connexions MCP ; recharger les clients après la mise à jour. L’installation intégrée concerne Windows et le port standard 8765.
+
+Pour un dépôt privé, activer la connexion GitHub locale de Git ou fournir un jeton limité au dépôt avec **Contents: read**. Le jeton est chiffré par Windows DPAPI et n’est jamais renvoyé par l’API locale. Il n’est transmis qu’à `api.github.com`, jamais aux adresses de redirection des fichiers. Si le dépôt devient public, la vérification et le téléchargement fonctionnent sans compte, même si une ancienne connexion privée est devenue invalide.
+
+Publication d’une mise à jour : créer un tag `vMAJEUR.MINEUR.CORRECTIF` et une release stable contenant `CyAICodex-Setup-MAJEUR.MINEUR.CORRECTIF.exe`. GitHub doit fournir le champ `digest` SHA-256 de cet asset. Les brouillons, préversions, versions plus anciennes et fichiers sans empreinte vérifiable ne sont pas installés.
+
+Références : [MCP Codex](https://developers.openai.com/codex/mcp), [MCP OpenCode](https://opencode.ai/docs/mcp-servers/), [assets des releases GitHub](https://docs.github.com/en/rest/releases/assets), [Inno Setup](https://jrsoftware.org/isinfo.php).

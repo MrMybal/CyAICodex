@@ -6,3 +6,4 @@ pystray>=0.19,<1
 pillow>=11,<13
 tomlkit==0.15.1
 json5==0.15.0
+pywin32==312; sys_platform == "win32"

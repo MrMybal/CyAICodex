@@ -100,33 +100,44 @@ class MCPSetup:
             raise ValueError('Client MCP inconnu.')
         return self.paths[client] if self.paths else config_path(client)
 
+    def launch_command(self):
+        executable = self.root / 'CyAICodex.exe'
+        prefix = [str(executable)] if executable.is_file() else [sys.executable, str(self.root / 'run.py')]
+        return prefix + ['--mcp-stdio', '--port', str(self.port), '--data-dir', str(self.store.folder.resolve())]
+
     def entry(self, client, token):
-        headers = {'Authorization':'Bearer '+token} if token else {}
-        if client == 'codex':
-            result = {'url':self.url, 'enabled':True, 'startup_timeout_sec':30}
-            if headers:
-                result['http_headers'] = headers
-            return result
+        command = self.launch_command()
+        env = {'CYAICODEX_MCP_TOKEN': token} if token else {}
         if client == 'opencode':
-            result = {'type':'remote','url':self.url,'enabled':True, 'oauth':False}
-            if headers:
-                result['headers'] = headers
-            return result
-        return {'command':str(self.root/'CyAICodex-MCP.exe'), 'args':['--mcp-stdio','--port',str(self.port)],
-                'env':{'CYAICODEX_MCP_TOKEN':token} if token else {}}
+            return {'type': 'local', 'command': command, 'environment': env, 'enabled': True, 'timeout': 45000}
+        result = {'command': command[0], 'args': command[1:], 'env': env}
+        if client == 'codex':
+            result.update(enabled=True, startup_timeout_sec=45)
+        return result
 
     def managed(self, client, entry):
         if not isinstance(entry, dict):
             return False
-        if client == 'claude_desktop':
-            return str(entry.get('command','')).lower() == str(self.root/'CyAICodex-MCP.exe').lower() and entry.get('args') == ['--mcp-stdio','--port',str(self.port)]
-        return entry.get('url') == self.url
+        if entry.get('url') == self.url:
+            return True
+        command = entry.get('command', [])
+        command = command if isinstance(command, list) else [command, *entry.get('args', [])]
+        if not command or '--mcp-stdio' not in command:
+            return False
+        roots = [self.root]
+        for key in ('previous_install_root', 'installation_root'):
+            previous = self.store.setting(key)
+            if previous:
+                roots.append(Path(previous))
+        allowed = {str(root / name).lower() for root in roots for name in ('CyAICodex.exe', 'CyAICodex-MCP.exe')}
+        return str(command[0]).lower() in allowed or command == self.launch_command()
 
     def token(self, client, entry):
-        if client == 'claude_desktop':
-            return entry.get('env',{}).get('CYAICODEX_MCP_TOKEN','')
-        headers = entry.get('http_headers' if client == 'codex' else 'headers',{})
-        auth = headers.get('Authorization','')
+        env = entry.get('environment' if client == 'opencode' else 'env', {})
+        if env.get('CYAICODEX_MCP_TOKEN'):
+            return env['CYAICODEX_MCP_TOKEN']
+        headers = entry.get('http_headers' if client == 'codex' else 'headers', {})
+        auth = headers.get('Authorization', '')
         return auth[7:] if auth.startswith('Bearer ') else ''
 
     def install(self, client, options):
@@ -136,8 +147,6 @@ class MCPSetup:
             existing = data.get(section,{}).get(ENTRY)
             if existing and not self.managed(client, existing):
                 raise ValueError('Une entrée cyaicodex pointe ailleurs. Elle est conservée : renommez-la dans le client avant de connecter cette installation.')
-            if client == 'claude_desktop' and not (self.root/'CyAICodex-MCP.exe').is_file():
-                raise ValueError('Le relais CyAICodex-MCP.exe manque à côté de l’application. Réinstallez les deux exécutables ensemble.')
             context = self.store.context(options['project_id'], options['type_id'], options['include_global'])
             created = None
             token = ''
@@ -198,7 +207,7 @@ class MCPSetup:
                 result['message'] = 'Le serveur est désactivé dans la configuration du client.'
                 return result
             result['configured'] = True
-            if not result['server']:
+            if not result['server'] and not entry.get('command'):
                 result['message'] = 'Serveur local arrêté ou inaccessible. Lancez CyAICodex et réessayez.'
                 return result
             token = self.token(client,entry)
@@ -221,11 +230,13 @@ class MCPSetup:
                     if not {'get_context','search_methods','import_image'}.issubset(result['tools']):
                         raise ValueError('Version MCP incomplète : mettez à jour CyAICodex.')
                     result['context'] = context.structuredContent or json.loads(context.content[0].text)
-            async with asyncio.timeout(20):
-                if client == 'claude_desktop':
-                    if not Path(entry['command']).is_file():
-                        raise ValueError('Relais CyAICodex-MCP.exe introuvable.')
-                    params = StdioServerParameters(command=entry['command'],args=entry['args'],env={**os.environ,**entry.get('env',{})})
+            async with asyncio.timeout(50):
+                if entry.get('command'):
+                    command = entry['command']
+                    command = command if isinstance(command, list) else [command, *entry.get('args', [])]
+                    env = entry.get('environment' if client == 'opencode' else 'env', {})
+                    params = StdioServerParameters(command=command[0], args=command[1:],
+                        env={**os.environ, **env, 'PYINSTALLER_RESET_ENVIRONMENT': '1'})
                     async with stdio_client(params) as (read,write):
                         await probe(read,write)
                 else:
@@ -233,6 +244,7 @@ class MCPSetup:
                     async with httpx.AsyncClient(headers=headers,timeout=15,trust_env=False) as http:
                         async with streamable_http_client(self.url,http_client=http) as (read,write,_):
                             await probe(read,write)
+            result['server'] = True
             result['mcp'] = True
             result['message'] = f"Connexion MCP testée avec la configuration enregistrée : {len(result['tools'])} outils accessibles."
         except ValueError as exc:

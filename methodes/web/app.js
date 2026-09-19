@@ -103,10 +103,10 @@ $('#windows-startup').addEventListener('change',guarded(async()=>{
 function showConfig(){
   const c=state.config;if(!c)return;
   let value;
-  if($('#config-format').value==='codex')value=uiHTML`[mcp_servers.methodes]\nurl = "${c.url}"\nhttp_headers = { Authorization = "Bearer ${c.token}" }`;
+  if($('#config-format').value==='codex')value='[mcp_servers.cyaicodex]\ncommand = '+JSON.stringify(c.command[0])+'\nargs = '+JSON.stringify(c.command.slice(1))+'\nstartup_timeout_sec = 45\n[mcp_servers.cyaicodex.env]\nCYAICODEX_MCP_TOKEN = '+JSON.stringify(c.token);
   else if($('#config-format').value==='claude')value=uiHTML`claude mcp add --transport http methodes ${c.url} --header "Authorization: Bearer ${c.token}"`;
-  else if($('#config-format').value==='claude-desktop')value=JSON.stringify({mcpServers:{cyaicodex:{command:c.bridge_path,args:['--mcp-stdio','--port',new URL(c.url).port],env:{CYAICODEX_MCP_TOKEN:c.token}}}},null,2);
-  else if($('#config-format').value==='opencode')value=JSON.stringify({mcp:{cyaicodex:{type:'remote',url:c.url,headers:{Authorization:'Bearer '+c.token},enabled:true}}},null,2);
+  else if($('#config-format').value==='claude-desktop')value=JSON.stringify({mcpServers:{cyaicodex:{command:c.command[0],args:c.command.slice(1),env:{CYAICODEX_MCP_TOKEN:c.token}}}},null,2);
+  else if($('#config-format').value==='opencode')value=JSON.stringify({mcp:{cyaicodex:{type:'local',command:c.command,environment:{CYAICODEX_MCP_TOKEN:c.token},enabled:true,timeout:45000}}},null,2);
   else value=JSON.stringify({mcpServers:{methodes:{type:'http',url:c.url,headers:{Authorization:'Bearer '+c.token}}}},null,2);
   $('#connection-config').textContent=value;
 }

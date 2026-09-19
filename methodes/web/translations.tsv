@@ -454,3 +454,46 @@ Aucun modèle disponible sur ce serveur.	No models available on this server.
 Connecteurs supplémentaires	Additional connectors
 Enregistrez les réglages, vérifiez le client, puis testez une réponse. Le test envoie seulement un court message de contrôle au fournisseur choisi et peut consommer son quota.	Save settings, check the client, then test a response. The test sends only a short check message to the selected provider and may consume its quota.
 Clé API OpenRouter	OpenRouter API key
+Mise à jour disponible	Update available
+Mises à jour	Updates
+Les mises à jour proviennent des releases GitHub de MrMybal/CyAICodex. L’installation conserve votre bibliothèque et vos réglages.	Updates come from the GitHub releases of MrMybal/CyAICodex. Installation preserves your library and settings.
+Vérifier les mises à jour	Check for updates
+Télécharger et installer	Download and install
+Rechercher automatiquement au démarrage et toutes les six heures	Automatically check at startup and every six hours
+Accès au dépôt privé GitHub	Private GitHub repository access
+Un dépôt public ne nécessite aucune connexion. Pour le dépôt privé, utilisez votre connexion Git locale ou un jeton GitHub limité à ce dépôt avec le droit Contents en lecture.	Public repositories require no sign-in. For this private repository, use your local Git credentials or a GitHub token restricted to this repository with read-only Contents permission.
+Utiliser la connexion GitHub enregistrée dans Git sur ce PC	Use the GitHub credentials saved in Git on this PC
+Jeton GitHub personnel	Personal GitHub token
+Supprimer le jeton enregistré	Remove the saved token
+Le jeton est chiffré avec votre compte Windows. Il n’est jamais inclus dans l’application publiée.	The token is encrypted with your Windows account. It is never included in the published application.
+Enregistrer les préférences de mise à jour	Save update preferences
+Rechercher une nouvelle version sur GitHub.	Check GitHub for a new version.
+Vérification des mises à jour…	Checking for updates…
+Une nouvelle version est disponible.	A new version is available.
+CyAICodex est à jour.	CyAICodex is up to date.
+Téléchargement et vérification de l’installateur…	Downloading and verifying the installer…
+L’installateur est ouvert. Suivez ses étapes ; vos données seront conservées.	The installer is open. Follow its steps; your data will be preserved.
+La vérification a échoué.	The check failed.
+Jeton GitHub enregistré.	GitHub token saved.
+Aucun jeton GitHub enregistré.	No GitHub token saved.
+Version GitHub non reconnue.	Unrecognized GitHub version.
+Cette version n’est pas une version stable publiée.	This is not a published stable release.
+Cette release ne contient pas encore d’installateur compatible.	This release does not yet contain a compatible installer.
+Les informations de vérification de l’installateur sont incomplètes.	Installer verification information is incomplete.
+Git est introuvable. Ajoutez un jeton GitHub pour ce dépôt privé.	Git was not found. Add a GitHub token for this private repository.
+La connexion GitHub locale est indisponible.	The local GitHub connection is unavailable.
+Connectez Git à GitHub ou ajoutez un jeton pour ce dépôt privé.	Sign in to GitHub with Git or add a token for this private repository.
+Dépôt privé inaccessible ou aucune release publiée : configurez l’accès GitHub.	Private repository inaccessible or no published release: configure GitHub access.
+Accès GitHub refusé ou limite de requêtes atteinte. Vérifiez les droits du compte.	GitHub access denied or rate limit reached. Check account permissions.
+Réponse GitHub trop volumineuse.	GitHub response too large.
+Aucune version stable publiée.	No stable release published.
+Impossible de vérifier les mises à jour. Pour un dépôt privé, vérifiez votre connexion GitHub ou votre jeton ; sinon vérifiez le réseau.	Unable to check for updates. For a private repository, check your GitHub connection or token; otherwise check the network.
+Adresse de téléchargement GitHub refusée.	GitHub download address rejected.
+Installateur trop volumineux.	Installer too large.
+La vérification de l’installateur a échoué. Aucun fichier ne sera exécuté.	Installer verification failed. No file will be executed.
+Format de l’installateur invalide.	Invalid installer format.
+Trop de redirections pendant le téléchargement.	Too many download redirects.
+Installez la version Windows standard pour utiliser la mise à jour intégrée.	Install the standard Windows version to use the built-in updater.
+Une vérification ou une installation est déjà en cours.	An update check or installation is already running.
+CyAICodex est déjà à jour.	CyAICodex is already up to date.
+Téléchargement ou lancement impossible. Réessayez la mise à jour.	Unable to download or launch. Try the update again.

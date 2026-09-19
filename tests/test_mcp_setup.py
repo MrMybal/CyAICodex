@@ -12,7 +12,7 @@ from methodes.server import create_app
 
 
 def manager(tmp_path):
-    root=tmp_path/'app';root.mkdir();(root/'CyAICodex-MCP.exe').write_bytes(b'fake executable, never run')
+    root=tmp_path/'app';root.mkdir();(root/'CyAICodex.exe').write_bytes(b'fake executable, never run')
     paths={c:tmp_path/c/('config.toml' if c=='codex' else 'config.jsonc') for c in ['codex','claude_desktop','opencode']}
     folder=tmp_path/'data';folder.mkdir()
     return MCPSetup(Store(folder),18769,root,paths)
