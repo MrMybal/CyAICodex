@@ -1,0 +1,456 @@
+CyAICodex — votre mémoire de travail	CyAICodex — your working memory
+Logo CY avec un livre ouvert	CY logo with an open book
+UNE FOIS. PARTOUT.	ONCE. EVERYWHERE.
+Espace personnel	Personal workspace
+Bibliothèque locale	Local library
+VOTRE ESPACE	YOUR WORKSPACE
+Bibliothèque	Library
+Ressources d’images	Image resources
+Projets & types	Projects & types
+Connexions	Connections
+Paramètres	Settings
+Le savoir qui vous suit.	Knowledge that follows you.
+Vos bonnes pratiques, au même endroit. Pour vous et toutes vos IA.	Your best practices in one place. For you and all your AI tools.
+Serveur MCP actif	MCP server running
+Serveur arrêté	Server stopped
+127.0.0.1 · local uniquement	127.0.0.1 · local only
+Votre mémoire de travail, partagée.	Your working memory, shared.
+VOS PRATIQUES, EN COMMUN	YOUR SHARED PRACTICES
+Les bonnes méthodes.	The right methods.
+Au bon moment.	At the right time.
+Gardez ce qui fonctionne. Retrouvez-le dans chaque projet.	Keep what works. Find it again in every project.
+＋ Nouvelle méthode	＋ New method
+méthodes publiées	published methods
+projets organisés	organized projects
+connexions configurées	configured connections
+Rechercher une méthode, un tag, une pratique…	Search for a method, tag or practice…
+Rechercher	Search
+Contexte	Context
+Tous les contextes	All contexts
+État	Status
+Publiées	Published
+Brouillons	Drafts
+Archives	Archived
+Inclure les méthodes globales	Include global methods
+Votre bibliothèque	Your library
+Une base commune, des projets cohérents	Shared knowledge, consistent projects
+← Précédent	← Previous
+Suivant →	Next →
+◈ Stocké sur votre ordinateur. Disponible pour vos IA.	◈ Stored on your computer. Available to your AI tools.
+Exporter la bibliothèque ↗	Export library ↗
+VOS RÉFÉRENCES VISUELLES	YOUR VISUAL REFERENCES
+Une image.	One image.
+Les bonnes consignes.	The right instructions.
+Logos, captures et inspirations : conservez les originaux et expliquez ce qui compte.	Logos, screenshots and inspiration: keep the originals and explain what matters.
+＋ Importer une image	＋ Import image
+Rechercher une image	Search images
+Rechercher un logo, un tag, une consigne…	Search for a logo, tag or instruction…
+Contexte des images	Image context
+État des images	Image status
+Inclure les images globales	Include global images
+L’image et les règles voyagent ensemble.	The image and its rules travel together.
+Exemple : « Conserver le CY blanc à l’identique. Le livre reste en arrière-plan. Le contour du disque doit être transparent. » Les IA retrouvent ces consignes avec la ressource via MCP.	Example: “Keep the white CY unchanged. The book stays in the background. The area outside the circle must be transparent.” AI tools retrieve these instructions with the resource through MCP.
+UN CONTEXTE CLAIR	A CLEAR CONTEXT
+À chaque projet,	For every project,
+ses méthodes.	its own methods.
+Regroupez les pratiques par type de projet, puis affinez par projet.	Group practices by project type, then refine them for each project.
+Types de projets	Project types
+Web, application Windows, démo, recherche…	Web, Windows app, demo, research…
+Nom du type	Type name
+Créer	Create
+Projets	Projects
+Un projet hérite des méthodes de son type.	A project inherits the methods of its type.
+Nom du projet	Project name
+Créer le projet	Create project
+Comment les méthodes sont sélectionnées	How methods are selected
+Pour une connexion liée à un projet : méthodes de ce projet + méthodes de son type + méthodes globales si activées. Deux IA peuvent travailler sur des projets différents simultanément.	For a project connection: its methods + its project type’s methods + global methods if enabled. Two AI tools can work on different projects at the same time.
+DE L’IDÉE À LA PRATIQUE	FROM IDEA TO PRACTICE
+Une méthode à construire ?	Building a method?
+Faites-vous accompagner.	Get some help.
+Rédigez, clarifiez ou transformez une bonne pratique en méthode réutilisable.	Write, clarify or turn a good practice into a reusable method.
+Qu’est-ce qui a bien fonctionné ?	What worked well?
+Décrivez votre façon de faire. Votre assistant vous aidera à en tirer une méthode claire.	Describe your process. Your assistant will help turn it into a clear method.
+Ex. Aide-moi à formaliser ma checklist avant une publication GitHub…	E.g. Help me write my checklist before publishing to GitHub…
+Nouvelle conversation	New conversation
+Envoyer ↗	Send ↗
+Votre assistant	Your assistant
+Fournisseur	Provider
+Codex · compte ChatGPT	Codex · ChatGPT account
+Claude Code · compte Claude	Claude Code · Claude account
+OpenCode · client local	OpenCode · local client
+Ollama · modèles locaux	Ollama · local models
+Modèle	Model
+Modèle par défaut de Codex	Default Codex model
+Modèle par défaut de Claude	Default Claude model
+fournisseur/modèle, ex. ollama/qwen3:0.6b	provider/model, e.g. ollama/qwen3:0.6b
+Modèle installé, ex. qwen3:0.6b	Installed model, e.g. qwen3:0.6b
+Identifiant du modèle	Model ID
+Pour OpenCode : fournisseur/modèle (ex. ollama/qwen3:0.6b). Pour Ollama : sélectionnez un modèle installé dans Paramètres. Pour une API : identifiant exact du modèle.	For OpenCode: provider/model (e.g. ollama/qwen3:0.6b). For Ollama: select an installed model in Settings. For an API: the exact model ID.
+Méthode de référence	Reference method
+Aucune	None
+Image de référence	Reference image
+Votre conversation, la méthode sélectionnée et l’image choisie avec ses consignes sont envoyées au fournisseur. Le modèle doit accepter les images. Cet assistant analyse et rédige ; il ne génère pas encore d’images.	Your conversation, the selected method and the image with its instructions are sent to the provider. The model must support images. This assistant analyzes and writes; it does not generate images yet.
+Configurer les comptes →	Configure accounts →
+UN SAVOIR, PLUSIEURS IA	ONE LIBRARY, MANY AI TOOLS
+Tout le monde,	Everyone,
+sur la même page.	on the same page.
+Reliez vos outils à la bibliothèque et choisissez leur périmètre.	Connect your tools to the library and choose their scope.
+Connecter une IA en un clic	Connect an AI tool in one click
+Actualiser le diagnostic	Refresh diagnostics
+Choisissez l’accès, puis cliquez sur votre client. Sa configuration est sauvegardée avant modification ; ses autres serveurs sont conservés.	Choose access settings, then click your client. Its configuration is backed up before changes; its other servers are preserved.
+Accès à utiliser	Access mode
+Jeton dédié à chaque client	Dedicated token for each client
+Accès local sans jeton	Local access without a token
+Autoriser la création et la modification	Allow creation and editing
+Le test ouvre une vraie session MCP avec la configuration enregistrée. Il ne peut pas garantir qu’une conversation déjà ouverte a rechargé ses outils : redémarrez le client ou reconnectez son serveur MCP après configuration.	The test opens a real MCP session using the saved configuration. It cannot guarantee that an existing conversation has reloaded its tools: restart the client or reconnect its MCP server after setup.
+Informations à transmettre à une autre IA	Information to share with another AI
+Lancez CyAICodex, puis configurez son serveur Streamable HTTP. Commencez par get_context, search_methods et get_method. Pour les images : search_images, view_image, puis import_image pour en ajouter.	Start CyAICodex, then configure its Streamable HTTP server. Start with get_context, search_methods and get_method. For images: search_images, view_image, then import_image to add new ones.
+Disponibilité du serveur	Server availability
+Démarrer avec Windows	Start with Windows
+Vérification…	Checking…
+Lancement automatique	Automatic startup
+À l’ouverture de votre session Windows, CyAICodex démarre discrètement dans la zone de notification. Le serveur reste actif lorsque vous fermez l’onglet. Il est indisponible lorsque le PC est éteint ou en veille.	When you sign in to Windows, CyAICodex starts in the system tray. The server stays active when you close the tab. It is unavailable when the PC is off or asleep.
+Nouvelle connexion MCP	New MCP connection
+Un jeton par outil et par contexte. Les connexions restent indépendantes.	One token per tool and context. Connections remain independent.
+Nom	Name
+Ex. Claude · mon application	E.g. Claude · my app
+Créer la connexion	Create connection
+Connexions configurées	Configured connections
+La dernière activité indique un accès authentifié, pas une connexion permanente.	Last activity indicates authenticated access, not a permanent connection.
+Comptes de l’assistant intégré	Built-in assistant accounts
+Codex, Claude Code et OpenCode utilisent leurs clients locaux. Ollama fonctionne sur ce PC.	Codex, Claude Code and OpenCode use their local clients. Ollama runs on this PC.
+Configurer les clients locaux →	Configure local clients →
+Compte géré par le client Codex local	Account managed by the local Codex client
+Vérifier	Check
+Se connecter	Sign in
+Clé API	API key
+Clé API OpenAI	OpenAI API key
+Clé API Anthropic	Anthropic API key
+Enregistrer	Save
+Clés chiffrées avec votre compte Windows. Enregistrer un champ vide retire la clé locale. Les abonnements ChatGPT/Claude et les accès API sont distincts.	Keys are encrypted with your Windows account. Saving an empty field removes the local key. ChatGPT/Claude subscriptions and API access are separate.
+Pour rendre la consultation systématique	Make library consultation routine
+Ajoutez dans les instructions de chaque IA : « Au début de chaque tâche, consulte le serveur CyAICodex, cherche les pratiques applicables et lis-les avant d’agir. » Un serveur MCP donne accès aux méthodes ; le client IA décide quand les consulter.	Add to each AI tool’s instructions: “At the start of every task, consult the CyAICodex server, find applicable practices and read them before acting.” An MCP server provides access to methods; the AI client decides when to consult them.
+VOTRE FONCTIONNEMENT	YOUR PREFERENCES
+Autorisations MCP	MCP permissions
+Autoriser les connexions locales sans jeton	Allow local connections without a token
+Tout client local pourra accéder au contexte ci-dessous. L’interface d’administration reste protégée. Les confirmations d’outils affichées par Codex ou Claude se règlent dans ces applications.	Any local client can access the context below. The admin interface remains protected. Tool confirmations shown by Codex or Claude are configured in those applications.
+Contexte de l’accès sans jeton	Context for token-free access
+Autoriser l’import d’images et l’écriture sans jeton	Allow image imports and writing without a token
+Précocher l’écriture pour les nouvelles connexions avec jeton	Enable writing by default for new token connections
+Les droits des connexions existantes se modifient dans Connexions. Le contexte reste toujours respecté.	Change permissions for existing connections in Connections. Context restrictions always apply.
+Clients locaux de l’assistant	Local assistant clients
+Détection automatique, y compris au démarrage de Windows. Un chemin personnalisé est facultatif.	Automatic detection, including at Windows startup. A custom path is optional.
+Codex · chemin du client .exe	Codex · client .exe path
+Claude Code · chemin du client .exe	Claude Code · client .exe path
+OpenCode · chemin du client .exe	OpenCode · client .exe path
+Automatique	Automatic
+Adresse locale Ollama	Local Ollama address
+Enregistrer les paramètres	Save settings
+Vérifier et connecter	Check and connect
+Claude Desktop : créez une connexion dans Connexions puis choisissez « Claude Desktop · application ». Ajoutez le bloc généré à sa configuration MCP et redémarrez Claude. Cela donne à l’application Claude accès à votre bibliothèque. Pour discuter depuis CyAICodex, choisissez Claude Code et connectez votre compte Claude.	Claude Desktop: create a connection in Connections, then choose “Claude Desktop · application”. Add the generated block to its MCP configuration and restart Claude. This gives the Claude app access to your library. To chat within CyAICodex, choose Claude Code and sign in to your Claude account.
+Ollama : choisissez un modèle installé. Si la liste est vide, installez-en un dans Ollama puis cliquez sur Vérifier. Les images nécessitent un modèle acceptant la vision.	Ollama: choose an installed model. If the list is empty, install one in Ollama, then click Check. Images require a vision-capable model.
+Modèles Ollama installés	Installed Ollama models
+Cliquez sur Vérifier	Click Check
+Utiliser ce modèle dans l’assistant	Use this model in the assistant
+FICHE MÉTHODE	METHOD DETAILS
+Nouvelle méthode	New method
+Fermer	Close
+Titre	Title
+Une action claire, un résultat reproductible	A clear action, a repeatable result
+En quelques mots	In a few words
+Quand et pourquoi appliquer cette méthode	When and why to apply this method
+Catégorie	Category
+github, confidentialité, publication	github, privacy, publishing
+Portée	Scope
+Globale · tous les projets	Global · all projects
+Type de projet	Project type
+Projet précis	Specific project
+Groupe	Group
+La méthode	The method
+Markdown accepté · titres, étapes, checklist	Markdown supported · headings, steps, checklist
+Publiée · visible pour les IA	Published · visible to AI tools
+Brouillon · vous uniquement	Draft · only you
+Archivée	Archived
+Historique des versions	Version history
+Annuler	Cancel
+Enregistrer la méthode	Save method
+CONNEXION PRÊTE	CONNECTION READY
+Reliez votre IA	Connect your AI
+Le jeton n’est affiché qu’ici. Copiez la configuration avant de fermer.	The token is only shown here. Copy the configuration before closing.
+JSON · clients MCP HTTP	JSON · HTTP MCP clients
+Claude Code · commande	Claude Code · command
+Copier la configuration	Copy configuration
+Instruction à ajouter à votre IA	Instruction to add to your AI
+Au début de chaque tâche, consulte le serveur CyAICodex : get_context, puis search_methods et get_method pour les pratiques applicables. Respecte le contexte de cette connexion.	At the start of every task, consult the CyAICodex server: get_context, then search_methods and get_method for applicable practices. Respect the context of this connection.
+Endpoint local : utilisable par les clients de ce PC. Un service cloud ne peut pas joindre 127.0.0.1 sur votre ordinateur.	Local endpoint: available to clients on this PC. A cloud service cannot reach 127.0.0.1 on your computer.
+IMAGE ET CONSIGNES	IMAGE AND INSTRUCTIONS
+Importer une image	Import image
+Fermer la ressource	Close resource
+Aperçu de la ressource	Resource preview
+Fichier original	Original file
+Télécharger l’original ↗	Download original ↗
+Utiliser avec l’assistant ✧	Use with assistant ✧
+Le fichier original reste intact. Pour une variante visuelle, importez une nouvelle ressource.	The original file stays unchanged. For a visual variation, import a new resource.
+Ex. Logo CY · livre	E.g. CY logo · book
+Description détaillée	Detailed description
+Ce que représente l’image, sa composition, ses couleurs, son rôle…	What the image depicts, its composition, colors and purpose…
+À préserver impérativement	Must be preserved
+Ex. Géométrie, proportions et couleur du CY central, sans aucune modification.	E.g. Geometry, proportions and color of the central CY, without any changes.
+À éviter / modifications interdites	Avoid / prohibited changes
+Ex. Ne pas redessiner le monogramme. Pas de fond blanc autour du cercle.	E.g. Do not redraw the monogram. No white background around the circle.
+Usages et transformations autorisées	Allowed uses and transformations
+Où l’utiliser, quelles adaptations sont permises, format de sortie attendu…	Where to use it, which changes are allowed, expected output format…
+Logo, capture, inspiration…	Logo, screenshot, inspiration…
+logo, CY, identité, vert	logo, CY, identity, green
+Source / droits d’utilisation	Source / usage rights
+Auteur, origine, lien ou droits connus	Author, origin, link or known rights
+Globale	Global
+Publiée · accessible aux IA	Published · available to AI tools
+Historique des consignes	Instruction history
+Enregistrer la ressource	Save resource
+Vérifiez les champs du formulaire.	Check the form fields.
+Méthodes globales uniquement	Global methods only
+Sans type	No type
+projet(s)	project(s)
+Aucun type pour le moment.	No types yet.
+Voir les méthodes →	View methods →
+Créez votre premier projet.	Create your first project.
+Toutes	All
+Modifiée le	Updated on
+Aucune méthode ne correspond	No matching methods
+Votre prochaine bonne pratique commence ici.	Your next good practice starts here.
+Enregistrez une méthode à la main, ou faites-vous aider par l’assistant. Vos IA pourront ensuite la retrouver.	Save a method yourself or get help from the assistant. Your AI tools can then find it.
+＋ Créer une méthode	＋ Create method
+sur	of
+0 méthode	0 methods
+Choisir un groupe	Choose a group
+Modifier la méthode	Edit method
+Nouvelle fiche	New entry
+Méthode mise à jour.	Method updated.
+Méthode enregistrée.	Method saved.
+client disponible	client available
+à configurer	setup required
+Lecture & écriture	Read & write
+Lecture seule	Read only
+Dernier accès le	Last accessed on
+Pas encore utilisée	Not used yet
+Écriture	Writing
+Révoquer	Revoke
+Aucune connexion. Créez-en une pour votre première IA.	No connections. Create one for your first AI tool.
+Clé configurée	Key configured
+Aucune clé configurée	No key configured
+Client Codex disponible · compte à vérifier	Codex client available · check account
+Client Codex introuvable sur ce PC	Codex client not found on this PC
+Disponible sous Windows uniquement	Available on Windows only
+Activé · lancement en arrière-plan à l’ouverture de votre session	Enabled · starts in the background when you sign in
+Désactivé · lancement manuel	Disabled · start manually
+Le serveur démarrera automatiquement avec Windows.	The server will start automatically with Windows.
+Démarrage automatique désactivé.	Automatic startup disabled.
+VOUS	YOU
+＋ En faire une méthode	＋ Turn into a method
+Fermer sans enregistrer vos modifications ?	Close without saving your changes?
+Révoquer cette connexion ? Son jeton cessera de fonctionner.	Revoke this connection? Its token will stop working.
+Reprendre cette version	Restore this version
+Version chargée dans l’éditeur. Enregistrez pour créer une nouvelle version.	Version loaded in the editor. Save to create a new version.
+Type créé.	Type created.
+Projet créé.	Project created.
+Configuration copiée.	Configuration copied.
+Configuration de la clé enregistrée.	Key settings saved.
+URL de connexion Codex invalide.	Invalid Codex sign-in URL.
+Continuer la connexion Codex dans le navigateur ↗	Continue Codex sign-in in the browser ↗
+Compte Codex connecté (	Codex account connected (
+Compte non connecté	Account not connected
+En cours…	Working…
+Fond transparent	Transparent background
+Fond opaque	Opaque background
+Aucune image dans cette sélection	No images in this selection
+Importez un logo, une référence visuelle ou une capture et précisez comment vos IA doivent l’utiliser.	Import a logo, visual reference or screenshot and explain how your AI tools should use it.
+Ressource d’image	Image resource
+Ko	KB
+Transparence présente	Transparency present
+Image opaque	Opaque image
+PNG, JPEG ou WebP · 20 Mo maximum	PNG, JPEG or WebP · 20 MB maximum
+Fermer sans enregistrer les modifications de cette ressource ?	Close without saving changes to this resource?
+L’image doit faire 20 Mo maximum.	The image must be 20 MB or less.
+Vérifiez le fichier et les champs de la ressource.	Check the file and resource fields.
+Image et consignes enregistrées.	Image and instructions saved.
+Reprendre	Restore
+Anciennes consignes chargées. Enregistrez pour créer une nouvelle version.	Previous instructions loaded. Save to create a new version.
+Enregistrez les nouvelles consignes avant de les transmettre à l’assistant.	Save the new instructions before sending them to the assistant.
+Image sélectionnée pour votre prochaine demande.	Image selected for your next request.
+Global uniquement	Global only
+Accès sans jeton :	Token-free access:
+Accès MCP sans jeton désactivé	Token-free MCP access disabled
+Paramètres enregistrés et appliqués.	Settings saved and applied.
+Droit d’écriture mis à jour.	Write permission updated.
+· compte connecté	· account connected
+· compte à connecter dans Connexions	· sign in through Connections
+Choisir un modèle	Choose a model
+Terminez la connexion dans la fenêtre du client qui vient de s’ouvrir.	Finish signing in in the client window that just opened.
+Choisissez un modèle Ollama installé.	Choose an installed Ollama model.
+Cet accès reprend le contexte et les droits définis dans Paramètres → Autorisations MCP.	This access uses the context and permissions defined in Settings → MCP permissions.
+Écriture autorisée.	Writing allowed.
+Lecture seule.	Read only.
+Chaque client recevra son propre jeton avec les droits choisis ci-dessus. Vous pourrez le révoquer dans la liste des connexions.	Each client receives its own token with the permissions chosen above. You can revoke it in the connections list.
+Serveur lancé	Server running
+Client configuré	Client configured
+Connexion MCP testée	MCP connection tested
+Lecture et écriture	Read and write
+Projet :	Project:
+Type :	Type:
+· global inclus	· global included
+Reconfigurer et tester	Reconfigure and test
+Configurer et tester	Configure and test
+Tester seulement	Test only
+Détails	Details
+Outils :	Tools:
+Diagnostic en cours…	Running diagnostics…
+Diagnostic indisponible :	Diagnostics unavailable:
+Connexion en cours…	Connecting…
+Connexion prête. Rechargez les serveurs MCP ou redémarrez	Connection ready. Reload MCP servers or restart
+Configuration enregistrée, mais le test a échoué : consultez le diagnostic.	Configuration saved, but the test failed: check the diagnostics.
+Langue de l’application	App language
+La langue est mémorisée sur ce PC. Les fiches et les images ne sont pas traduites.	The language is saved on this PC. Method and image content is not translated.
+Changer de langue rechargera l’interface et effacera la conversation affichée. Continuer ?	Changing language will reload the interface and clear the displayed conversation. Continue?
+Ouvrir CyAICodex	Open CyAICodex
+Quitter et arrêter le serveur	Quit and stop server
+Ce nom existe déjà ou le groupe choisi est invalide.	This name already exists or the selected group is invalid.
+Une erreur interne est survenue. Consultez le journal local.	An internal error occurred. Check the local log.
+Ko ·	KB ·
+0 image	0 images
+Ouvrez CyAICodex depuis son icône Windows.	Open CyAICodex from its Windows tray icon.
+Ouvrez l'application depuis son icône Windows.	Open the application from its Windows tray icon.
+Origine refusée.	Origin rejected.
+Jeton MCP absent, invalide ou révoqué. Ouvrez CyAICodex > Connexions > Configurer et tester.	Missing, invalid or revoked MCP token. Open CyAICodex > Connections > Configure and test.
+Le titre et le contenu sont obligatoires.	Title and content are required.
+Le titre et la description sont obligatoires.	Title and description are required.
+Un tag ne peut pas dépasser 60 caractères.	A tag cannot exceed 60 characters.
+Choisissez un projet ou un type de projet.	Choose a project or project type.
+Nom de groupe invalide.	Invalid group name.
+Méthode introuvable.	Method not found.
+Projet inconnu.	Unknown project.
+Type de projet inconnu.	Unknown project type.
+Méthode introuvable dans ce contexte.	Method not found in this context.
+Cette méthode ne correspond pas au contexte de la connexion.	This method does not match the connection context.
+Le groupe choisi n'existe pas.	The selected group does not exist.
+La méthode a changé. Rechargez-la avant d'enregistrer.	The method has changed. Reload it before saving.
+Choisissez une image de 20 Mo maximum.	Choose an image of 20 MB or less.
+Formats acceptés : PNG, JPEG et WebP.	Supported formats: PNG, JPEG and WebP.
+Image trop grande : maximum 8192 pixels par côté et 25 mégapixels.	Image too large: maximum 8192 pixels per side and 25 megapixels.
+Utilisez une image fixe, sans animation.	Use a still image without animation.
+Le fichier n'est pas une image valide ou dépasse les limites autorisées.	The file is not a valid image or exceeds the allowed limits.
+Cette portée n'est pas accessible à la connexion.	This scope is not accessible to this connection.
+Image introuvable.	Image not found.
+Image introuvable dans ce contexte.	Image not found in this context.
+Cette ressource a changé. Rechargez-la avant d'enregistrer.	This resource has changed. Reload it before saving.
+Le stockage de clés nécessite Windows (DPAPI).	Key storage requires Windows (DPAPI).
+Windows n'a pas pu accéder à cette clé.	Windows could not access this key.
+Codex a fermé la connexion.	Codex closed the connection.
+Connexion Codex refusée. Vérifiez Codex CLI et votre compte.	Codex connection refused. Check Codex CLI and your account.
+Codex n'a pas répondu. Vérifiez la connexion, le modèle et les limites du compte.	Codex did not respond. Check the connection, model and account limits.
+Claude Code ne peut pas répondre. Connectez votre compte dans Paramètres et vérifiez votre quota.	Claude Code cannot respond. Sign in through Settings and check your quota.
+OpenCode a refusé la demande. Vérifiez son compte et le modèle choisi.	OpenCode refused the request. Check its account and selected model.
+OpenCode n’a renvoyé aucun texte. Vérifiez sa connexion et son modèle.	OpenCode returned no text. Check its connection and model.
+Choisissez un modèle Ollama installé dans Paramètres.	Choose an installed Ollama model in Settings.
+Ollama ne peut pas répondre. Vérifiez que le serveur et le modèle sont disponibles, et que le modèle accepte les images si vous en avez joint.	Ollama cannot respond. Check that the server and model are available, and that the model supports images if you attached any.
+Ollama a renvoyé une réponse sans texte.	Ollama returned a response without text.
+Ajoutez une clé API dans Connexions avant d'utiliser cet assistant.	Add an API key in Connections before using this assistant.
+Indiquez l'identifiant du modèle à utiliser.	Enter the model ID to use.
+Une demande utilisateur est nécessaire avec les images.	A user request is required with images.
+Le fournisseur a refusé la requête (HTTP {code}). Vérifiez clé, modèle et quota.	The provider refused the request (HTTP {code}). Check the key, model and quota.
+Le fournisseur a renvoyé une réponse sans texte.	The provider returned a response without text.
+Connexion MCP non authentifiée.	Unauthenticated MCP connection.
+Cette connexion est en lecture seule.	This connection is read only.
+Cette portée n’est pas accessible à la connexion.	This scope is not accessible to this connection.
+Fournissez soit file_path, soit data_base64, pas les deux.	Provide either file_path or data_base64, not both.
+Indiquez le chemin absolu d’un fichier image local existant.	Enter the absolute path of an existing local image file.
+Image trop volumineuse (20 Mo maximum).	Image too large (20 MB maximum).
+Les données base64 sont invalides.	Invalid base64 data.
+Windows refuse l’écriture de la configuration. Vérifiez les droits du dossier et réessayez. Les autres serveurs sont conservés.	Windows refused to write the configuration. Check folder permissions and try again. Other servers are preserved.
+Le droit d’écriture doit être vrai ou faux.	Write permission must be true or false.
+Connexion introuvable.	Connection not found.
+L’adresse Ollama doit être une URL HTTP locale sans chemin.	The Ollama address must be a local HTTP URL without a path.
+Le chemin du client doit désigner un fichier .exe existant.	The client path must point to an existing .exe file.
+Windows a refusé le changement du démarrage automatique.	Windows refused to change the startup setting.
+Clé trop longue.	Key too long.
+Le chemin configuré pour {name} doit désigner un fichier .exe existant.	The configured path for {name} must point to an existing .exe file.
+{name} introuvable. Installez son client local ou indiquez son chemin dans Paramètres.	{name} not found. Install its local client or enter its path in Settings.
+Ollama : indiquez une adresse HTTP locale, par exemple http://127.0.0.1:11434.	Ollama: enter a local HTTP address, for example http://127.0.0.1:11434.
+Le client local a dépassé le délai de réponse. Vérifiez son compte et le modèle.	The local client timed out. Check its account and model.
+Le client local a échoué (code {code}). Vérifiez sa connexion et sa version dans Paramètres.	The local client failed (code {code}). Check its connection and version in Settings.
+Ollama ne répond pas. Lancez Ollama sur ce PC.	Ollama is not responding. Start Ollama on this PC.
+Ollama actif · {count} modèle(s) installé(s)	Ollama running · {count} installed model(s)
+Client disponible	Client available
+{version} · compte connecté	{version} · account connected
+{version} · cliquez sur Se connecter	{version} · click Sign in
+Après configuration, redémarrez ce client ou rechargez ses serveurs MCP. Les conversations déjà ouvertes peuvent garder leur ancienne liste d’outils.	After setup, restart this client or reload its MCP servers. Existing conversations may retain their old tool list.
+CyAICodex n’est pas configuré dans ce client. Cliquez sur Configurer et tester.	CyAICodex is not configured in this client. Click Configure and test.
+L’entrée cyaicodex pointe vers une autre adresse ou un autre relais.	The cyaicodex entry points to another address or bridge.
+Le serveur est désactivé dans la configuration du client.	The server is disabled in the client configuration.
+Serveur local arrêté ou inaccessible. Lancez CyAICodex et réessayez.	Local server stopped or unreachable. Start CyAICodex and try again.
+Jeton refusé ou révoqué. Cliquez sur Configurer et tester pour réparer la connexion.	Token rejected or revoked. Click Configure and test to repair the connection.
+Cette configuration n’a pas de jeton et l’accès sans jeton est désactivé.	This configuration has no token and token-free access is disabled.
+Connexion MCP testée avec la configuration enregistrée : {count} outils accessibles.	MCP connection tested with the saved configuration: {count} tools available.
+Échec du dialogue MCP avec cette configuration. Vérifiez le relais et relancez le client. Aucun secret n’est affiché dans ce diagnostic.	MCP communication failed with this configuration. Check the bridge and restart the client. No secrets are shown in these diagnostics.
+Plusieurs profils Claude Desktop détectés. Ouvrez sa configuration depuis Paramètres > Développeur pour identifier le profil actif.	Multiple Claude Desktop profiles detected. Open its configuration in Settings > Developer to identify the active profile.
+Client MCP inconnu.	Unknown MCP client.
+Configuration existante illisible. Aucun fichier ne sera remplacé ; corrigez sa syntaxe puis réessayez.	Existing configuration cannot be read. No files will be replaced; fix its syntax and try again.
+Le client vient de modifier sa configuration. Réessayez pour conserver ses changements.	The client just updated its configuration. Try again to preserve its changes.
+Configuration modifiée pendant la sauvegarde. Réessayez.	Configuration changed during backup. Try again.
+Une entrée cyaicodex pointe ailleurs. Elle est conservée : renommez-la dans le client avant de connecter cette installation.	A cyaicodex entry points elsewhere. It is preserved: rename it in the client before connecting this installation.
+Le relais CyAICodex-MCP.exe manque à côté de l’application. Réinstallez les deux exécutables ensemble.	CyAICodex-MCP.exe is missing next to the app. Reinstall both executables together.
+Activez d’abord l’accès sans jeton dans Paramètres, ou choisissez un jeton dédié.	First enable token-free access in Settings, or choose a dedicated token.
+Serveur MCP inattendu.	Unexpected MCP server.
+Lecture du contexte refusée.	Context read refused.
+Version MCP incomplète : mettez à jour CyAICodex.	Incomplete MCP version: update CyAICodex.
+Relais CyAICodex-MCP.exe introuvable.	CyAICodex-MCP.exe not found.
+## Quand l’utiliser\n\n## Étapes\n1. …\n\n## Vérification\n- [ ] …	## When to use it\n\n## Steps\n1. …\n\n## Verification\n- [ ] …
+Confidentialité	Privacy
+Développement	Development
+Démonstrations	Demos
+Qualité	Quality
+Connecteur inconnu.	Unknown connector.
+Utilisez l’adresse officielle OpenRouter.	Use the official OpenRouter address.
+Indiquez une adresse HTTP locale terminée par /v1.	Enter a local HTTP address ending in /v1.
+Client introuvable. Installez-le ou indiquez son chemin .exe.	Client not found. Install it or enter its .exe path.
+Ajoutez une clé API pour ce connecteur.	Add an API key for this connector.
+Catalogue de modèles invalide.	Invalid model catalog.
+Réponse du connecteur trop volumineuse.	Connector response too large.
+Connecteur inaccessible. Vérifiez son adresse et son démarrage.	Connector unreachable. Check its address and whether it is running.
+Réponse JSON du connecteur invalide.	Invalid JSON response from connector.
+Catalogue non disponible : saisissez un identifiant de modèle.	Catalog unavailable: enter a model ID manually.
+Client détecté. La génération reste à tester.	Client detected. Generation has not been tested yet.
+Serveur accessible. La génération reste à tester.	Server reachable. Generation has not been tested yet.
+Connecteur indisponible. Vérifiez son installation et ses paramètres.	Connector unavailable. Check its installation and settings.
+Le connecteur a refusé la demande. Vérifiez votre compte et le modèle.	The connector rejected the request. Check your account and model.
+Plusieurs résultats terminaux reçus du connecteur.	Multiple terminal results received from connector.
+Flux fermé sans résultat final confirmé.	Stream closed without a confirmed final result.
+Ce connecteur accepte uniquement le texte. Retirez l’image ou choisissez un autre assistant.	This connector only supports text. Remove the image or choose another assistant.
+Réponse interrompue ou refusée par le fournisseur.	Response interrupted or refused by the provider.
+Test de génération échoué.	Generation test failed.
+Réponse réelle vérifiée.	Live response verified.
+Réponse reçue, mais différente du marqueur attendu.	Response received, but it differs from the expected marker.
+Ce connecteur utilise une clé API ou un serveur local.	This connector uses an API key or a local server.
+Compte du CLI local. La connexion du logiciel graphique peut être distincte.	Local CLI account. The desktop application's sign-in may be separate.
+Serveur de modèles. Choisissez un modèle disponible sur votre compte ou votre PC.	Model server. Choose a model available to your account or on your PC.
+Mode plan du client natif, dans un dossier temporaire. Ses règles de lecture et ses intégrations restent celles du client.	Native client plan mode in a temporary folder. Its read permissions and integrations remain controlled by that client.
+Chemin du client .exe	Client .exe path
+Adresse du serveur	Server address
+Clé API facultative pour un serveur local	API key (optional for a local server)
+Clé enregistrée — laisser vide pour la conserver	Key saved — leave blank to keep it
+Retirer la clé enregistrée	Remove saved key
+Charger les modèles	Load models
+Tester une réponse	Test a response
+Utiliser dans l’assistant	Use in assistant
+Ouvrir le client	Open client
+Installation et connexion ↗	Installation and sign-in ↗
+Dernier test de réponse réussi.	Last response test passed.
+Dernier test de réponse échoué.	Last response test failed.
+Pas encore testé dans cette application.	Not tested in this application yet.
+Enregistrez les réglages de ce connecteur avant de continuer.	Save this connector's settings before continuing.
+Connecteur sélectionné.	Connector selected.
+Catalogue chargé. Choisissez un modèle dans le champ Modèle.	Catalog loaded. Choose a model in the Model field.
+Aucun modèle disponible sur ce serveur.	No models available on this server.
+Connecteurs supplémentaires	Additional connectors
+Enregistrez les réglages, vérifiez le client, puis testez une réponse. Le test envoie seulement un court message de contrôle au fournisseur choisi et peut consommer son quota.	Save settings, check the client, then test a response. The test sends only a short check message to the selected provider and may consume its quota.
+Clé API OpenRouter	OpenRouter API key

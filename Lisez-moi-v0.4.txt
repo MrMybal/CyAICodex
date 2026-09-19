@@ -1,0 +1,19 @@
+CyAICodex 0.4 — Français / English
+
+Choisissez Français ou English dans le menu FR / EN en haut à droite,
+ou dans Paramètres > Langue de l’application.
+
+Le choix est conservé sur ce PC après fermeture et redémarrage. Il s’applique
+à l’interface, aux messages de l’application, au menu Windows de l’icône
+de notification et à la langue demandée à l’assistant intégré.
+
+Vos méthodes, projets, catégories personnelles, descriptions et images
+restent inchangés. Les noms techniques des outils MCP restent identiques.
+Les messages provenant directement d’un client externe gardent sa langue.
+
+Changer de langue recharge l’interface. Une confirmation apparaît si une
+fiche, les paramètres ou une conversation en cours risquent d’être perdus.
+
+L’application reste au même emplacement : CyAICodex.exe.
+Conservez CyAICodex-MCP.exe à côté pour Claude Desktop.
+Le dossier data contient votre bibliothèque et vos réglages existants.

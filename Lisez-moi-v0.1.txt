@@ -1,0 +1,24 @@
+CyAICodex — VERSION WINDOWS 0.1.0
+
+Démarrer : double-cliquez sur CyAICodex.exe ou sur le raccourci du Bureau.
+Python n'a pas besoin d'être installé séparément pour utiliser cet exécutable.
+
+L'interface s'ouvre dans votre navigateur. Le serveur reste dans la zone de
+notification Windows lorsque vous fermez l'onglet. Cliquez sur le logo CY
+avec le livre pour retrouver l'application.
+
+Démarrage automatique : Connexions > Disponibilité du serveur > Lancement
+automatique. Le logiciel démarre en arrière-plan à l'ouverture de votre
+session Windows. Il reste indisponible lorsque le PC est éteint ou en veille.
+
+Vos données sont dans le dossier data, à côté de CyAICodex.exe. Les méthodes,
+images, connexions et clés déjà configurées sont conservées. Pour sauvegarder,
+quittez CyAICodex depuis son icône Windows puis copiez le dossier data complet.
+Ne supprimez pas ce dossier lors d'une mise à jour de l'exécutable.
+
+Pour utiliser l'assistant : Codex doit être installé et connecté sur le PC,
+ou configurez une clé API OpenAI/Claude. La bibliothèque et le serveur MCP
+fonctionnent sans compte IA ni accès Internet.
+
+En cas de problème : notez ce que vous faisiez et conservez le journal
+data\methodes.log. Cette première version de test n'est pas signée.

@@ -1,0 +1,41 @@
+# Build with: .venv/Scripts/python.exe -m PyInstaller packaging/methode.spec
+from pathlib import Path
+from PyInstaller.utils.hooks import collect_data_files, collect_submodules, copy_metadata
+
+root = Path(SPECPATH).parent
+web_assets = [
+    "index.html", "style.css", "app.js", "images.css", "images.js", "settings.js",
+    "connectors.js", "mcp-setup.css", "mcp-setup.js", "i18n.js", "translations.tsv",
+    "logo-cy-book.png", "logo-cy-book-transparent.png", "logo-cy-book-transparent.ico",
+]
+assets = [(str(root / "methodes" / "web" / name), "methodes/web") for name in web_assets]
+assets += collect_data_files("mcp") + collect_data_files("jsonschema_specifications")
+assets += copy_metadata("mcp", recursive=True)
+
+analysis = Analysis(
+    [str(root / "run.py")],
+    pathex=[str(root)],
+    binaries=[],
+    datas=assets,
+    hiddenimports=["pystray._win32"] + collect_submodules("uvicorn"),
+    hookspath=[],
+    runtime_hooks=[],
+    excludes=["pytest", "tkinter"],
+    noarchive=False,
+)
+pyz = PYZ(analysis.pure)
+exe = EXE(
+    pyz, analysis.scripts, analysis.binaries, analysis.datas, [],
+    name="CyAICodex",
+    debug=False,
+    strip=False,
+    upx=False,
+    console=False,
+    icon=str(root / "methodes" / "web" / "logo-cy-book-transparent.ico"),
+    version=str(root / "packaging" / "version.txt"),
+)
+bridge = EXE(
+    pyz, analysis.scripts, analysis.binaries, analysis.datas, [],
+    name="CyAICodex-MCP", debug=False, strip=False, upx=False, console=True,
+    icon=str(root / "methodes" / "web" / "logo-cy-book-transparent.ico"),
+)
