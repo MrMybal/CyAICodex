@@ -71,6 +71,8 @@ def run_app(args, instance):
                         format="%(asctime)s %(levelname)s %(message)s")
     logging.info("CyAICodex %s — %s", __version__, "exécutable Windows" if getattr(sys, "frozen", False) else "Python")
     store = Store(args.data_dir)
+    from .examples import seed_examples
+    seed_examples(store)
     url = f"http://127.0.0.1:{args.port}"
     def open_app(icon=None, item=None):
         webbrowser.open(url + "/#token=" + store.setting("admin_token"))

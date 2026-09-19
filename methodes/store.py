@@ -144,12 +144,14 @@ class Store:
             raise KeyError("Méthode introuvable dans ce contexte.")
         return result
 
-    def save(self, method: Method, method_id=None, version=None, author="Vous", context=None):
+    def save(self, method: Method, method_id=None, version=None, author="Vous", context=None, once_key=None):
         data = method.model_dump()
         if not self.allowed(data, context):
             raise ValueError("Cette méthode ne correspond pas au contexte de la connexion.")
         with self.db() as db:
             db.execute("BEGIN IMMEDIATE")
+            if once_key and db.execute('SELECT 1 FROM settings WHERE key=?', (once_key,)).fetchone():
+                return None
             if method.scope != "global":
                 table = "types" if method.scope == "type" else "projects"
                 if not db.execute(f"SELECT 1 FROM {table} WHERE id=?", (method.scope_id,)).fetchone():
@@ -172,6 +174,8 @@ class Store:
             db.execute("DELETE FROM search WHERE id=?", (data["id"],))
             db.execute("INSERT INTO search VALUES(?,?,?,?,?)", (data["id"], data["title"],
                        data["summary"], " ".join(data["tags"]), data["content"]))
+            if once_key:
+                db.execute('INSERT INTO settings VALUES(?,?)', (once_key, data['id']))
             return data
 
     def search(self, query="", context=None, category="", status="published", limit=50, offset=0):

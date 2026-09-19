@@ -9,6 +9,8 @@ web_assets = [
     "logo-cy-book.png", "logo-cy-book-transparent.png", "logo-cy-book-transparent.ico",
 ]
 assets = [(str(root / "methodes" / "web" / name), "methodes/web") for name in web_assets]
+assets += [(str(root / "methodes" / "examples" / name), "methodes/examples")
+           for name in ("github-privacy.fr.json", "github-privacy.en.json")]
 assets += collect_data_files("mcp") + collect_data_files("jsonschema_specifications")
 assets += copy_metadata("mcp", recursive=True)
 

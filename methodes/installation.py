@@ -93,6 +93,8 @@ def main():
     from .store import Store
     from .startup import startup_enabled, set_startup
     store = Store(args.data_dir)
+    from .examples import seed_examples
+    seed_examples(store)
     reconnect_existing(store)
     store.set_setting('installation_root', str(root_path()))
     if args.startup is not None:
