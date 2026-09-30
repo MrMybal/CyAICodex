@@ -1,0 +1,7 @@
+CyAICodex 0.6.2
+
+Les composants sont installés une seule fois, sans extraction dans Temp
+à chaque démarrage de l’application ou des connexions MCP.
+Installer CyAICodex-Setup-0.6.2.exe. Le dossier _internal doit rester
+à côté de CyAICodex.exe. Les raccourcis conservent le même chemin.
+Les méthodes et ressources restent dans %LOCALAPPDATA%\CyAICodex\data.

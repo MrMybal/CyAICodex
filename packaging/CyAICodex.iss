@@ -1,4 +1,4 @@
-#define AppVersion "0.6.1"
+#define AppVersion "0.6.2"
 [Setup]
 AppId={{89159947-E319-4B18-9A29-F4016E32BF26}
 AppName=CyAICodex
@@ -42,9 +42,9 @@ Name: "desktopicon"; Description: "{cm:DesktopShortcut}"; Flags: unchecked
 Name: "startup"; Description: "{cm:Startup}"
 
 [Files]
-Source: "..\dist\CyAICodex.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\CyAICodex\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "installed.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Lisez-moi-v0.6.1.txt"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: PrepareData
+Source: "..\Lisez-moi-v0.6.2.txt"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: PrepareData
 
 [Icons]
 Name: "{autoprograms}\CyAICodex"; Filename: "{app}\CyAICodex.exe"

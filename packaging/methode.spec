@@ -27,7 +27,8 @@ analysis = Analysis(
 )
 pyz = PYZ(analysis.pure)
 exe = EXE(
-    pyz, analysis.scripts, analysis.binaries, analysis.datas, [],
+    pyz, analysis.scripts, [],
+    exclude_binaries=True,
     name="CyAICodex",
     debug=False,
     strip=False,
@@ -37,3 +38,5 @@ exe = EXE(
     icon=str(root / "methodes" / "web" / "logo-cy-book-transparent.ico"),
     version=str(root / "packaging" / "version.txt"),
 )
+
+collection = COLLECT(exe, analysis.binaries, analysis.datas, strip=False, upx=False, name="CyAICodex")
