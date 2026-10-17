@@ -45,11 +45,19 @@ class Conflict(ValueError):
     pass
 
 
+def database_path(folder):
+    folder = Path(folder)
+    # Existing libraries keep their filename so installed versions and backups
+    # remain readable. New libraries use the English name.
+    legacy = folder / "methodes.sqlite3"
+    return legacy if legacy.is_file() else folder / "skills.sqlite3"
+
+
 class Store:
     def __init__(self, folder):
         self.folder = Path(folder)
         self.folder.mkdir(parents=True, exist_ok=True)
-        self.path = self.folder / "methodes.sqlite3"
+        self.path = database_path(self.folder)
         with self.db() as db:
             db.executescript("""
             PRAGMA journal_mode=WAL;
@@ -111,7 +119,7 @@ class Store:
     @staticmethod
     def decode(row):
         if row is None:
-            raise KeyError("Méthode introuvable.")
+            raise KeyError("Skill introuvable.")
         d = dict(row)
         d["tags"] = json.loads(d["tags"])
         return d
@@ -141,13 +149,13 @@ class Store:
         with self.db() as db:
             result = self.decode(db.execute("SELECT * FROM methods WHERE id=?", (method_id,)).fetchone())
         if not self.allowed(result, context) or (context is not None and result["status"] != "published"):
-            raise KeyError("Méthode introuvable dans ce contexte.")
+            raise KeyError("Skill introuvable dans ce contexte.")
         return result
 
     def save(self, method: Method, method_id=None, version=None, author="Vous", context=None, once_key=None):
         data = method.model_dump()
         if not self.allowed(data, context):
-            raise ValueError("Cette méthode ne correspond pas au contexte de la connexion.")
+            raise ValueError("Ce skill ne correspond pas au contexte de la connexion.")
         with self.db() as db:
             db.execute("BEGIN IMMEDIATE")
             if once_key and db.execute('SELECT 1 FROM settings WHERE key=?', (once_key,)).fetchone():
@@ -160,9 +168,9 @@ class Store:
             if method_id:
                 existing = self.decode(db.execute("SELECT * FROM methods WHERE id=?", (method_id,)).fetchone())
                 if not self.allowed(existing, context):
-                    raise KeyError("Méthode introuvable dans ce contexte.")
+                    raise KeyError("Skill introuvable dans ce contexte.")
                 if version != existing["version"]:
-                    raise Conflict("La méthode a changé. Rechargez-la avant d'enregistrer.")
+                    raise Conflict("Le skill a changé. Rechargez-le avant d'enregistrer.")
             data.update(id=method_id or uuid.uuid4().hex,
                         version=existing["version"] + 1 if existing else 1,
                         created_at=existing["created_at"] if existing else now(), updated_at=now())

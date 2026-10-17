@@ -2,7 +2,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 
-from methodes.store import Store, Method, Conflict
+from skills.store import Store, Method, Conflict
 
 
 @pytest.fixture

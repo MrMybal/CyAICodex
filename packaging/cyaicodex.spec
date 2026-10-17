@@ -1,4 +1,4 @@
-# Build with: .venv/Scripts/python.exe -m PyInstaller packaging/methode.spec
+# Build with: .venv/Scripts/python.exe -m PyInstaller packaging/cyaicodex.spec
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules, copy_metadata
 
@@ -8,8 +8,8 @@ web_assets = [
     "connectors.js", "updates.js", "mcp-setup.css", "mcp-setup.js", "i18n.js", "translations.tsv",
     "logo-cy-book.png", "logo-cy-book-transparent.png", "logo-cy-book-transparent.ico",
 ]
-assets = [(str(root / "methodes" / "web" / name), "methodes/web") for name in web_assets]
-assets += [(str(root / "methodes" / "examples" / name), "methodes/examples")
+assets = [(str(root / "skills" / "web" / name), "skills/web") for name in web_assets]
+assets += [(str(root / "skills" / "examples" / name), "skills/examples")
            for name in ("github-privacy.fr.json", "github-privacy.en.json")]
 assets += collect_data_files("mcp") + collect_data_files("jsonschema_specifications")
 assets += copy_metadata("mcp", recursive=True)
@@ -35,7 +35,7 @@ exe = EXE(
     upx=False,
     console=True,
     hide_console='hide-early',
-    icon=str(root / "methodes" / "web" / "logo-cy-book-transparent.ico"),
+    icon=str(root / "skills" / "web" / "logo-cy-book-transparent.ico"),
     version=str(root / "packaging" / "version.txt"),
 )
 

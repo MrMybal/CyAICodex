@@ -8,10 +8,10 @@ import pytest
 from fastapi.testclient import TestClient
 from PIL import Image
 
-from methodes.server import create_app
-from methodes.store import Store
-from methodes.images import ImageLibrary, ImageDescription
-from methodes import assist, local_clients
+from skills.server import create_app
+from skills.store import Store
+from skills.images import ImageLibrary, ImageDescription
+from skills import assist, local_clients
 
 
 def png():

@@ -23,10 +23,10 @@ async function refreshCatalog() {
   state.catalog=await api('/catalog');
   const selected=$('#context-filter').value;
   $('#context-filter').innerHTML=contextOptions(); $('#context-filter').value=selected;
-  $('#connection-context').innerHTML=contextOptions(uiFragment('Méthodes globales uniquement'));
+  $('#connection-context').innerHTML=contextOptions(uiFragment('Skills globaux uniquement'));
   $('#project-type').innerHTML=uiFragment('<option value="">Sans type</option>')+state.catalog.types.map(t=>uiHTML`<option value="${t.id}">${esc(t.name)}</option>`).join('');
   $('#type-list').innerHTML=state.catalog.types.map(t=>uiHTML`<div class="group-item"><span>⊞ &nbsp; ${esc(t.name)}</span><small>${state.catalog.projects.filter(p=>p.type_id===t.id).length} projet(s)</small></div>`).join('')||uiFragment('<p>Aucun type pour le moment.</p>');
-  $('#project-list').innerHTML=state.catalog.projects.map(p=>uiHTML`<div class="group-item"><span>${esc(p.name)}<small>${esc(state.catalog.types.find(t=>t.id===p.type_id)?.name||uiFragment('Sans type'))}</small></span><button class="quiet" data-project="${p.id}">Voir les méthodes →</button></div>`).join('')||uiFragment('<p>Créez votre premier projet.</p>');
+  $('#project-list').innerHTML=state.catalog.projects.map(p=>uiHTML`<div class="group-item"><span>${esc(p.name)}<small>${esc(state.catalog.types.find(t=>t.id===p.type_id)?.name||uiFragment('Sans type'))}</small></span><button class="quiet" data-project="${p.id}">Voir les skills →</button></div>`).join('')||uiFragment('<p>Créez votre premier projet.</p>');
   $('#project-count').textContent=state.catalog.projects.length;
 }
 async function refreshStats(){const [methods,conns]=await Promise.all([api('/methods?limit=100'),api('/connections')]);$('#method-count').textContent=methods.total;$('#connection-count').textContent=conns.length;
@@ -43,9 +43,9 @@ async function refreshMethods(){
   if(seq!==state.searching)return;
   state.methods=data.items;state.total=data.total;
   $('#result-count').textContent=data.total;
-  $('#method-grid').innerHTML=data.items.map(m=>uiHTML`<button class="method-card" data-method="${m.id}"><div class="card-top"><span class="method-icon">${m.category==='Confidentialité'?'♧':m.category==='Démonstrations'?'▷':'▤'}</span><span class="scope-badge">${esc(scopeName(m))}</span></div><h3>${esc(m.title)}</h3><p>${esc(m.summary||m.excerpt)}</p><div class="tags">${m.tags.slice(0,3).map(t=>uiHTML`<span class="tag">${esc(t)}</span>`).join('')}</div><div class="card-bottom"><span>Modifiée le ${shortDate(m.updated_at)} · v${m.version}</span><span>↗</span></div></button>`).join('') || uiHTML`<div class="empty"><span class="empty-icon">▤</span><h2>${$('#search').value||state.category||$('#context-filter').value?uiFragment('Aucune méthode ne correspond'):uiFragment('Votre prochaine bonne pratique commence ici.')}</h2><p>Enregistrez une méthode à la main, ou faites-vous aider par l’assistant. Vos IA pourront ensuite la retrouver.</p><button class="primary" id="empty-create">＋ Créer une méthode</button></div>`;
+  $('#method-grid').innerHTML=data.items.map(m=>uiHTML`<button class="method-card" data-method="${m.id}"><div class="card-top"><span class="method-icon">${m.category==='Confidentialité'?'♧':m.category==='Démonstrations'?'▷':'▤'}</span><span class="scope-badge">${esc(scopeName(m))}</span></div><h3>${esc(m.title)}</h3><p>${esc(m.summary||m.excerpt)}</p><div class="tags">${m.tags.slice(0,3).map(t=>uiHTML`<span class="tag">${esc(t)}</span>`).join('')}</div><div class="card-bottom"><span>Modifiée le ${shortDate(m.updated_at)} · v${m.version}</span><span>↗</span></div></button>`).join('') || uiHTML`<div class="empty"><span class="empty-icon">▤</span><h2>${$('#search').value||state.category||$('#context-filter').value?uiFragment('Aucun skill ne correspond'):uiFragment('Votre prochaine bonne pratique commence ici.')}</h2><p>Enregistrez un skill à la main, ou faites-vous aider par l’assistant. Vos IA pourront ensuite le retrouver.</p><button class="primary" id="empty-create">＋ Créer un skill</button></div>`;
   $('#previous').disabled=state.offset===0;$('#next').disabled=state.offset+12>=data.total;
-  $('#pagination-info').textContent=data.total?uiHTML`${state.offset+1}–${Math.min(state.offset+12,data.total)} sur ${data.total}`:uiFragment('0 méthode');
+  $('#pagination-info').textContent=data.total?uiHTML`${state.offset+1}–${Math.min(state.offset+12,data.total)} sur ${data.total}`:uiFragment('0 skill');
 }
 async function changePage(page){
   sessionStorage.setItem('cyaicodex-page',page);
@@ -66,7 +66,7 @@ function scopeChoices(selected=''){
 async function openEditor(id=null,content=''){
   const method=id?await api('/methods/'+id):null;state.editing=method;state.dirty=false;
   const f=$('#editor-form');f.reset();$('#editor-error').textContent='';$('#history-details').open=false;$('#history-details').hidden=!method;
-  $('#editor-heading').textContent=method?uiFragment('Modifier la méthode'):uiFragment('Nouvelle méthode');
+  $('#editor-heading').textContent=method?uiFragment('Modifier le skill'):uiFragment('Nouveau skill');
   if(method){for(const name of ['title','summary','category','content','scope','status'])f.elements[name].value=method[name];f.elements.tags.value=method.tags.join(', ');}
   else{f.elements.content.value=content;const [scope,id]=$('#context-filter').value.split(':');if(id)f.elements.scope.value=scope;f.elements.status.value=content?'draft':'published';}
   scopeChoices(method?.scope_id||$('#context-filter').value.split(':')[1]||'');
@@ -76,7 +76,7 @@ async function openEditor(id=null,content=''){
 async function saveMethod(e){e.preventDefault();const f=e.currentTarget;const button=$('#save-method');button.disabled=true;$('#editor-error').textContent='';
   try{const method=Object.fromEntries(new FormData(f));method.tags=method.tags.split(',').map(s=>s.trim()).filter(Boolean);if(method.scope==='global')method.scope_id='';
     const old=state.editing;await send('/methods'+(old?'/'+old.id:''),{method,version:old?.version},old?'PUT':'POST');
-    state.dirty=false;$('#editor-dialog').close();notify(old?uiFragment('Méthode mise à jour.'):uiFragment('Méthode enregistrée.'));await Promise.all([refreshMethods(),refreshStats()]);
+    state.dirty=false;$('#editor-dialog').close();notify(old?uiFragment('Skill mis à jour.'):uiFragment('Skill enregistré.'));await Promise.all([refreshMethods(),refreshStats()]);
   }catch(err){$('#editor-error').textContent=err.message;}finally{button.disabled=false;}
 }
 async function refreshConnections(){
@@ -104,16 +104,16 @@ function showConfig(){
   const c=state.config;if(!c)return;
   let value;
   if($('#config-format').value==='codex')value='[mcp_servers.cyaicodex]\ncommand = '+JSON.stringify(c.command[0])+'\nargs = '+JSON.stringify(c.command.slice(1))+'\nstartup_timeout_sec = 45\n[mcp_servers.cyaicodex.env]\nCYAICODEX_MCP_TOKEN = '+JSON.stringify(c.token);
-  else if($('#config-format').value==='claude')value=uiHTML`claude mcp add --transport http methodes ${c.url} --header "Authorization: Bearer ${c.token}"`;
+  else if($('#config-format').value==='claude')value=uiHTML`claude mcp add --transport http cyaicodex ${c.url} --header "Authorization: Bearer ${c.token}"`;
   else if($('#config-format').value==='claude-desktop')value=JSON.stringify({mcpServers:{cyaicodex:{command:c.command[0],args:c.command.slice(1),env:{CYAICODEX_MCP_TOKEN:c.token}}}},null,2);
   else if($('#config-format').value==='opencode')value=JSON.stringify({mcp:{cyaicodex:{type:'local',command:c.command,environment:{CYAICODEX_MCP_TOKEN:c.token},enabled:true,timeout:45000}}},null,2);
-  else value=JSON.stringify({mcpServers:{methodes:{type:'http',url:c.url,headers:{Authorization:'Bearer '+c.token}}}},null,2);
+  else value=JSON.stringify({mcpServers:{cyaicodex:{type:'http',url:c.url,headers:{Authorization:'Bearer '+c.token}}}},null,2);
   $('#connection-config').textContent=value;
 }
 function renderChat(){
   const chat=$('#chat');chat.replaceChildren();
   for(const message of state.messages){const div=document.createElement('div');div.className='chat-message '+message.role;const label=document.createElement('strong');label.textContent=message.role==='user'?uiFragment('VOUS'):'ASSISTANT';div.append(label,document.createTextNode(message.content));
-    if(message.role==='assistant'){const b=document.createElement('button');b.className='quiet';b.textContent=uiFragment('＋ En faire une méthode');b.addEventListener('click',guarded(()=>openEditor(null,message.content)));div.append(document.createElement('br'),b);}chat.append(div);}
+    if(message.role==='assistant'){const b=document.createElement('button');b.className='quiet';b.textContent=uiFragment('＋ En faire un skill');b.addEventListener('click',guarded(()=>openEditor(null,message.content)));div.append(document.createElement('br'),b);}chat.append(div);}
   chat.scrollTop=chat.scrollHeight;
 }
 function closeDialog(dialog){if(dialog.id==='editor-dialog'&&state.dirty&&!confirm(uiFragment('Fermer sans enregistrer vos modifications ?')))return;dialog.close();}

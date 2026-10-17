@@ -6,21 +6,21 @@ import httpx
 import pytest
 from fastapi.testclient import TestClient
 
-from methodes.store import Store
-from methodes.server import create_app
-from methodes import updates
-from methodes.updates import Updater, API, asset_details, version_tuple
+from skills.store import Store
+from skills.server import create_app
+from skills import updates
+from skills.updates import Updater, API, asset_details, version_tuple
 
 
 def release(raw=b'MZinstaller'):
-    return {'tag_name': 'v0.7.0', 'draft': False, 'prerelease': False, 'assets': [
-        {'id': 123, 'name': 'CyAICodex-Setup-0.7.0.exe', 'url': API + '/releases/assets/123',
+    return {'tag_name': 'v99.0.0', 'draft': False, 'prerelease': False, 'assets': [
+        {'id': 123, 'name': 'CyAICodex-Setup-99.0.0.exe', 'url': API + '/releases/assets/123',
          'size': len(raw), 'state': 'uploaded', 'digest': 'sha256:' + hashlib.sha256(raw).hexdigest()}]}
 
 
 def test_versions_assets_and_untrusted_redirects(tmp_path):
     assert version_tuple('v0.10.0') > version_tuple('0.9.9')
-    for value in ['v0.7.0-beta', '../setup.exe', '', None]:
+    for value in ['v99.0.0-beta', '../setup.exe', '', None]:
         with pytest.raises(ValueError): version_tuple(value)
     for change in [{'digest': None}, {'url': 'https://example.com/file'}, {'size': updates.MAX_INSTALLER + 1}, {'state': 'new'}]:
         r = release(); r['assets'][0].update(change)
@@ -55,7 +55,7 @@ def test_private_to_public_transition_ignores_expired_credentials(tmp_path, monk
     monkeypatch.setattr(updater, 'credentials', lambda: (_ for _ in ()).throw(AssertionError('No credential needed for public repo')))
     with httpx.Client(transport=httpx.MockTransport(lambda req: httpx.Response(200, json=release()))) as client:
         latest, token = updater.fetch_latest(client)
-    assert latest['tag_name'] == 'v0.7.0' and not token
+    assert latest['tag_name'] == 'v99.0.0' and not token
     monkeypatch.setattr(updater, 'credentials', lambda: 'credential-fixture')
     calls = []
     def respond(request):

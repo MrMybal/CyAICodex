@@ -4,28 +4,28 @@ English · [Français](README.fr.md)
 
 Maintained by **Cyberalien**.
 
-A local Windows library of reusable methods and image references, shared with AI clients through MCP. The application runs in the Windows notification area and provides a browser interface.
+A local Windows library of reusable skills and image references, shared with AI clients through MCP. The application runs in the Windows notification area and provides a browser interface.
 
 ## Install
 
-Download **CyAICodex-Setup-0.6.3.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
+Download **CyAICodex-Setup-0.7.0.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
 
-**English is the default language.** French is available through **FR / EN** or **Settings > App language**. Existing saved language preferences are preserved. Language selection also applies to the tray menu and the language requested from the assistant; personal methods, projects and images are not automatically translated.
+**English is the default language.** French is available through **FR / EN** or **Settings > App language**. Existing saved language preferences are preserved. Language selection also applies to the tray menu and the language requested from the assistant; personal skills, projects and images are not automatically translated.
 
 The installer offers a desktop shortcut and startup with Windows. Closing the browser tab leaves the server running; use the tray menu to reopen or quit it. Installed library data is stored separately in `%LOCALAPPDATA%\CyAICodex\data`. Uninstalling preserves the library.
 
 The application and MCP transport use the same `CyAICodex.exe`. Keep its `_internal` directory alongside it: components are installed once instead of being extracted into Temp at each launch.
 
-## Methods and image references
+## Skills and image references
 
-- Markdown methods with titles, summaries, categories, tags and revision history.
+- Markdown skills with titles, summaries, categories, tags and revision history.
 - Global, project-type and project-specific scopes, with draft, published and archived states.
 - Accent-insensitive full-text search, prefix matching, weighted ranking and pagination.
 - Optimistic version checks to prevent concurrent edits from overwriting each other.
 - PNG, JPEG and WebP image references with detailed descriptions, preservation instructions, permitted uses and original files.
-- A bundled GitHub publication checklist, added once in the library's initial language. User edits to the example are preserved.
+- A bundled GitHub publication checklist in both English and French. Each language is added once; existing user adaptations are preserved.
 
-Only published resources within a connection's scope are available through MCP. Library JSON exports cover methods and classification; to back up images and revision history too, stop the application and copy the entire data directory. Encrypted credentials remain tied to their Windows account.
+Only published resources within a connection's scope are available through MCP. Library JSON exports cover skills and classification; to back up images and revision history too, stop the application and copy the entire data directory. Encrypted credentials remain tied to their Windows account.
 
 ## Connect AI clients
 
@@ -37,12 +37,12 @@ Streamable HTTP is also available at `http://127.0.0.1:8765/mcp`, using `Authori
 
 Available tools:
 
-- Methods: `get_context`, `search_methods`, `get_method`, `create_method`, `update_method`.
+- Skills: `get_context`, `search_skills`, `get_skill`, `create_skill`, `update_skill`. The previous method tool names remain available for compatibility.
 - Images: `search_images`, `get_image`, `view_image`, `import_image`, `update_image`.
 
 Suggested client instruction:
 
-> At the start of a task, consult CyAICodex: call get_context, then search_methods and get_method for applicable practices. Respect the connection's scope. Save reusable practices when I ask you to.
+> At the start of a task, consult CyAICodex: call get_context, then search_skills and get_skill for applicable practices. Respect the connection's scope. Save reusable practices when I ask you to.
 
 MCP provides access to the library; it cannot force an agent to consult it. Configure that behavior in each client's instructions. Each token has its own scope, so clients can use different project contexts simultaneously.
 
@@ -64,17 +64,23 @@ To migrate a portable installation, quit it and run the installer with `/LEGACYD
 
 ## Build and test
 
-Install Python 3.11 or newer, then run `Installer.ps1` in PowerShell. Dependencies are pinned in `requirements.lock.txt`.
+Install Python 3.11 or newer, then run `Install.ps1` in PowerShell. Dependencies are pinned in `requirements.lock.txt`.
 
 ```powershell
-.\Construire-Exe.ps1
-.\Construire-Installateur.ps1 -Iscc "path to ISCC.exe"
+.\Build-App.ps1
+.\Build-Install.ps1 -Iscc "path to ISCC.exe"
 .\.venv\Scripts\python.exe -m pytest -q
 node tests/i18n_browser.cjs
 ```
 
 The application is built in `dist/CyAICodex/`; the installer is written to `dist/`. Inno Setup 6 is required to build the installer. Use the installer to update installed copies.
 
-UI translations are stored in `methodes/web/translations.tsv`. French source strings and English translations are kept together; interpolated user content is preserved. Unrecognized messages from external providers remain in their original language.
+UI translations are stored in `skills/web/translations.tsv`. French source strings and English translations are kept together; interpolated user content is preserved. Unrecognized messages from external providers remain in their original language.
 
 A release uses a `vMAJOR.MINOR.PATCH` tag and a `CyAICodex-Setup-MAJOR.MINOR.PATCH.exe` asset with a GitHub SHA-256 digest. Drafts, prereleases and older versions are not offered as updates.
+
+## Compatibility
+
+Existing databases and MCP connections remain readable. Older database filenames, session identifiers and method API endpoints are retained for compatibility; new libraries use `skills.sqlite3`. Skills here are library records with reusable instructions, not automatically installed SKILL.md packages.
+
+See [CHANGELOG.md](CHANGELOG.md) for version notes.

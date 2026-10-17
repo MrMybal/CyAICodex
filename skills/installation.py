@@ -8,13 +8,15 @@ import tempfile
 from contextlib import closing
 
 from .runtime import default_data, root_path
+from .store import database_path
 
 
 def migrate_data(source, target):
     source, target = Path(source).resolve(), Path(target).resolve()
     if source == target:
         return
-    if not (source / 'methodes.sqlite3').is_file():
+    source_db = database_path(source)
+    if not source_db.is_file():
         raise ValueError('Le dossier sélectionné ne contient pas de bibliothèque CyAICodex.')
     if target.exists() and any(target.iterdir()):
         raise ValueError('Une bibliothèque existe déjà à destination. Elle ne sera pas remplacée.')
@@ -22,7 +24,7 @@ def migrate_data(source, target):
     staged = Path(tempfile.mkdtemp(prefix='migration-', dir=target.parent))
     try:
         for path in source.iterdir():
-            if path.name in ('methodes.sqlite3', 'methodes.sqlite3-wal', 'methodes.sqlite3-shm', 'updates') or path.suffix == '.log':
+            if path.name in ('methodes.sqlite3', 'methodes.sqlite3-wal', 'methodes.sqlite3-shm', 'skills.sqlite3', 'skills.sqlite3-wal', 'skills.sqlite3-shm', 'updates') or path.suffix == '.log':
                 continue
             if path.is_symlink() or (hasattr(path, 'is_junction') and path.is_junction()):
                 raise ValueError('La bibliothèque contient un lien de dossier non pris en charge.')
@@ -30,7 +32,7 @@ def migrate_data(source, target):
                 shutil.copytree(path, staged / path.name)
             else:
                 shutil.copy2(path, staged / path.name)
-        with closing(sqlite3.connect(source / 'methodes.sqlite3')) as src, closing(sqlite3.connect(staged / 'methodes.sqlite3')) as dst:
+        with closing(sqlite3.connect(source_db)) as src, closing(sqlite3.connect(staged / 'skills.sqlite3')) as dst:
             src.backup(dst)
             if dst.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':
                 raise ValueError('La copie de la bibliothèque n’a pas pu être vérifiée.')
@@ -82,7 +84,7 @@ def main():
                         encoding='utf-8', format='%(asctime)s %(levelname)s %(message)s')
     if args.legacy_data:
         migrate_data(args.legacy_data, args.data_dir)
-    existing = args.data_dir / 'methodes.sqlite3'
+    existing = database_path(args.data_dir)
     if existing.is_file():
         from datetime import datetime, timezone
         folder = args.data_dir / 'backups'

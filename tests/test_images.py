@@ -8,10 +8,10 @@ import pytest
 from fastapi.testclient import TestClient
 from PIL import Image
 
-from methodes.assist import answer
-from methodes.images import ImageDescription, ImageLibrary
-from methodes.server import create_app
-from methodes.store import Conflict, Store
+from skills.assist import answer
+from skills.images import ImageDescription, ImageLibrary
+from skills.server import create_app
+from skills.store import Conflict, Store
 
 
 def picture():
@@ -90,7 +90,7 @@ def test_assistant_receives_visual_and_preservation_instructions(tmp_path,monkey
             captured.update(kwargs['json'])
             payload={'output':[{'content':[{'type':'output_text','text':'ok'}]}]} if provider=='openai' else {'content':[{'type':'text','text':'ok'}]}
             return httpx.Response(200,json=payload)
-    monkeypatch.setattr('methodes.assist.httpx.AsyncClient',Client)
+    monkeypatch.setattr('skills.assist.httpx.AsyncClient',Client)
     messages=[{'role':'user','content':'Décris le logo'}]
     assert asyncio.run(answer(store,provider,'vision-model',messages,[],[image['id']]))=='ok'
     assert messages[0]['content']=='Décris le logo'

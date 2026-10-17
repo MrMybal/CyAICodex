@@ -6,7 +6,7 @@ __pycache__/
 build/
 dist/
 *.spec
-!packaging/methode.spec
+!packaging/cyaicodex.spec
 Methode.exe
 *.lnk
 .env
@@ -34,4 +34,4 @@ test-results/
 
 CyAICodex.exe
 CyAICodex-MCP.exe
-/methodes/web/logo-cy-book.ico
+/skills/web/logo-cy-book.ico

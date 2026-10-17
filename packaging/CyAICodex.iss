@@ -1,4 +1,4 @@
-#define AppVersion "0.6.3"
+#define AppVersion "0.7.0"
 [Setup]
 AppId={{89159947-E319-4B18-9A29-F4016E32BF26}
 AppName=CyAICodex
@@ -12,7 +12,7 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 OutputDir=..\dist
 OutputBaseFilename=CyAICodex-Setup-{#AppVersion}
-SetupIconFile=..\methodes\web\logo-cy-book-transparent.ico
+SetupIconFile=..\skills\web\logo-cy-book-transparent.ico
 UninstallDisplayIcon={app}\CyAICodex.exe
 Compression=lzma2
 SolidCompression=yes
@@ -45,7 +45,14 @@ Name: "startup"; Description: "{cm:Startup}"
 [Files]
 Source: "..\dist\CyAICodex\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "installed.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Readme-v0.6.3.txt"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: PrepareData
+Source: "..\CHANGELOG.md"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: PrepareData
+
+[InstallDelete]
+Type: files; Name: "{app}\Lisez-moi-v0.6.txt"
+Type: files; Name: "{app}\Lisez-moi-v0.6.1.txt"
+Type: files; Name: "{app}\Lisez-moi-v0.6.2.txt"
+Type: files; Name: "{app}\Readme-v0.6.3.txt"
+Type: filesandordirs; Name: "{app}\_internal\methodes"
 
 [Icons]
 Name: "{autoprograms}\CyAICodex"; Filename: "{app}\CyAICodex.exe"

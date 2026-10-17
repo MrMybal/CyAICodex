@@ -6,9 +6,9 @@ import pytest
 import tomlkit
 from fastapi.testclient import TestClient
 
-from methodes.mcp_setup import MCPSetup, read_config, write_config, config_path
-from methodes.store import Store
-from methodes.server import create_app
+from skills.mcp_setup import MCPSetup, read_config, write_config, config_path
+from skills.store import Store
+from skills.server import create_app
 
 
 def manager(tmp_path):
@@ -84,7 +84,7 @@ def test_invalid_foreign_and_changed_configs_are_not_overwritten(tmp_path):
 def test_failed_write_rolls_back_new_token(tmp_path,monkeypatch):
     setup=manager(tmp_path)
     def fail(*args):raise PermissionError('test')
-    monkeypatch.setattr('methodes.mcp_setup.write_config',fail)
+    monkeypatch.setattr('skills.mcp_setup.write_config',fail)
     with pytest.raises(PermissionError):setup.install('codex',options())
     assert not setup.store.connections()
 

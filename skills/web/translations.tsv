@@ -16,14 +16,14 @@ Serveur arrêté	Server stopped
 127.0.0.1 · local uniquement	127.0.0.1 · local only
 Votre mémoire de travail, partagée.	Your working memory, shared.
 VOS PRATIQUES, EN COMMUN	YOUR SHARED PRACTICES
-Les bonnes méthodes.	The right methods.
+Les bons skills.	The right skills.
 Au bon moment.	At the right time.
 Gardez ce qui fonctionne. Retrouvez-le dans chaque projet.	Keep what works. Find it again in every project.
-＋ Nouvelle méthode	＋ New method
-méthodes publiées	published methods
+＋ Nouveau skill	＋ New skill
+skills publiés	published skills
 projets organisés	organized projects
 connexions configurées	configured connections
-Rechercher une méthode, un tag, une pratique…	Search for a method, tag or practice…
+Rechercher un skill, un tag, une pratique…	Search for a skill, tag or practice…
 Rechercher	Search
 Contexte	Context
 Tous les contextes	All contexts
@@ -31,7 +31,7 @@ Tous les contextes	All contexts
 Publiées	Published
 Brouillons	Drafts
 Archives	Archived
-Inclure les méthodes globales	Include global methods
+Inclure les skills globaux	Include global skills
 Votre bibliothèque	Your library
 Une base commune, des projets cohérents	Shared knowledge, consistent projects
 ← Précédent	← Previous
@@ -52,24 +52,24 @@ L’image et les règles voyagent ensemble.	The image and its rules travel toget
 Exemple : « Conserver le CY blanc à l’identique. Le livre reste en arrière-plan. Le contour du disque doit être transparent. » Les IA retrouvent ces consignes avec la ressource via MCP.	Example: “Keep the white CY unchanged. The book stays in the background. The area outside the circle must be transparent.” AI tools retrieve these instructions with the resource through MCP.
 UN CONTEXTE CLAIR	A CLEAR CONTEXT
 À chaque projet,	For every project,
-ses méthodes.	its own methods.
+ses skills.	its own skills.
 Regroupez les pratiques par type de projet, puis affinez par projet.	Group practices by project type, then refine them for each project.
 Types de projets	Project types
 Web, application Windows, démo, recherche…	Web, Windows app, demo, research…
 Nom du type	Type name
 Créer	Create
 Projets	Projects
-Un projet hérite des méthodes de son type.	A project inherits the methods of its type.
+Un projet hérite des skills de son type.	A project inherits the skills of its type.
 Nom du projet	Project name
 Créer le projet	Create project
-Comment les méthodes sont sélectionnées	How methods are selected
-Pour une connexion liée à un projet : méthodes de ce projet + méthodes de son type + méthodes globales si activées. Deux IA peuvent travailler sur des projets différents simultanément.	For a project connection: its methods + its project type’s methods + global methods if enabled. Two AI tools can work on different projects at the same time.
+Comment les skills sont sélectionnés	How skills are selected
+Pour une connexion liée à un projet : skills de ce projet + skills de son type + skills globaux si activés. Deux IA peuvent travailler sur des projets différents simultanément.	For a project connection: its skills + its project type’s skills + global skills if enabled. Two AI tools can work on different projects at the same time.
 DE L’IDÉE À LA PRATIQUE	FROM IDEA TO PRACTICE
-Une méthode à construire ?	Building a method?
+Un skill à construire ?	Building a skill?
 Faites-vous accompagner.	Get some help.
-Rédigez, clarifiez ou transformez une bonne pratique en méthode réutilisable.	Write, clarify or turn a good practice into a reusable method.
+Rédigez, clarifiez ou transformez une bonne pratique en skill réutilisable.	Write, clarify or turn a good practice into a reusable skill.
 Qu’est-ce qui a bien fonctionné ?	What worked well?
-Décrivez votre façon de faire. Votre assistant vous aidera à en tirer une méthode claire.	Describe your process. Your assistant will help turn it into a clear method.
+Décrivez votre façon de faire. Votre assistant vous aidera à en tirer un skill clair.	Describe your process. Your assistant will help turn it into a clear skill.
 Ex. Aide-moi à formaliser ma checklist avant une publication GitHub…	E.g. Help me write my checklist before publishing to GitHub…
 Nouvelle conversation	New conversation
 Envoyer ↗	Send ↗
@@ -86,10 +86,10 @@ fournisseur/modèle, ex. ollama/qwen3:0.6b	provider/model, e.g. ollama/qwen3:0.6
 Modèle installé, ex. qwen3:0.6b	Installed model, e.g. qwen3:0.6b
 Identifiant du modèle	Model ID
 Pour OpenCode : fournisseur/modèle (ex. ollama/qwen3:0.6b). Pour Ollama : sélectionnez un modèle installé dans Paramètres. Pour une API : identifiant exact du modèle.	For OpenCode: provider/model (e.g. ollama/qwen3:0.6b). For Ollama: select an installed model in Settings. For an API: the exact model ID.
-Méthode de référence	Reference method
+Skill de référence	Reference skill
 Aucune	None
 Image de référence	Reference image
-Votre conversation, la méthode sélectionnée et l’image choisie avec ses consignes sont envoyées au fournisseur. Le modèle doit accepter les images. Cet assistant analyse et rédige ; il ne génère pas encore d’images.	Your conversation, the selected method and the image with its instructions are sent to the provider. The model must support images. This assistant analyzes and writes; it does not generate images yet.
+Votre conversation, le skill sélectionné et l’image choisie avec ses consignes sont envoyées au fournisseur. Le modèle doit accepter les images. Cet assistant analyse et rédige ; il ne génère pas encore d’images.	Your conversation, the selected skill and the image with its instructions are sent to the provider. The model must support images. This assistant analyzes and writes; it does not generate images yet.
 Configurer les comptes →	Configure accounts →
 UN SAVOIR, PLUSIEURS IA	ONE LIBRARY, MANY AI TOOLS
 Tout le monde,	Everyone,
@@ -129,7 +129,7 @@ Clé API Anthropic	Anthropic API key
 Enregistrer	Save
 Clés chiffrées avec votre compte Windows. Enregistrer un champ vide retire la clé locale. Les abonnements ChatGPT/Claude et les accès API sont distincts.	Keys are encrypted with your Windows account. Saving an empty field removes the local key. ChatGPT/Claude subscriptions and API access are separate.
 Pour rendre la consultation systématique	Make library consultation routine
-Ajoutez dans les instructions de chaque IA : « Au début de chaque tâche, consulte le serveur CyAICodex, cherche les pratiques applicables et lis-les avant d’agir. » Un serveur MCP donne accès aux méthodes ; le client IA décide quand les consulter.	Add to each AI tool’s instructions: “At the start of every task, consult the CyAICodex server, find applicable practices and read them before acting.” An MCP server provides access to methods; the AI client decides when to consult them.
+Ajoutez dans les instructions de chaque IA : « Au début de chaque tâche, consulte le serveur CyAICodex, cherche les pratiques applicables et lis-les avant d’agir. » Un serveur MCP donne accès aux skills ; le client IA décide quand les consulter.	Add to each AI tool’s instructions: “At the start of every task, consult the CyAICodex server, find applicable practices and read them before acting.” An MCP server provides access to skills; the AI client decides when to consult them.
 VOTRE FONCTIONNEMENT	YOUR PREFERENCES
 Autorisations MCP	MCP permissions
 Autoriser les connexions locales sans jeton	Allow local connections without a token
@@ -153,12 +153,12 @@ Modèles Ollama installés	Installed Ollama models
 Cliquez sur Vérifier	Click Check
 Utiliser ce modèle dans l’assistant	Use this model in the assistant
 FICHE MÉTHODE	METHOD DETAILS
-Nouvelle méthode	New method
+Nouveau skill	New skill
 Fermer	Close
 Titre	Title
 Une action claire, un résultat reproductible	A clear action, a repeatable result
 En quelques mots	In a few words
-Quand et pourquoi appliquer cette méthode	When and why to apply this method
+Quand et pourquoi appliquer ce skill	When and why to apply this skill
 Catégorie	Category
 github, confidentialité, publication	github, privacy, publishing
 Portée	Scope
@@ -166,14 +166,14 @@ Globale · tous les projets	Global · all projects
 Type de projet	Project type
 Projet précis	Specific project
 Groupe	Group
-La méthode	The method
+Le skill	The skill
 Markdown accepté · titres, étapes, checklist	Markdown supported · headings, steps, checklist
 Publiée · visible pour les IA	Published · visible to AI tools
 Brouillon · vous uniquement	Draft · only you
 Archivée	Archived
 Historique des versions	Version history
 Annuler	Cancel
-Enregistrer la méthode	Save method
+Enregistrer le skill	Save skill
 CONNEXION PRÊTE	CONNECTION READY
 Reliez votre IA	Connect your AI
 Le jeton n’est affiché qu’ici. Copiez la configuration avant de fermer.	The token is only shown here. Copy the configuration before closing.
@@ -209,25 +209,25 @@ Publiée · accessible aux IA	Published · available to AI tools
 Historique des consignes	Instruction history
 Enregistrer la ressource	Save resource
 Vérifiez les champs du formulaire.	Check the form fields.
-Méthodes globales uniquement	Global methods only
+Skills globaux uniquement	Global skills only
 Sans type	No type
 projet(s)	project(s)
 Aucun type pour le moment.	No types yet.
-Voir les méthodes →	View methods →
+Voir les skills →	View skills →
 Créez votre premier projet.	Create your first project.
 Toutes	All
 Modifiée le	Updated on
-Aucune méthode ne correspond	No matching methods
+Aucun skill ne correspond	No matching skills
 Votre prochaine bonne pratique commence ici.	Your next good practice starts here.
-Enregistrez une méthode à la main, ou faites-vous aider par l’assistant. Vos IA pourront ensuite la retrouver.	Save a method yourself or get help from the assistant. Your AI tools can then find it.
-＋ Créer une méthode	＋ Create method
+Enregistrez un skill à la main, ou faites-vous aider par l’assistant. Vos IA pourront ensuite le retrouver.	Save a skill yourself or get help from the assistant. Your AI tools can then find it.
+＋ Créer un skill	＋ Create skill
 sur	of
-0 méthode	0 methods
+0 skill	0 skills
 Choisir un groupe	Choose a group
-Modifier la méthode	Edit method
+Modifier le skill	Edit skill
 Nouvelle fiche	New entry
-Méthode mise à jour.	Method updated.
-Méthode enregistrée.	Method saved.
+Skill mis à jour.	Skill updated.
+Skill enregistré.	Skill saved.
 client disponible	client available
 à configurer	setup required
 Lecture & écriture	Read & write
@@ -247,7 +247,7 @@ Désactivé · lancement manuel	Disabled · start manually
 Le serveur démarrera automatiquement avec Windows.	The server will start automatically with Windows.
 Démarrage automatique désactivé.	Automatic startup disabled.
 VOUS	YOU
-＋ En faire une méthode	＋ Turn into a method
+＋ En faire un skill	＋ Turn into a skill
 Fermer sans enregistrer vos modifications ?	Close without saving your changes?
 Révoquer cette connexion ? Son jeton cessera de fonctionner.	Revoke this connection? Its token will stop working.
 Reprendre cette version	Restore this version
@@ -310,7 +310,7 @@ Connexion en cours…	Connecting…
 Connexion prête. Rechargez les serveurs MCP ou redémarrez	Connection ready. Reload MCP servers or restart
 Configuration enregistrée, mais le test a échoué : consultez le diagnostic.	Configuration saved, but the test failed: check the diagnostics.
 Langue de l’application	App language
-La langue est mémorisée sur ce PC. Les fiches et les images ne sont pas traduites.	The language is saved on this PC. Method and image content is not translated.
+La langue est mémorisée sur ce PC. Les fiches et les images ne sont pas traduites.	The language is saved on this PC. Skill and image content is not translated.
 Changer de langue rechargera l’interface et effacera la conversation affichée. Continuer ?	Changing language will reload the interface and clear the displayed conversation. Continue?
 Ouvrir CyAICodex	Open CyAICodex
 Quitter et arrêter le serveur	Quit and stop server
@@ -327,13 +327,13 @@ Le titre et la description sont obligatoires.	Title and description are required
 Un tag ne peut pas dépasser 60 caractères.	A tag cannot exceed 60 characters.
 Choisissez un projet ou un type de projet.	Choose a project or project type.
 Nom de groupe invalide.	Invalid group name.
-Méthode introuvable.	Method not found.
+Skill introuvable.	Skill not found.
 Projet inconnu.	Unknown project.
 Type de projet inconnu.	Unknown project type.
-Méthode introuvable dans ce contexte.	Method not found in this context.
-Cette méthode ne correspond pas au contexte de la connexion.	This method does not match the connection context.
+Skill introuvable dans ce contexte.	Skill not found in this context.
+Ce skill ne correspond pas au contexte de la connexion.	This skill does not match the connection context.
 Le groupe choisi n'existe pas.	The selected group does not exist.
-La méthode a changé. Rechargez-la avant d'enregistrer.	The method has changed. Reload it before saving.
+Le skill a changé. Rechargez-le avant d'enregistrer.	The skill has changed. Reload it before saving.
 Choisissez une image de 20 Mo maximum.	Choose an image of 20 MB or less.
 Formats acceptés : PNG, JPEG et WebP.	Supported formats: PNG, JPEG and WebP.
 Image trop grande : maximum 8192 pixels par côté et 25 mégapixels.	Image too large: maximum 8192 pixels per side and 25 megapixels.

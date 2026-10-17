@@ -2,19 +2,19 @@
 
 [English](README.md) · Français
 
-L’anglais est la langue par défaut depuis la version 0.6.3. Les choix de langue déjà enregistrés sont conservés.
+L’anglais est la langue par défaut depuis la version 0.7.0. Les choix de langue déjà enregistrés sont conservés.
 
 Maintenance : **Cyberalien**.
 
 Application locale pour Windows : une bibliothèque de pratiques réutilisables, consultable et modifiable par des clients IA via MCP. Interface française et anglaise dans le navigateur et processus persistant dans la zone de notification.
 
-Une méthode d’exemple **Confidentialité avant publication GitHub** est fournie avec l’application : contrôle des sources, historique Git, secrets, données personnelles et fichiers de release. Elle est ajoutée une seule fois, en portée globale et à l’état publié, dans la langue initiale de la bibliothèque (français ou anglais). Elle peut être adaptée ou archivée ; les mises à jour ne remplacent pas les adaptations. Les bibliothèques personnelles sont stockées séparément des exemples distribués.
+Une skill d’exemple **Confidentialité avant publication GitHub** est fournie avec l’application : contrôle des sources, historique Git, secrets, données personnelles et fichiers de release. Elle est ajoutée une seule fois, en portée globale et à l’état publié, dans chacune des deux langues (français et anglais). Elle peut être adaptée ou archivée ; les mises à jour ne remplacent pas les adaptations. Les bibliothèques personnelles sont stockées séparément des exemples distribués.
 
 ## Démarrer
 
-Version Windows 0.6.3 : télécharger **CyAICodex-Setup-0.6.3.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Demarrer.vbs` utilise aussi l’exécutable lorsqu’il est présent.
+Version Windows 0.7.0 : télécharger **CyAICodex-Setup-0.7.0.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
 
-Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Installer.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Construire-Exe.ps1` génère l’exécutable autonome dans `dist/CyAICodex/CyAICodex.exe`, avec ses composants dans `_internal`. Conserver ce dossier à côté de l’exécutable : il évite une extraction dans Temp à chaque lancement. Utiliser l’installateur pour les mises à jour. Avec Inno Setup 6, `Construire-Installateur.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `Readme-v0.6.3.txt`.
+Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Install.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Build-App.ps1` génère l’exécutable autonome dans `dist/CyAICodex/CyAICodex.exe`, avec ses composants dans `_internal`. Conserver ce dossier à côté de l’exécutable : il évite une extraction dans Temp à chaque lancement. Utiliser l’installateur pour les mises à jour. Avec Inno Setup 6, `Build-Install.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `CHANGELOG.md`.
 
 Fermer l’onglet ne coupe pas le serveur. Le menu de l’icône permet de rouvrir l’application, d’activer **Démarrer avec Windows**, ou de quitter et arrêter le serveur. Le démarrage automatique se règle aussi dans **Connexions → Disponibilité du serveur**. Le réglage est partagé avec le menu de l’icône Windows. Il lance le serveur sans ouvrir le navigateur à l’ouverture de la session utilisateur (pas avant la connexion Windows). La version installée conserve les données dans `%LOCALAPPDATA%\CyAICodex\data`, indépendamment des fichiers de l’application. La version portable utilise `data/` à côté de son exécutable. La désinstallation conserve la bibliothèque.
 
@@ -28,11 +28,11 @@ L’interface s’ouvre avec un lien de session depuis l’icône. L’adresse s
 - Recherche SQLite FTS5 : accents normalisés, préfixes, combinaison des mots saisis et classement BM25 privilégiant titre, résumé et tags. Pagination et réponses MCP courtes ; le contenu complet est récupéré à la demande.
 - Historique conservé à chaque modification. « Reprendre cette version » charge une ancienne version dans l’éditeur ; enregistrer crée une nouvelle version.
 - Contrôle de version optimiste : une modification concurrente renvoie un conflit au lieu d’écraser le travail précédent.
-- Export JSON des méthodes et du classement, sans clés ni jetons. Pour une sauvegarde complète avec historique, arrêter l’application puis copier `data/`. Les clés chiffrées restent liées au compte Windows qui les a créées.
+- Export JSON des skills et du classement, sans clés ni jetons. Pour une sauvegarde complète avec historique, arrêter l’application puis copier `data/`. Les clés chiffrées restent liées au compte Windows qui les a créées.
 
-Exemple : une connexion pour « Site vitrine », de type « Web », voit les méthodes de ce projet, les méthodes « Web », et les globales si la case correspondante est cochée. Elle ne voit pas les méthodes d’un autre projet. Une connexion limitée à un type voit ce type et éventuellement les globales. Sans projet/type, elle voit uniquement les globales.
+Exemple : une connexion pour « Site vitrine », de type « Web », voit les skills de ce projet, les skills « Web », et les globales si la case correspondante est cochée. Elle ne voit pas les skills d’un autre projet. Une connexion limitée à un type voit ce type et éventuellement les globales. Sans projet/type, elle voit uniquement les globales.
 
-Le contexte est attaché au jeton, jamais à un réglage global partagé entre les IA. Créer plusieurs connexions permet donc plusieurs contextes simultanés. Les permissions d’écriture couvrent toutes les méthodes accessibles à cette connexion, y compris les globales si activées.
+Le contexte est attaché au jeton, jamais à un réglage global partagé entre les IA. Créer plusieurs connexions permet donc plusieurs contextes simultanés. Les permissions d’écriture couvrent toutes les skills accessibles à cette connexion, y compris les globales si activées.
 
 ## Connecter les IA au serveur MCP
 
@@ -54,7 +54,7 @@ MCP donne accès aux pratiques, mais ne peut pas forcer un modèle à les consul
 
 ### Ressources d’images
 
-L’onglet **Ressources d’images** permet d’importer des PNG, JPEG et WebP fixes (20 Mo maximum, 8192 pixels par côté, 25 mégapixels). Chaque fiche contient une description détaillée, les éléments à préserver, les changements à éviter, les usages autorisés, la source, la catégorie, les tags et la portée globale/type/projet. Les états brouillon, publié et archivé fonctionnent comme pour les méthodes.
+L’onglet **Ressources d’images** permet d’importer des PNG, JPEG et WebP fixes (20 Mo maximum, 8192 pixels par côté, 25 mégapixels). Chaque fiche contient une description détaillée, les éléments à préserver, les changements à éviter, les usages autorisés, la source, la catégorie, les tags et la portée globale/type/projet. Les états brouillon, publié et archivé fonctionnent comme pour les skills.
 
 Les fichiers originaux sont conservés sans modification dans `data/images/`, avec leur empreinte SHA-256 et leurs dimensions. Les aperçus sont limités à 1024 pixels et affichent la transparence sur un damier de présentation. « Télécharger l’original » restitue le fichier importé. Modifier les consignes conserve leur historique ; une nouvelle variante visuelle s’importe comme une nouvelle ressource.
 
@@ -62,7 +62,7 @@ Les outils MCP `search_images`, `get_image`, `view_image`, `import_image` et `up
 
 « Utiliser avec l’assistant » sélectionne une image et ses consignes pour la prochaine demande. OpenAI et Claude reçoivent un aperçu PNG ; Codex reçoit le fichier original via son option `--image`. Le modèle choisi doit accepter les images. Le sélecteur affiche les 100 ressources les plus récentes, et une ressource plus ancienne peut être sélectionnée depuis sa fiche. L’assistant peut analyser l’image et rédiger des consignes ; cette version n’intègre pas de génération d’images.
 
-Pour sauvegarder la bibliothèque visuelle et l’historique, copier le dossier `data/` complet après avoir arrêté l’application. L’export JSON de la bibliothèque de méthodes n’inclut pas les images.
+Pour sauvegarder la bibliothèque visuelle et l’historique, copier le dossier `data/` complet après avoir arrêté l’application. L’export JSON de la bibliothèque de skills n’inclut pas les images.
 
 Références des formats d’entrée : [OpenAI — images et vision](https://developers.openai.com/api/docs/guides/images-vision), [Claude — vision](https://platform.claude.com/docs/en/build-with-claude/vision).
 
@@ -72,15 +72,15 @@ Références des formats d’entrée : [OpenAI — images et vision](https://dev
 - **OpenAI API** : clé API et identifiant de modèle ; requêtes à l’API Responses avec `store: false`.
 - **Claude API** : clé Anthropic et identifiant de modèle ; requêtes à l’API Messages. L’abonnement Claude grand public n’est pas une clé API.
 
-Les clés locales sont chiffrées par Windows DPAPI, et ne sont jamais renvoyées au navigateur. Les variables `OPENAI_API_KEY` et `ANTHROPIC_API_KEY` sont aussi reconnues au lancement. La requête envoie le texte de la conversation et la méthode de référence choisie au fournisseur. Aucun appel IA n’est nécessaire pour lire, rechercher ou modifier manuellement la bibliothèque.
+Les clés locales sont chiffrées par Windows DPAPI, et ne sont jamais renvoyées au navigateur. Les variables `OPENAI_API_KEY` et `ANTHROPIC_API_KEY` sont aussi reconnues au lancement. La requête envoie le texte de la conversation et la skill de référence choisie au fournisseur. Aucun appel IA n’est nécessaire pour lire, rechercher ou modifier manuellement la bibliothèque.
 
-« En faire une méthode » ouvre un brouillon dans l’éditeur. L’assistant propose le texte ; l’enregistrement reste explicite. La conversation intégrée reste en mémoire dans l’onglet et disparaît au rechargement. Le sélecteur de référence présente les 100 méthodes publiées les plus récentes.
+« En faire une skill » ouvre un brouillon dans l’éditeur. L’assistant propose le texte ; l’enregistrement reste explicite. La conversation intégrée reste en mémoire dans l’onglet et disparaît au rechargement. Le sélecteur de référence présente les 100 skills publiées les plus récentes.
 
 ## Portée de cette première version
 
 Le serveur reste accessible uniquement depuis ce PC, lié à `127.0.0.1` avec contrôle Host/Origin. Ce n’est pas un service cloud : ChatGPT web ou un autre service distant ne peuvent pas joindre directement cette adresse. Un relais distant avec authentification demanderait une intégration supplémentaire. Le serveur s’arrête si Windows est éteint ou en veille.
 
-Cette version fournit une recherche lexicale locale, sans embeddings, recherche sémantique ni synchronisation multi-appareils. L’interface s’ouvre dans le navigateur ; l’installateur et l’exécutable ne sont pas encore signés avec un certificat Authenticode. Les méthodes sont stockées en clair dans SQLite pour permettre leur récupération ; protéger l’accès au compte et au disque Windows reste pertinent.
+Cette version fournit une recherche lexicale locale, sans embeddings, recherche sémantique ni synchronisation multi-appareils. L’interface s’ouvre dans le navigateur ; l’installateur et l’exécutable ne sont pas encore signés avec un certificat Authenticode. Les skills sont stockées en clair dans SQLite pour permettre leur récupération ; protéger l’accès au compte et au disque Windows reste pertinent.
 
 Le dossier `data/`, l’environnement Python et les fichiers `.env` sont exclus dans `.gitignore`. Conserver les réglages propres au poste dans ce dossier local.
 
@@ -89,23 +89,23 @@ Le dossier `data/`, l’environnement Python et les fichiers `.env` sont exclus 
 ```powershell
 .\.venv\Scripts\python.exe run.py --headless --no-open
 .\.venv\Scripts\python.exe -m pytest -q
-node --check methodes/web/app.js
+node --check skills/web/app.js
 ```
 
 Options : `--port 8765`, `--data-dir <dossier>`, `--no-open`, `--headless`.
 
 Les tests couvrent filtrage par contexte, accents et classement, droits en lecture seule, révocation de jeton, concurrence des versions, historique, export sans secrets, authentification locale, protection Host/Origin, chiffrement DPAPI, adaptateurs API avec réponses simulées, et trois clients MCP réels simultanés sur HTTP. Le test DPAPI nécessite un compte Windows normal ; certains environnements sandbox sans profil utilisateur le bloquent.
 
-Fichiers principaux : `methodes/store.py` (SQLite/recherche), `methodes/server.py` (HTTP/MCP), `methodes/assist.py` (fournisseurs), `methodes/desktop.py` (Windows/tray), `methodes/web/` (interface sans dépendances CDN).
+Fichiers principaux : `skills/store.py` (SQLite/recherche), `skills/server.py` (HTTP/MCP), `skills/assist.py` (fournisseurs), `skills/desktop.py` (Windows/tray), `skills/web/` (interface sans dépendances CDN).
 
-Journal local rotatif : `data/methodes.log`.
+Journal local rotatif : `data/skills.log`.
 
 ## Références d’intégration
 
 - [SDK MCP Python officiel](https://github.com/modelcontextprotocol/python-sdk/tree/v1.x)
 - [Configuration MCP dans Codex](https://developers.openai.com/codex/mcp/)
 - [Authentification via Codex App Server](https://developers.openai.com/codex/app-server/)
-- [API OpenAI Responses](https://developers.openai.com/api/reference/python/resources/responses/methods/create)
+- [API OpenAI Responses](https://developers.openai.com/api/reference/python/resources/responses/skills/create)
 - [API Claude Messages](https://platform.claude.com/docs/en/api/messages/create)
 - [Connexion MCP dans Claude Code](https://code.claude.com/docs/en/mcp)
 
@@ -122,7 +122,7 @@ La détection de Codex consulte aussi son installation desktop, sans dépendre u
 - **OpenCode** : client local et ses fournisseurs configurés ; connexion via le bouton dédié. Modèle au format `fournisseur/modèle`. `ollama/qwen3:0.6b` utilise directement l’adresse Ollama définie dans Paramètres. Un format MCP OpenCode est également proposé dans Connexions.
 - **Ollama** : serveur HTTP local, aucun secret API requis. Vérifier pour lister les modèles installés, puis utiliser le modèle dans l’assistant. Les petits modèles uniquement textuels ne permettent pas d’analyser les images. Pour les références visuelles, choisir un modèle vision.
 
-`Installer-Clients.ps1` installe les clients officiels Claude Code et OpenCode dans `data/local-clients/` si Node/npm est présent. Ils ne sont pas inclus dans l’exécutable distribué ; les installations natives existantes sont aussi détectées.
+`Install-Clients.ps1` installe les clients officiels Claude Code et OpenCode dans `data/local-clients/` si Node/npm est présent. Ils ne sont pas inclus dans l’exécutable distribué ; les installations natives existantes sont aussi détectées.
 
 Les tests des adaptateurs utilisent des réponses simulées ; les tests réels nécessitent un client installé et un compte ou modèle disponible.
 
@@ -151,7 +151,7 @@ Les fiches, projets et ressources ne sont pas traduits automatiquement.
 CyAICodex supports French and English. Use the **FR / EN** selector or
 **Settings > App language**. The preference is saved locally; user content is unchanged.
 
-Les traductions sont regroupées dans `methodes/web/translations.tsv` (français,
+Les traductions sont regroupées dans `skills/web/translations.tsv` (français,
 tabulation, anglais). `uiText` traduit un libellé ; `uiHTML` traduit uniquement les
 segments statiques des modèles JavaScript, jamais leurs valeurs interpolées.
 Les messages de fournisseurs externes non reconnus restent dans leur langue d’origine.
@@ -195,7 +195,7 @@ HTTP locale finissant par `/v1`. OpenRouter utilise son adresse officielle fixe.
 Les métadonnées du dernier test sont locales ; un test réussi ne garantit pas
 l’accès ultérieur à tous les modèles.
 
-Le code des transports se trouve dans `methodes/connectors.py`. Il reprend les
+Le code des transports se trouve dans `skills/connectors.py`. Il reprend les
 conventions de protocole de CyAI Connector Lab sans dépendre d’une installation du Lab.
 Les contrats sont testés dans `tests/test_connectors.py` : résultats terminaux,
 erreurs, tailles de sortie, délais, résolveur npm et conservation des clés.
@@ -219,3 +219,5 @@ Pour un dépôt privé, activer la connexion GitHub locale de Git ou fournir un 
 Publication d’une mise à jour : créer un tag `vMAJEUR.MINEUR.CORRECTIF` et une release stable contenant `CyAICodex-Setup-MAJEUR.MINEUR.CORRECTIF.exe`. GitHub doit fournir le champ `digest` SHA-256 de cet asset. Les brouillons, préversions, versions plus anciennes et fichiers sans empreinte vérifiable ne sont pas installés.
 
 Références : [MCP Codex](https://developers.openai.com/codex/mcp), [MCP OpenCode](https://opencode.ai/docs/mcp-servers/), [assets des releases GitHub](https://docs.github.com/en/rest/releases/assets), [Inno Setup](https://jrsoftware.org/isinfo.php).
+
+Les nouveaux outils MCP sont `search_skills`, `get_skill`, `create_skill` et `update_skill`. Les anciens noms restent compatibles. Les fiches Skills ne sont pas automatiquement des paquets SKILL.md installés chez les clients.

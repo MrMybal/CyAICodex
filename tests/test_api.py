@@ -1,9 +1,10 @@
 import asyncio
 import json
+import pytest
 
 from fastapi.testclient import TestClient
-from methodes.server import create_app
-from methodes.store import Method
+from skills.server import create_app
+from skills.store import Method
 
 
 def test_api_session_origin_and_conflicts(tmp_path):
@@ -29,7 +30,8 @@ def rpc(client, token, method, params, request_id=1):
         json={'jsonrpc':'2.0','id':request_id,'method':method,'params':params})
 
 
-def test_mcp_initialize_tools_scoping_and_write_permissions(tmp_path):
+@pytest.mark.parametrize('skill_names', [False, True])
+def test_mcp_initialize_tools_scoping_and_write_permissions(tmp_path, skill_names):
     app = create_app(tmp_path)
     s = app.state.store
     project = s.add_group('projects','Private')
@@ -43,8 +45,11 @@ def test_mcp_initialize_tools_scoping_and_write_permissions(tmp_path):
         assert init.status_code==200, init.text
         assert init.json()['result']['serverInfo']['name']=='CyAICodex'
         tools=rpc(c,read,'tools/list',{}).json()['result']['tools']
-        assert {t['name'] for t in tools} >= {'search_methods','get_method','create_method','update_method'}
+        assert {t['name'] for t in tools} >= {'search_methods','get_method','create_method','update_method', 'search_skills', 'get_skill', 'create_skill', 'update_skill'}
         def call(token,name,args):
+            if skill_names:
+                name = name.replace('methods', 'skills').replace('method', 'skill')
+                args = {k.replace('method', 'skill'): v for k, v in args.items()}
             response=rpc(c,token,'tools/call',{'name':name,'arguments':args})
             assert response.status_code==200, response.text
             return response.json()['result']
@@ -53,6 +58,8 @@ def test_mcp_initialize_tools_scoping_and_write_permissions(tmp_path):
         payload={'method':{'title':'New','content':'Text'}}
         assert call(read,'create_method',payload)['isError']
         assert not call(write,'create_method',payload)['isError']
+        assert call(read, 'update_method', {'method_id':public['id'], 'expected_version':1, 'method':{'title':'Changed','content':'Text'}})['isError']
+        assert call(write, 'update_method', {'method_id':public['id'], 'expected_version':999, 'method':{'title':'Changed','content':'Text'}})['isError']
         results=call(read,'search_methods',{})
         text=' '.join(v.get('text','') for v in results['content'])
         assert secret['id'] not in text and public['id'] in text

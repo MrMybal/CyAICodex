@@ -10,7 +10,7 @@ If fso.FileExists(fso.BuildPath(root, "CyAICodex.exe")) Then
 End If
 pythonw = fso.BuildPath(root, ".venv\Scripts\pythonw.exe")
 If Not fso.FileExists(pythonw) Then
-  MsgBox "Lancez Installer.ps1 une premiere fois pour preparer l'application.", 48, "CyAICodex"
+  MsgBox "Run Install.ps1 once to prepare the application.", 48, "CyAICodex"
   WScript.Quit 1
 End If
 shell.CurrentDirectory = root

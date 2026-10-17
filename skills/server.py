@@ -163,13 +163,12 @@ def create_app(folder, port=8765):
     images = ImageLibrary(store)
     setup = MCPSetup(store, port)
     mcp = FastMCP("CyAICodex", instructions=(
-        "Bibliothèque de méthodes. Au début d'une tâche, consulte get_context puis search_methods. "
-        "Lis les fiches pertinentes avec get_method avant d'agir. Les résultats respectent le projet de cette connexion. "
-        "Après une pratique utile, crée une méthode sur demande de l'utilisateur. Utilise expected_version pour mettre à jour. "
-        "Pour un travail visuel, utilise search_images, puis get_image et view_image pour consulter l'image et ses consignes de préservation. "
-        "Pour AJOUTER une nouvelle image, utilise import_image avec un chemin absolu local ou data_base64 et sa description. "
-        "Seules les fiches publiées dans ton contexte sont visibles. Une liste vide n’est pas un échec de connexion. "
-        "Consulte get_context pour connaître tes droits et ne modifie rien sans demande de l’utilisateur."),
+        "Shared skills library. At the start of a task, call get_context, search_skills, then get_skill. "
+        "Respect this connection's scope and write permissions. Save or update skills only when asked; "
+        "use expected_version for updates. For images, use search_images, get_image and view_image. "
+        "Add images with import_image using a local absolute path or data_base64 and preservation instructions. "
+        "Only published resources in scope are visible; an empty list is not a connection failure. "
+        "Legacy search_methods/get_method/create_method/update_method remain supported."),
         stateless_http=True, json_response=True, host="127.0.0.1", port=port)
 
     def ctx():
@@ -211,6 +210,26 @@ def create_app(folder, port=8765):
         if not c["writable"]:
             raise ValueError("Cette connexion est en lecture seule.")
         return store.save(method, method_id, expected_version, c["name"], c)
+
+    @mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, openWorldHint=False))
+    def search_skills(query: str = "", category: str = "", limit: int = 10, offset: int = 0) -> dict[str, Any]:
+        """Find published skills in this connection's scope. Read details with get_skill."""
+        return search_methods(query, category, limit, offset)
+
+    @mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, openWorldHint=False))
+    def get_skill(skill_id: str) -> dict[str, Any]:
+        """Read a skill and its version within this connection's scope."""
+        return get_method(skill_id)
+
+    @mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=False))
+    def create_skill(skill: Method) -> dict[str, Any]:
+        """Create a skill when requested; requires write access and a matching scope."""
+        return create_method(skill)
+
+    @mcp.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False, openWorldHint=False))
+    def update_skill(skill_id: str, expected_version: int, skill: Method) -> dict[str, Any]:
+        """Update a skill with its current version; preserve conflict and access checks."""
+        return update_method(skill_id, expected_version, skill)
 
     @mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, openWorldHint=False))
     def search_images(query: str = "", limit: int = 10, offset: int = 0) -> dict[str, Any]:
@@ -279,7 +298,17 @@ def create_app(folder, port=8765):
     @mcp.prompt()
     def appliquer_methodes(task: str) -> str:
         """Start a task consistently with the library's relevant methods."""
-        return f"Pour cette tâche : {task}\nConsulte get_context, cherche les méthodes pertinentes avec search_methods, puis lis-les avec get_method avant de commencer."
+        return f"Pour cette tâche : {task}\nConsulte get_context, cherche les skills pertinentes avec search_methods, puis lis-les avec get_method avant de commencer."
+
+    @mcp.resource("skills://context")
+    def skills_context_resource() -> str:
+        """Current connection's skill scope."""
+        return context_resource()
+
+    @mcp.prompt()
+    def apply_skills(task: str) -> str:
+        """Start a task using applicable skills."""
+        return f"Task: {task}\nRead get_context, search_skills and get_skill before starting."
 
     login = CodexLogin(store)
     updater = Updater(store, port)
@@ -521,7 +550,7 @@ def create_app(folder, port=8765):
 
     @app.get("/api/export")
     def export():
-        return JSONResponse(store.export(), headers={"Content-Disposition": 'attachment; filename="methodes.json"'})
+        return JSONResponse(store.export(), headers={"Content-Disposition": 'attachment; filename="skills.json"'})
 
     @app.get("/api/images")
     def list_images(q: str = "", project_id: str = "", type_id: str = "", include_global: bool = True,

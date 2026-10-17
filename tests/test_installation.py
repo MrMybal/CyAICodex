@@ -3,10 +3,10 @@ import sqlite3
 
 import pytest
 
-from methodes.installation import migrate_data, reconnect_existing
-from methodes.store import Store, Method
-from methodes.mcp_setup import MCPSetup, read_config
-from methodes import runtime
+from skills.installation import migrate_data, reconnect_existing
+from skills.store import Store, Method
+from skills.mcp_setup import MCPSetup, read_config
+from skills import runtime
 
 
 def test_migration_keeps_original_and_refuses_existing_library(tmp_path):
@@ -46,9 +46,9 @@ def test_reconnect_does_not_replace_unrelated_client_config(tmp_path, monkeypatc
     root = tmp_path / 'app'; root.mkdir(); (root / 'CyAICodex.exe').write_bytes(b'fixture')
     config = tmp_path / 'config.toml'
     config.write_text('[mcp_servers.cyaicodex]\nurl="http://127.0.0.1:8765/mcp"\nenabled=false\n[mcp_servers.cyaicodex.http_headers]\nAuthorization="Bearer saved-fixture"\n[mcp_servers.other]\ncommand="untouched"\n')
-    monkeypatch.setattr('methodes.mcp_setup.root_path', lambda: root)
-    monkeypatch.setattr('methodes.mcp_setup.CLIENTS', {'codex': 'Codex'})
-    monkeypatch.setattr('methodes.mcp_setup.config_path', lambda _: config)
+    monkeypatch.setattr('skills.mcp_setup.root_path', lambda: root)
+    monkeypatch.setattr('skills.mcp_setup.CLIENTS', {'codex': 'Codex'})
+    monkeypatch.setattr('skills.mcp_setup.config_path', lambda _: config)
     reconnect_existing(store)
     _, data, _ = read_config('codex', config)
     assert data['mcp_servers']['other']['command'] == 'untouched'

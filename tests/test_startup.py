@@ -3,8 +3,8 @@ from contextlib import nullcontext
 from types import SimpleNamespace
 
 from fastapi.testclient import TestClient
-from methodes import startup
-from methodes.server import create_app
+from skills import startup
+from skills.server import create_app
 
 
 def test_startup_is_idempotent_and_preserves_launch_options(monkeypatch, tmp_path):
@@ -39,8 +39,8 @@ def test_startup_api_is_authenticated_and_sets_explicit_state(monkeypatch, tmp_p
         assert port == 8765 and folder == tmp_path
         state['enabled'] = enabled
         return enabled
-    monkeypatch.setattr('methodes.server.startup_enabled', lambda:state['enabled'])
-    monkeypatch.setattr('methodes.server.set_startup', save)
+    monkeypatch.setattr('skills.server.startup_enabled', lambda:state['enabled'])
+    monkeypatch.setattr('skills.server.set_startup', save)
     app = create_app(tmp_path)
     with TestClient(app, base_url='http://127.0.0.1:8765') as client:
         assert client.put('/api/startup', json={'enabled':True}).status_code == 401

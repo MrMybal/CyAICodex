@@ -38,7 +38,7 @@ def make_image():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="CyAICodex — bibliothèque de méthodes et serveur MCP local")
+    parser = argparse.ArgumentParser(description="CyAICodex — bibliothèque de skills et serveur MCP local")
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--data-dir", type=Path, default=default_data())
     parser.add_argument("--stop", action="store_true", help="Arrêter cette instance avant une mise à jour")
@@ -66,7 +66,7 @@ def run_app(args, instance):
     if args.enable_startup:
         set_startup(True, args.port, args.data_dir)
     from logging.handlers import RotatingFileHandler
-    logging.basicConfig(level=logging.INFO, handlers=[RotatingFileHandler(args.data_dir / "methodes.log",
+    logging.basicConfig(level=logging.INFO, handlers=[RotatingFileHandler(args.data_dir / "cyaicodex.log",
                         maxBytes=2_000_000, backupCount=2, encoding="utf-8")],
                         format="%(asctime)s %(levelname)s %(message)s")
     logging.info("CyAICodex %s — %s", __version__, "exécutable Windows" if getattr(sys, "frozen", False) else "Python")

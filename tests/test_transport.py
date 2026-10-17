@@ -8,8 +8,8 @@ import uvicorn
 from mcp import ClientSession
 from mcp.client.streamable_http import streamable_http_client
 
-from methodes.server import create_app
-from methodes.store import Method, Store
+from skills.server import create_app
+from skills.store import Method, Store
 
 
 def test_three_real_mcp_clients_in_parallel_and_persistence(tmp_path):

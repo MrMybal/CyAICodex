@@ -3,10 +3,10 @@ from html.parser import HTMLParser
 
 from fastapi.testclient import TestClient
 
-from methodes import assist
-from methodes.i18n import catalog, render_index, translate, translated_status
-from methodes.server import create_app
-from methodes.store import Store
+from skills import assist
+from skills.i18n import catalog, render_index, translate, translated_status
+from skills.server import create_app
+from skills.store import Store
 
 
 def test_language_persistence_security_and_content(tmp_path):
@@ -25,7 +25,7 @@ def test_language_persistence_security_and_content(tmp_path):
         assert 'When to use it' in html
         assert client.get('/api/methods/' + saved['id']).json()['title'] == 'Bibliothèque'
         assert client.get('/api/preferences').json() == prefs
-        assert client.get('/api/methods/missing').json()['detail'] == 'Method not found.'
+        assert client.get('/api/methods/missing').json()['detail'] == 'Skill not found.'
         assert 'const UI_TRANSLATIONS' in client.get('/static/i18n-data.js').text
     with TestClient(create_app(tmp_path), base_url='http://127.0.0.1:8765') as client:
         assert '<html lang="en">' in client.get('/').text

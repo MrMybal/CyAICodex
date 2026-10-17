@@ -1,10 +1,10 @@
 import sys
 if '--finish-install' in sys.argv:
-    from methodes.installation import main
+    from skills.installation import main
 elif '--mcp-stdio' in sys.argv:
-    from methodes.bridge import main
+    from skills.bridge import main
 else:
-    from methodes.desktop import main
+    from skills.desktop import main
 
 if __name__ == "__main__":
     try:
@@ -16,6 +16,6 @@ if __name__ == "__main__":
         if os.name == "nt" and not any(flag in sys.argv for flag in ('--mcp-stdio', '--finish-install', '--stop')):
             import ctypes
             ctypes.windll.user32.MessageBoxW(None,
-                "CyAICodex n'a pas pu démarrer. Consultez data\\methodes.log et vérifiez que le port 8765 est libre.",
+                "CyAICodex n'a pas pu démarrer. Consultez data\\cyaicodex.log et vérifiez que le port 8765 est libre.",
                 "CyAICodex", 16)
         raise

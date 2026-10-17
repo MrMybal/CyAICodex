@@ -6,10 +6,10 @@ import httpx
 import pytest
 from fastapi.testclient import TestClient
 
-from methodes import connectors
-from methodes.local_clients import run_client
-from methodes.server import create_app
-from methodes.store import Store
+from skills import connectors
+from skills.local_clients import run_client
+from skills.server import create_app
+from skills.store import Store
 
 
 @pytest.mark.parametrize('identifier,event', [
@@ -37,7 +37,7 @@ def test_prompt_never_shell_argument():
 
 def test_saved_settings_do_not_expose_keys(tmp_path, monkeypatch):
     app = create_app(tmp_path)
-    from methodes import assist
+    from skills import assist
     monkeypatch.setattr(assist, 'protect', lambda value, decrypt=False: 'encrypted-fixture')
     with TestClient(app, base_url='http://127.0.0.1:8765') as c:
         assert c.get('/api/connectors').status_code == 401
