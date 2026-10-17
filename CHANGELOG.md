@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.1
+
+- Provide client-specific setup guidance through the read-only get_setup_guide MCP tool.
+- Download an English or French Markdown guide from Connections to share with an AI before connecting it.
+- Publish guide discovery links in /mcp-info, with verification and troubleshooting steps.
+
+
 ## 0.7.0
 
 - Rename the library's methods to Skills, with English source folders and script filenames.

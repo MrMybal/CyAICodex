@@ -2,7 +2,7 @@
 
 [English](README.md) · Français
 
-L’anglais est la langue par défaut depuis la version 0.7.0. Les choix de langue déjà enregistrés sont conservés.
+L’anglais est la langue par défaut depuis la version 0.7.1. Les choix de langue déjà enregistrés sont conservés.
 
 Maintenance : **Cyberalien**.
 
@@ -12,7 +12,7 @@ Une skill d’exemple **Confidentialité avant publication GitHub** est fournie 
 
 ## Démarrer
 
-Version Windows 0.7.0 : télécharger **CyAICodex-Setup-0.7.0.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
+Version Windows 0.7.1 : télécharger **CyAICodex-Setup-0.7.1.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
 
 Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Install.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Build-App.ps1` génère l’exécutable autonome dans `dist/CyAICodex/CyAICodex.exe`, avec ses composants dans `_internal`. Conserver ce dossier à côté de l’exécutable : il évite une extraction dans Temp à chaque lancement. Utiliser l’installateur pour les mises à jour. Avec Inno Setup 6, `Build-Install.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `CHANGELOG.md`.
 
@@ -221,3 +221,7 @@ Publication d’une mise à jour : créer un tag `vMAJEUR.MINEUR.CORRECTIF` et u
 Références : [MCP Codex](https://developers.openai.com/codex/mcp), [MCP OpenCode](https://opencode.ai/docs/mcp-servers/), [assets des releases GitHub](https://docs.github.com/en/rest/releases/assets), [Inno Setup](https://jrsoftware.org/isinfo.php).
 
 Les nouveaux outils MCP sont `search_skills`, `get_skill`, `create_skill` et `update_skill`. Les anciens noms restent compatibles. Les fiches Skills ne sont pas automatiquement des paquets SKILL.md installés chez les clients.
+
+## Aider votre IA à expliquer la connexion
+
+Dans Connexions, téléchargez le guide pour votre IA en français ou en anglais, puis joignez le fichier Markdown à la conversation. Une IA déjà connectée peut appeler `get_setup_guide(client, language)`. Le guide décrit les étapes, la vérification et le dépannage ; il ne configure rien tout seul et ne contient aucun jeton ni donnée de votre bibliothèque.

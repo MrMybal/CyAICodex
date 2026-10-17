@@ -1,3 +1,4 @@
+from .onboarding import setup_guide, Client as GuideClient, Language as GuideLanguage
 import asyncio
 import base64
 import json
@@ -163,6 +164,7 @@ def create_app(folder, port=8765):
     images = ImageLibrary(store)
     setup = MCPSetup(store, port)
     mcp = FastMCP("CyAICodex", instructions=(
+        "For connection/setup questions, call get_setup_guide and explain its steps to the user; never request tokens in chat. "
         "Shared skills library. At the start of a task, call get_context, search_skills, then get_skill. "
         "Respect this connection's scope and write permissions. Save or update skills only when asked; "
         "use expected_version for updates. For images, use search_images, get_image and view_image. "
@@ -182,6 +184,12 @@ def create_app(folder, port=8765):
         """Read this connection's project/type scope and write permissions before looking up methods."""
         c = ctx()
         return {k: c[k] for k in ("name", "project_id", "type_id", "include_global", "writable")}
+
+    @mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, openWorldHint=False))
+    def get_setup_guide(client: GuideClient = 'all', language: GuideLanguage = 'en') -> dict[str, Any]:
+        """Get safe setup instructions to explain to the user. Includes client steps, verification and troubleshooting; never credentials."""
+        ctx()
+        return setup_guide(client, language, port)
 
     @mcp.tool(annotations=ToolAnnotations(readOnlyHint=True, openWorldHint=False))
     def search_methods(query: str = "", category: str = "", limit: int = 10, offset: int = 0) -> dict[str, Any]:
@@ -395,9 +403,17 @@ def create_app(folder, port=8765):
         return {'name':'CyAICodex','version':__version__,'transport':'Streamable HTTP',
             'url':f'http://127.0.0.1:{port}/mcp','token_required':not preferences(store).local_no_token,
             'setup':'Ouvrez CyAICodex > Connexions > Configurer et tester pour votre client.',
-            'workflow':['initialize','tools/list','get_context','search_methods','get_method'],
+            'workflow':['initialize','tools/list','get_context','search_skills','get_skill'],
+            'setup_tool':'get_setup_guide',
+            'guides':{lang:f'http://127.0.0.1:{port}/mcp-guide?lang={lang}' for lang in ('en','fr')},
+            'clients':['codex','claude_desktop','claude_code','opencode','other'],
             'images':['search_images','get_image','view_image','import_image','update_image'],
             'note':'Un serveur local doit être enregistré dans chaque client IA. Le navigateur seul ne constitue pas un client MCP. Les services cloud ne peuvent pas accéder à ce localhost.'}
+
+    @app.get('/mcp-guide')
+    def public_setup_guide(client: GuideClient = 'all', lang: GuideLanguage = 'en'):
+        return Response(setup_guide(client, lang, port)['markdown'], media_type='text/markdown',
+                        headers={'Content-Disposition': f'attachment; filename="CyAICodex-Setup-{lang}.md"'})
 
     @app.get('/api/mcp-setup')
     async def setup_status():

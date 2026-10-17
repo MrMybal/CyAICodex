@@ -8,7 +8,7 @@ A local Windows library of reusable skills and image references, shared with AI 
 
 ## Install
 
-Download **CyAICodex-Setup-0.7.0.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
+Download **CyAICodex-Setup-0.7.1.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
 
 **English is the default language.** French is available through **FR / EN** or **Settings > App language**. Existing saved language preferences are preserved. Language selection also applies to the tray menu and the language requested from the assistant; personal skills, projects and images are not automatically translated.
 
@@ -84,3 +84,7 @@ A release uses a `vMAJOR.MINOR.PATCH` tag and a `CyAICodex-Setup-MAJOR.MINOR.PAT
 Existing databases and MCP connections remain readable. Older database filenames, session identifiers and method API endpoints are retained for compatibility; new libraries use `skills.sqlite3`. Skills here are library records with reusable instructions, not automatically installed SKILL.md packages.
 
 See [CHANGELOG.md](CHANGELOG.md) for version notes.
+
+## Help your AI explain setup
+
+In Connections, download the English or French setup guide and attach the Markdown file to your AI conversation. It explains how to connect the selected client, verify access and troubleshoot failures. Once connected, the AI can call `get_setup_guide(client, language)` for the same guidance. Before MCP authentication, local clients can discover `/mcp-info` and download `/mcp-guide?client=codex&lang=en`. These guides contain no tokens or personal library data. A Markdown guide does not configure a client by itself.

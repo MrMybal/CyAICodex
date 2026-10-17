@@ -23,6 +23,7 @@ async function refreshMCPSetup(){
     $('#setup-auth').value=setupPrefs.local_no_token?'local':'token';
     $('#setup-auth').querySelector('option[value="local"]').disabled=!setupPrefs.local_no_token;
     showSetupAccess();$('#mcp-discovery-url').textContent=location.origin+'/mcp-info';
+    $('#mcp-guide-download').href='/mcp-guide?lang='+uiLanguage;
     const results=await api('/mcp-setup');results.forEach(renderMCPClient);
   }catch(err){$('#mcp-clients').textContent=uiFragment('Diagnostic indisponible : ')+err.message;throw err;}
 }
