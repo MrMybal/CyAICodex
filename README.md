@@ -88,3 +88,9 @@ See [CHANGELOG.md](CHANGELOG.md) for version notes.
 ## Help your AI explain setup
 
 In Connections, download the English or French setup guide and attach the Markdown file to your AI conversation. It explains how to connect the selected client, verify access and troubleshoot failures. Once connected, the AI can call `get_setup_guide(client, language)` for the same guidance. Before MCP authentication, local clients can discover `/mcp-info` and download `/mcp-guide?client=codex&lang=en`. These guides contain no tokens or personal library data. A Markdown guide does not configure a client by itself.
+
+## License
+
+Copyright (c) 2026 Cyberalien.
+
+CyAICodex is licensed under the **GNU Affero General Public License, version 3 only** (`AGPL-3.0-only`). See [LICENSE](LICENSE) for the complete terms. Third-party components retain their respective licenses.

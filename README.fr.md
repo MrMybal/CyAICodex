@@ -225,3 +225,9 @@ Les nouveaux outils MCP sont `search_skills`, `get_skill`, `create_skill` et `up
 ## Aider votre IA à expliquer la connexion
 
 Dans Connexions, téléchargez le guide pour votre IA en français ou en anglais, puis joignez le fichier Markdown à la conversation. Une IA déjà connectée peut appeler `get_setup_guide(client, language)`. Le guide décrit les étapes, la vérification et le dépannage ; il ne configure rien tout seul et ne contient aucun jeton ni donnée de votre bibliothèque.
+
+## Licence
+
+Copyright (c) 2026 Cyberalien.
+
+CyAICodex est distribué sous la **GNU Affero General Public License, version 3 uniquement** (`AGPL-3.0-only`). Le texte intégral est disponible dans [LICENSE](LICENSE). Les composants tiers conservent leurs licences respectives.

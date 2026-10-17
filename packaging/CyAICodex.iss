@@ -2,6 +2,7 @@
 [Setup]
 AppId={{89159947-E319-4B18-9A29-F4016E32BF26}
 AppName=CyAICodex
+LicenseFile=..\LICENSE
 AppVersion={#AppVersion}
 AppPublisher=Cyberalien
 AppPublisherURL=https://github.com/MrMybal/CyAICodex
@@ -44,6 +45,7 @@ Name: "startup"; Description: "{cm:Startup}"
 
 [Files]
 Source: "..\dist\CyAICodex\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 Source: "installed.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\CHANGELOG.md"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: PrepareData
 
