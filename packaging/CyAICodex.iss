@@ -1,4 +1,4 @@
-#define AppVersion "0.6.2"
+#define AppVersion "0.6.3"
 [Setup]
 AppId={{89159947-E319-4B18-9A29-F4016E32BF26}
 AppName=CyAICodex
@@ -22,10 +22,11 @@ RestartApplications=no
 DisableProgramGroupPage=yes
 DisableDirPage=auto
 UsePreviousTasks=yes
+LanguageDetectionMethod=none
 
 [Languages]
-Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
 [CustomMessages]
 french.DesktopShortcut=Créer un raccourci sur le bureau
@@ -44,7 +45,7 @@ Name: "startup"; Description: "{cm:Startup}"
 [Files]
 Source: "..\dist\CyAICodex\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "installed.txt"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Lisez-moi-v0.6.2.txt"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: PrepareData
+Source: "..\Readme-v0.6.3.txt"; DestDir: "{app}"; Flags: ignoreversion; AfterInstall: PrepareData
 
 [Icons]
 Name: "{autoprograms}\CyAICodex"; Filename: "{app}\CyAICodex.exe"

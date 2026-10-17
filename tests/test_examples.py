@@ -28,10 +28,15 @@ def test_concurrent_seeding_does_not_duplicate_or_overwrite_edits(tmp_path):
 
 def test_english_example_follows_initial_library_language(tmp_path):
     store = Store(tmp_path)
-    store.set_setting('ui_language', 'en')
     result = seed_examples(store)
     assert result['title'].startswith('Example')
     assert '## Final checklist' in result['content']
     store.set_setting('ui_language', 'fr')
     assert seed_examples(store) is None
     assert store.get(result['id']) == result
+
+
+def test_saved_french_preference_seeds_french_example(tmp_path):
+    store = Store(tmp_path)
+    store.set_setting('ui_language', 'fr')
+    assert seed_examples(store)['title'].startswith('Exemple')

@@ -1,5 +1,5 @@
 'use strict';
-const uiLanguage = document.documentElement.lang === 'en' ? 'en' : 'fr';
+const uiLanguage = document.documentElement.lang === 'fr' ? 'fr' : 'en';
 function uiText(value) {
   if (uiLanguage !== 'en') return value;
   const key = value.trim();

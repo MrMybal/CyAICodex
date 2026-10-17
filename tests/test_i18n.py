@@ -12,7 +12,7 @@ from methodes.store import Store
 def test_language_persistence_security_and_content(tmp_path):
     app = create_app(tmp_path)
     with TestClient(app, base_url='http://127.0.0.1:8765') as client:
-        assert '<html lang="fr">' in client.get('/').text
+        assert '<html lang="en">' in client.get('/').text
         assert client.put('/api/language', json={'language': 'en'}).status_code == 401
         client.post('/api/session', json={'token': app.state.store.setting('admin_token')})
         prefs = client.get('/api/preferences').json()
@@ -76,3 +76,12 @@ def test_static_translation_coverage_and_dom_integrity():
     unchanged = {'CyAICodex', 'C', 'Assistant', 'FR / EN', 'Français', 'English', 'Claude · API', 'OpenAI · API', 'Codex', 'OpenAI API', 'Claude API', 'Tags', 'Format', 'Codex · config.toml', 'Claude Desktop · application', 'OpenCode · configuration'}
     missing = {text for text in french.texts if any(c.isalpha() for c in text) and text not in catalog() and text not in unchanged}
     assert not missing
+
+
+def test_saved_french_preference_survives_restart(tmp_path):
+    store = Store(tmp_path)
+    store.set_setting('ui_language', 'fr')
+    with TestClient(create_app(tmp_path), base_url='http://127.0.0.1:8765') as client:
+        assert '<html lang="fr">' in client.get('/').text
+        assert 'Enregistrer les paramètres' in client.get('/').text
+    assert Store(tmp_path).setting('ui_language') == 'fr'

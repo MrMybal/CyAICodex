@@ -16,7 +16,7 @@ def catalog():
 
 
 def language(store):
-    return 'en' if store.setting('ui_language', 'fr') == 'en' else 'fr'
+    return 'fr' if store.setting('ui_language', 'en') == 'fr' else 'en'
 
 
 def translate(text, lang):

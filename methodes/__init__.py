@@ -1,3 +1,3 @@
 """CyAICodex — bibliothèque locale de pratiques partagées."""
 
-__version__ = "0.6.2"
+__version__ = "0.6.3"
