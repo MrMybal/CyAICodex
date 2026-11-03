@@ -6,6 +6,27 @@ Maintained by **Cyberalien**.
 
 A local Windows library of reusable skills and image references, shared with AI clients through MCP. The application runs in the Windows notification area and provides a browser interface.
 
+## Screenshots
+
+The English interface, shown with sample data.
+
+**Skills library** — browse reusable instructions, search by keyword and filter by project scope.
+
+![CyAICodex Skills library](docs/images/skills-library.jpg)
+
+<details>
+<summary>Skill editor and project scopes</summary>
+
+**Skill editor** — Markdown instructions, categories, tags and publication settings.
+
+![Editing a Skill in CyAICodex](docs/images/skill-editor.jpg)
+
+**Projects and types** — organize the skills available to each project.
+
+![CyAICodex project scopes](docs/images/project-scopes.jpg)
+
+</details>
+
 ## Install
 
 Download **CyAICodex-Setup-0.7.1.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.

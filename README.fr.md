@@ -10,6 +10,27 @@ Application locale pour Windows : une bibliothèque de pratiques réutilisables,
 
 Une skill d’exemple **Confidentialité avant publication GitHub** est fournie avec l’application : contrôle des sources, historique Git, secrets, données personnelles et fichiers de release. Elle est ajoutée une seule fois, en portée globale et à l’état publié, dans chacune des deux langues (français et anglais). Elle peut être adaptée ou archivée ; les mises à jour ne remplacent pas les adaptations. Les bibliothèques personnelles sont stockées séparément des exemples distribués.
 
+## Captures d’écran
+
+L’interface anglaise, présentée avec des données de démonstration.
+
+**Bibliothèque de Skills** — retrouvez vos consignes, recherchez par mot-clé et filtrez par projet.
+
+![Bibliothèque de Skills CyAICodex](docs/images/skills-library.jpg)
+
+<details>
+<summary>Éditeur de Skill et organisation des projets</summary>
+
+**Éditeur de Skill** — contenu Markdown, catégories, tags et état de publication.
+
+![Édition d’un Skill dans CyAICodex](docs/images/skill-editor.jpg)
+
+**Projets et types** — organisez les Skills accessibles pour chaque projet.
+
+![Organisation des projets CyAICodex](docs/images/project-scopes.jpg)
+
+</details>
+
 ## Démarrer
 
 Version Windows 0.7.1 : télécharger **CyAICodex-Setup-0.7.1.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
