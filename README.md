@@ -2,7 +2,7 @@
 
 English · [Français](README.fr.md)
 
-**[Read the documentation](https://github.com/MrMybal/CyAICodex/tree/main/docs/content/en)**
+**[Read the documentation](https://mrmybal.github.io/CyAICodex/#/en/welcome)**
 
 Maintained by **Cyberalien**.
 
