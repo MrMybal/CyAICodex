@@ -2,6 +2,8 @@
 
 [English](README.md) · Français
 
+**[Consulter la documentation](https://github.com/MrMybal/CyAICodex/tree/main/docs/content/fr)**
+
 L’anglais est la langue par défaut depuis la version 0.6.3. Les choix de langue déjà enregistrés sont conservés.
 
 Maintenance : **Cyberalien**.

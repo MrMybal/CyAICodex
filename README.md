@@ -2,6 +2,8 @@
 
 English · [Français](README.fr.md)
 
+**[Read the documentation](https://github.com/MrMybal/CyAICodex/tree/main/docs/content/en)**
+
 Maintained by **Cyberalien**.
 
 A local Windows library of reusable skills and image references, shared with AI clients through MCP. The application runs in the Windows notification area and provides a browser interface.
