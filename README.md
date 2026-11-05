@@ -12,24 +12,24 @@ The English interface, shown with sample data.
 
 **Skills library** — browse reusable instructions, search by keyword and filter by project scope.
 
-![CyAICodex Skills library](docs/images/skills-library.jpg)
+![CyAICodex Skills library](skills/web/manual/images/skills-library.jpg)
 
 <details>
 <summary>Skill editor and project scopes</summary>
 
 **Skill editor** — Markdown instructions, categories, tags and publication settings.
 
-![Editing a Skill in CyAICodex](docs/images/skill-editor.jpg)
+![Editing a Skill in CyAICodex](skills/web/manual/images/skill-editor.jpg)
 
 **Projects and types** — organize the skills available to each project.
 
-![CyAICodex project scopes](docs/images/project-scopes.jpg)
+![CyAICodex project scopes](skills/web/manual/images/project-scopes.jpg)
 
 </details>
 
 ## Install
 
-Download **CyAICodex-Setup-0.7.1.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
+Download **CyAICodex-Setup-0.8.0.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
 
 **English is the default language.** French is available through **FR / EN** or **Settings > App language**. Existing saved language preferences are preserved. Language selection also applies to the tray menu and the language requested from the assistant; personal skills, projects and images are not automatically translated.
 
@@ -115,3 +115,7 @@ In Connections, download the English or French setup guide and attach the Markdo
 Copyright (c) 2026 Cyberalien.
 
 CyAICodex is licensed under the **GNU Affero General Public License, version 3 only** (`AGPL-3.0-only`). See [LICENSE](LICENSE) for the complete terms. Third-party components retain their respective licenses.
+
+## Built-in documentation
+
+Open **Documentation** in the application for a complete, searchable offline manual: 20 chapters in English and French, localized screenshots, diagrams, procedures and troubleshooting. The manual follows the interface language and can open separately at `/help?lang=en` or `/help?lang=fr` while the local server is running. All reading assets are installed with the app; no external documentation service is needed.

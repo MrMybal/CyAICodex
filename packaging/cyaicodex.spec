@@ -5,12 +5,14 @@ from PyInstaller.utils.hooks import collect_data_files, collect_submodules, copy
 root = Path(SPECPATH).parent
 web_assets = [
     "index.html", "style.css", "app.js", "images.css", "images.js", "settings.js",
-    "connectors.js", "updates.js", "mcp-setup.css", "mcp-setup.js", "i18n.js", "translations.tsv",
+    "documentation.js", "documentation.css", "connectors.js", "updates.js", "mcp-setup.css", "mcp-setup.js", "i18n.js", "translations.tsv",
     "logo-cy-book.png", "logo-cy-book-transparent.png", "logo-cy-book-transparent.ico",
 ]
 assets = [(str(root / "skills" / "web" / name), "skills/web") for name in web_assets]
 assets += [(str(root / "skills" / "examples" / name), "skills/examples")
            for name in ("github-privacy.fr.json", "github-privacy.en.json")]
+assets += [(str(path), "skills/web/manual/" + str(path.parent.relative_to(root / "skills/web/manual")))
+           for path in (root / "skills/web/manual").rglob("*") if path.is_file()]
 assets += collect_data_files("mcp") + collect_data_files("jsonschema_specifications")
 assets += copy_metadata("mcp", recursive=True)
 

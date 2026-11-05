@@ -2,13 +2,13 @@
 
 [English](README.md) · Français
 
-L’anglais est la langue par défaut depuis la version 0.7.1. Les choix de langue déjà enregistrés sont conservés.
+L’anglais est la langue par défaut depuis la version 0.6.3. Les choix de langue déjà enregistrés sont conservés.
 
 Maintenance : **Cyberalien**.
 
 Application locale pour Windows : une bibliothèque de pratiques réutilisables, consultable et modifiable par des clients IA via MCP. Interface française et anglaise dans le navigateur et processus persistant dans la zone de notification.
 
-Une skill d’exemple **Confidentialité avant publication GitHub** est fournie avec l’application : contrôle des sources, historique Git, secrets, données personnelles et fichiers de release. Elle est ajoutée une seule fois, en portée globale et à l’état publié, dans chacune des deux langues (français et anglais). Elle peut être adaptée ou archivée ; les mises à jour ne remplacent pas les adaptations. Les bibliothèques personnelles sont stockées séparément des exemples distribués.
+Un skill d’exemple **Confidentialité avant publication GitHub** est fournie avec l’application : contrôle des sources, historique Git, secrets, données personnelles et fichiers de release. Elle est ajoutée une seule fois, en portée globale et à l’état publié, dans chacune des deux langues (français et anglais). Elle peut être adaptée ou archivée ; les mises à jour ne remplacent pas les adaptations. Les bibliothèques personnelles sont stockées séparément des exemples distribués.
 
 ## Captures d’écran
 
@@ -16,24 +16,24 @@ L’interface anglaise, présentée avec des données de démonstration.
 
 **Bibliothèque de Skills** — retrouvez vos consignes, recherchez par mot-clé et filtrez par projet.
 
-![Bibliothèque de Skills CyAICodex](docs/images/skills-library.jpg)
+![Bibliothèque de Skills CyAICodex](skills/web/manual/images/skills-library.jpg)
 
 <details>
 <summary>Éditeur de Skill et organisation des projets</summary>
 
 **Éditeur de Skill** — contenu Markdown, catégories, tags et état de publication.
 
-![Édition d’un Skill dans CyAICodex](docs/images/skill-editor.jpg)
+![Édition d’un Skill dans CyAICodex](skills/web/manual/images/skill-editor.jpg)
 
 **Projets et types** — organisez les Skills accessibles pour chaque projet.
 
-![Organisation des projets CyAICodex](docs/images/project-scopes.jpg)
+![Organisation des projets CyAICodex](skills/web/manual/images/project-scopes.jpg)
 
 </details>
 
 ## Démarrer
 
-Version Windows 0.7.1 : télécharger **CyAICodex-Setup-0.7.1.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
+Version Windows 0.8.0 : télécharger **CyAICodex-Setup-0.8.0.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
 
 Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Install.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Build-App.ps1` génère l’exécutable autonome dans `dist/CyAICodex/CyAICodex.exe`, avec ses composants dans `_internal`. Conserver ce dossier à côté de l’exécutable : il évite une extraction dans Temp à chaque lancement. Utiliser l’installateur pour les mises à jour. Avec Inno Setup 6, `Build-Install.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `CHANGELOG.md`.
 
@@ -119,7 +119,7 @@ Les tests couvrent filtrage par contexte, accents et classement, droits en lectu
 
 Fichiers principaux : `skills/store.py` (SQLite/recherche), `skills/server.py` (HTTP/MCP), `skills/assist.py` (fournisseurs), `skills/desktop.py` (Windows/tray), `skills/web/` (interface sans dépendances CDN).
 
-Journal local rotatif : `data/skills.log`.
+Journal local rotatif : `data/cyaicodex.log`.
 
 ## Références d’intégration
 
@@ -252,3 +252,7 @@ Dans Connexions, téléchargez le guide pour votre IA en français ou en anglais
 Copyright (c) 2026 Cyberalien.
 
 CyAICodex est distribué sous la **GNU Affero General Public License, version 3 uniquement** (`AGPL-3.0-only`). Le texte intégral est disponible dans [LICENSE](LICENSE). Les composants tiers conservent leurs licences respectives.
+
+## Documentation intégrée
+
+Ouvrez **Documentation** dans le logiciel : 20 chapitres consultables et recherchables hors ligne en anglais et français, captures localisées, schémas, procédures et dépannage. Le manuel suit la langue de l’interface et s’ouvre aussi dans `/help?lang=fr` avec le serveur local lancé. Toutes les ressources de lecture sont installées avec l’application.

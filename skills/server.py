@@ -26,6 +26,7 @@ from .mcp_setup import MCPSetup, CLIENTS
 from .i18n import language, translate, translated_status, render_index, browser_catalog
 from . import connectors
 from .updates import Updater
+from .documentation import manual_content, manual_page
 
 connection_context = ContextVar("connection", default=None)
 WEB = Path(__file__).parent / "web"
@@ -391,6 +392,14 @@ def create_app(folder, port=8765):
         if callback:
             callback()
         return {'language': language(store)}
+
+    @app.get('/help')
+    def documentation_page(lang: Literal['en', 'fr'] = 'en'):
+        return HTMLResponse(manual_page(lang))
+
+    @app.get('/help/content')
+    def documentation_content(lang: Literal['en', 'fr'] = 'en'):
+        return manual_content(lang)
 
     @app.get("/health")
     def health():

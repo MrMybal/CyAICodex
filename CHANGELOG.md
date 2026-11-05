@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0
+
+- Add a complete offline Documentation section in English and French, with English as the default.
+- Twenty searchable chapters cover Skills, images, projects, MCP setup, providers, permissions, backups, updates and troubleshooting.
+- Bundle English/French screenshots and accessible diagrams; open the manual separately or print the selected chapter.
+- Include the AGPL v3 license in the installer and installed application.
+
+
 ## 0.7.1
 
 - Provide client-specific setup guidance through the read-only get_setup_guide MCP tool.

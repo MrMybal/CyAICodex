@@ -50,7 +50,8 @@ async function refreshMethods(){
 async function changePage(page){
   sessionStorage.setItem('cyaicodex-page',page);
   $$('.page').forEach(p=>p.hidden=p.id!=='page-'+page); $$('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
-  $('#breadcrumb').textContent={library:uiFragment('Bibliothèque'),projects:uiFragment('Projets & types'),images:uiFragment('Ressources d’images'),assistant:'Assistant',connections:uiFragment('Connexions'),settings:uiFragment('Paramètres')}[page];
+  $('#breadcrumb').textContent={library:uiFragment('Bibliothèque'),projects:uiFragment('Projets & types'),images:uiFragment('Ressources d’images'),assistant:'Assistant',connections:uiFragment('Connexions'),settings:uiFragment('Paramètres'),documentation:'Documentation'}[page];
+  if(page==='documentation')await loadDocumentation(uiLanguage);
   if(page==='settings')await refreshPreferences();
   if(page==='images')await refreshImages();
   if(page==='assistant')await refreshImageReferences();
@@ -159,7 +160,7 @@ async function boot(){
   const token=new URLSearchParams(location.hash.slice(1)).get('token');
   if(token){history.replaceState(null,'',location.pathname);await send('/session',{token});}
   await refreshCatalog();await Promise.all([refreshMethods(),refreshStats(),loadExtraConnectors()]);
-  const page=sessionStorage.getItem('cyaicodex-page');if(['library','images','projects','assistant','connections','settings'].includes(page))await changePage(page);
+  const page=sessionStorage.getItem('cyaicodex-page');if(['library','images','projects','assistant','connections','settings','documentation'].includes(page))await changePage(page);
 }
 guarded(boot)();
 setInterval(async()=>{try{const r=await fetch('/health');if(!r.ok)throw Error();$('#server-dot').style.background='';$('#server-label').firstChild.textContent=uiFragment('Serveur MCP actif');}catch{$('#server-dot').style.background='#bb7070';$('#server-label').firstChild.textContent=uiFragment('Serveur arrêté');}},15000);

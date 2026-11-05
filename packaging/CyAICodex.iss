@@ -1,4 +1,4 @@
-#define AppVersion "0.7.1"
+#define AppVersion "0.8.0"
 [Setup]
 AppId={{89159947-E319-4B18-9A29-F4016E32BF26}
 AppName=CyAICodex
