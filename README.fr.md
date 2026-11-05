@@ -16,26 +16,26 @@ L’interface anglaise, présentée avec des données de démonstration.
 
 **Bibliothèque de Skills** — retrouvez vos consignes, recherchez par mot-clé et filtrez par projet.
 
-![Bibliothèque de Skills CyAICodex](skills/web/manual/images/skills-library.jpg)
+![Bibliothèque de Skills CyAICodex](docs/assets/images/skills-library.jpg)
 
 <details>
 <summary>Éditeur de Skill et organisation des projets</summary>
 
 **Éditeur de Skill** — contenu Markdown, catégories, tags et état de publication.
 
-![Édition d’un Skill dans CyAICodex](skills/web/manual/images/skill-editor.jpg)
+![Édition d’un Skill dans CyAICodex](docs/assets/images/skill-editor.jpg)
 
 **Projets et types** — organisez les Skills accessibles pour chaque projet.
 
-![Organisation des projets CyAICodex](skills/web/manual/images/project-scopes.jpg)
+![Organisation des projets CyAICodex](docs/assets/images/project-scopes.jpg)
 
 </details>
 
 ## Démarrer
 
-Version Windows 0.8.0 : télécharger **CyAICodex-Setup-0.8.0.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
+Version Windows 0.9.0 : télécharger **CyAICodex-Setup-0.9.0.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
 
-Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Install.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Build-App.ps1` génère l’exécutable autonome dans `dist/CyAICodex/CyAICodex.exe`, avec ses composants dans `_internal`. Conserver ce dossier à côté de l’exécutable : il évite une extraction dans Temp à chaque lancement. Utiliser l’installateur pour les mises à jour. Avec Inno Setup 6, `Build-Install.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `CHANGELOG.md`.
+Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Install.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Build-App.ps1` génère l’exécutable autonome dans `dist/CyAICodex/CyAICodex.exe`, avec ses composants dans `_internal`. Conserver ce dossier à côté de l’exécutable : il évite une extraction dans Temp à chaque lancement. Utiliser l’installateur pour les mises à jour. Avec Inno Setup 6, `Build-Installer.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `CHANGELOG.md`.
 
 Fermer l’onglet ne coupe pas le serveur. Le menu de l’icône permet de rouvrir l’application, d’activer **Démarrer avec Windows**, ou de quitter et arrêter le serveur. Le démarrage automatique se règle aussi dans **Connexions → Disponibilité du serveur**. Le réglage est partagé avec le menu de l’icône Windows. Il lance le serveur sans ouvrir le navigateur à l’ouverture de la session utilisateur (pas avant la connexion Windows). La version installée conserve les données dans `%LOCALAPPDATA%\CyAICodex\data`, indépendamment des fichiers de l’application. La version portable utilise `data/` à côté de son exécutable. La désinstallation conserve la bibliothèque.
 
@@ -255,4 +255,6 @@ CyAICodex est distribué sous la **GNU Affero General Public License, version 3 
 
 ## Documentation intégrée
 
-Ouvrez **Documentation** dans le logiciel : 20 chapitres consultables et recherchables hors ligne en anglais et français, captures localisées, schémas, procédures et dépannage. Le manuel suit la langue de l’interface et s’ouvre aussi dans `/help?lang=fr` avec le serveur local lancé. Toutes les ressources de lecture sont installées avec l’application.
+**Documentation**, le bouton contextuel **?**, **F1** et le menu de l’icône Windows ouvrent le lecteur **CyDoc** embarqué dans une page `file://`. Sa lecture ne nécessite ni serveur HTTP, ni CDN, ni Internet. L’anglais est la langue par défaut ; le français partage les identifiants de pages et de sections. Chapitres utilisateur, captures, schémas, référence du dépôt et documentation Python extraite sont inclus.
+
+Régénération avec Node.js 22+ : `npm ci`, `npm run docs:build`, puis `npm run docs:check`. Les scripts Build-App.ps1 et Build-Installer.ps1 l’intègrent automatiquement. Python et Node.js ne sont pas nécessaires pour lire le manuel installé. Seul le module image est activé ; les schémas sont des SVG statiques. Voir [l’intégration documentaire](docs/content/fr/building-help.md).

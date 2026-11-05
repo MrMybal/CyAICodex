@@ -12,24 +12,24 @@ The English interface, shown with sample data.
 
 **Skills library** — browse reusable instructions, search by keyword and filter by project scope.
 
-![CyAICodex Skills library](skills/web/manual/images/skills-library.jpg)
+![CyAICodex Skills library](docs/assets/images/skills-library.jpg)
 
 <details>
 <summary>Skill editor and project scopes</summary>
 
 **Skill editor** — Markdown instructions, categories, tags and publication settings.
 
-![Editing a Skill in CyAICodex](skills/web/manual/images/skill-editor.jpg)
+![Editing a Skill in CyAICodex](docs/assets/images/skill-editor.jpg)
 
 **Projects and types** — organize the skills available to each project.
 
-![CyAICodex project scopes](skills/web/manual/images/project-scopes.jpg)
+![CyAICodex project scopes](docs/assets/images/project-scopes.jpg)
 
 </details>
 
 ## Install
 
-Download **CyAICodex-Setup-0.8.0.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
+Download **CyAICodex-Setup-0.9.0.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
 
 **English is the default language.** French is available through **FR / EN** or **Settings > App language**. Existing saved language preferences are preserved. Language selection also applies to the tray menu and the language requested from the assistant; personal skills, projects and images are not automatically translated.
 
@@ -89,7 +89,7 @@ Install Python 3.11 or newer, then run `Install.ps1` in PowerShell. Dependencies
 
 ```powershell
 .\Build-App.ps1
-.\Build-Install.ps1 -Iscc "path to ISCC.exe"
+.\Build-Installer.ps1 -Iscc "path to ISCC.exe"
 .\.venv\Scripts\python.exe -m pytest -q
 node tests/i18n_browser.cjs
 ```
@@ -118,4 +118,15 @@ CyAICodex is licensed under the **GNU Affero General Public License, version 3 o
 
 ## Built-in documentation
 
-Open **Documentation** in the application for a complete, searchable offline manual: 20 chapters in English and French, localized screenshots, diagrams, procedures and troubleshooting. The manual follows the interface language and can open separately at `/help?lang=en` or `/help?lang=fr` while the local server is running. All reading assets are installed with the app; no external documentation service is needed.
+**Documentation**, the contextual **?** button, **F1**, and the Windows tray menu open the bundled **CyDoc** reader as a local `file://` page. The reader needs no HTTP server, CDN or Internet connection. English is the default; French uses the same page and section IDs. It includes all user chapters, screenshots, diagrams, the repository reference and extracted Python integration documentation.
+
+Generate it with Node.js 22+:
+
+```powershell
+npm ci
+npm run docs:build
+npm run docs:check
+.\.venv\Scripts\python.exe run.py --open-help --help-language en --help-page quick-start
+```
+
+The normal Build-App.ps1 and Build-Installer.ps1 workflows build and package it automatically. Python/Node.js are not required to read the installed manual. Only CyDoc's image module is selected; diagrams compile to static SVG. See [documentation integration](docs/content/en/building-help.md) for authoring, translation tracking, regeneration and compatibility details.

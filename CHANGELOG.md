@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0
+
+- Migrate the full English/French documentation to the bundled CyDoc file reader.
+- Open offline help from Documentation, contextual help, F1, the tray or --open-help, without a documentation web server.
+- Keep chapter IDs and compatible legacy links; add image zoom and in-window enlargement.
+- Generate and validate documentation in the application build, with explicit translation revisions.
+
+
 ## 0.8.0
 
 - Add a complete offline Documentation section in English and French, with English as the default.

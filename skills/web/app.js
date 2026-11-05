@@ -48,10 +48,10 @@ async function refreshMethods(){
   $('#pagination-info').textContent=data.total?uiHTML`${state.offset+1}–${Math.min(state.offset+12,data.total)} sur ${data.total}`:uiFragment('0 skill');
 }
 async function changePage(page){
+  if(page==='documentation'){await openDocumentation();return;}
   sessionStorage.setItem('cyaicodex-page',page);
   $$('.page').forEach(p=>p.hidden=p.id!=='page-'+page); $$('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
   $('#breadcrumb').textContent={library:uiFragment('Bibliothèque'),projects:uiFragment('Projets & types'),images:uiFragment('Ressources d’images'),assistant:'Assistant',connections:uiFragment('Connexions'),settings:uiFragment('Paramètres'),documentation:'Documentation'}[page];
-  if(page==='documentation')await loadDocumentation(uiLanguage);
   if(page==='settings')await refreshPreferences();
   if(page==='images')await refreshImages();
   if(page==='assistant')await refreshImageReferences();

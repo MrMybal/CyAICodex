@@ -1,0 +1,28 @@
+{
+  "name": "CyAICodex",
+  "version": "0.9.0",
+  "defaultLocale": "en",
+  "locales": [
+    {
+      "code": "en",
+      "label": "English"
+    },
+    {
+      "code": "fr",
+      "label": "Français"
+    }
+  ],
+  "homePage": "welcome",
+  "content": "build/cydoc-input/content",
+  "assets": "docs/assets",
+  "out": "build/help",
+  "modules": [
+    "image"
+  ],
+  "translationReport": true,
+  "aliases": {
+    "overview": "welcome",
+    "quickstart": "quick-start",
+    "api-links": "tools"
+  }
+}

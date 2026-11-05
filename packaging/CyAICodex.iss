@@ -1,4 +1,4 @@
-#define AppVersion "0.8.0"
+#define AppVersion "0.9.0"
 [Setup]
 AppId={{89159947-E319-4B18-9A29-F4016E32BF26}
 AppName=CyAICodex
@@ -55,6 +55,11 @@ Type: files; Name: "{app}\Lisez-moi-v0.6.1.txt"
 Type: files; Name: "{app}\Lisez-moi-v0.6.2.txt"
 Type: files; Name: "{app}\Readme-v0.6.3.txt"
 Type: filesandordirs; Name: "{app}\_internal\methodes"
+
+; Remove the former HTTP reader after the replacement has been bundled.
+Type: filesandordirs; Name: "{app}\_internal\skills\web\manual"
+Type: files; Name: "{app}\_internal\skills\web\documentation.js"
+Type: files; Name: "{app}\_internal\skills\web\documentation.css"
 
 [Icons]
 Name: "{autoprograms}\CyAICodex"; Filename: "{app}\CyAICodex.exe"

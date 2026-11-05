@@ -1,5 +1,7 @@
 import sys
-if '--finish-install' in sys.argv:
+if '--open-help' in sys.argv:
+    from skills.documentation import main
+elif '--finish-install' in sys.argv:
     from skills.installation import main
 elif '--mcp-stdio' in sys.argv:
     from skills.bridge import main

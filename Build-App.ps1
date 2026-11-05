@@ -1,5 +1,9 @@
 $ErrorActionPreference = 'Stop'
 Set-Location -LiteralPath $PSScriptRoot
+& npm ci
+if ($LASTEXITCODE -ne 0) { throw 'Documentation dependencies installation failed.' }
+& npm run docs:build
+if ($LASTEXITCODE -ne 0) { throw 'Documentation generation failed.' }
 & '.\.venv\Scripts\python.exe' -m pip install 'pyinstaller==6.22.3'
 if ($LASTEXITCODE -ne 0) { throw 'PyInstaller installation failed.' }
 & '.\.venv\Scripts\python.exe' -m PyInstaller --noconfirm packaging\cyaicodex.spec

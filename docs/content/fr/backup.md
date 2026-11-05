@@ -1,0 +1,40 @@
+---
+id: backup
+title: Export, sauvegarde complète et restauration
+description: Exporter la bibliothèque, en bas de Bibliothèque, télécharge skills.json : fiches et classement, sans clés ni jetons. Ce n’est pas une sauvegarde complète des images, réglages, identifiants et historiques. Cette version n’a pas de bouton général d’import JSON.
+section: Guide utilisateur
+order: 14
+revision: 1
+sourceRevision: 1
+---
+
+## Export, sauvegarde complète et restauration {#content}
+
+
+## Choisir la sauvegarde adaptée {#diagram-1}
+
+```diagram
+{"type": "flow", "title": "Choisir la sauvegarde adaptée", "nodes": [{"id": "n0", "label": "Exporter", "x": 0, "y": 20, "width": 240}, {"id": "n1", "label": "Tout sauvegarder", "x": 280, "y": 20, "width": 240}, {"id": "n2", "label": "Restaurer", "x": 560, "y": 20, "width": 240}], "edges": [{"from": "n0", "to": "n1"}, {"from": "n1", "to": "n2"}]}
+```
+
+- **Exporter** — JSON : Skills et classement à consulter ou partager.
+- **Tout sauvegarder** — Arrêter CyAICodex et copier tout data.
+- **Restaurer** — Arrêter, préserver data courant et restaurer une copie complète.
+
+Exporter la bibliothèque, en bas de Bibliothèque, télécharge skills.json : fiches et classement, sans clés ni jetons. Ce n’est pas une sauvegarde complète des images, réglages, identifiants et historiques. Cette version n’a pas de bouton général d’import JSON.
+
+## Sauvegarde complète {#full-backup}
+
+1. Quittez et arrêtez le serveur de l’icône. Fermez ou déconnectez les clients MCP pour éviter sa relance immédiate.
+2. Copiez tout %LOCALAPPDATA%\CyAICodex\data vers votre sauvegarde. Les versions portables ou sources utilisent data à côté de l’application sauf option --data-dir.
+3. Gardez ensemble originaux, base et fichiers SQLite associés. Protégez la copie : elle peut contenir des consignes privées et informations de connexion.
+
+## Restaurer {#restore}
+
+1. Arrêtez à nouveau serveur et clients. Conservez le dossier data courant séparément pour revenir en arrière.
+2. Restaurez la copie complète à l’emplacement prévu et rouvrez CyAICodex.
+3. Vérifiez des Skills, originaux d’images, historique et connexions.
+
+```callout
+{"type": "tip", "title": "À retenir", "body": "Les identifiants DPAPI sont liés au compte et profil Windows d’origine. Un autre compte ou PC peut imposer une nouvelle saisie. Les anciennes bases peuvent utiliser methodes.sqlite3 ; les nouvelles skills.sqlite3. Ne renommez ni ne fusionnez des bases ouvertes."}
+```

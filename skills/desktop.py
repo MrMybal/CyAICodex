@@ -16,6 +16,7 @@ from .store import Store
 from .i18n import language, translate
 from .startup import startup_enabled, set_startup
 from . import __version__
+from .documentation import open_help
 from .runtime import default_data, Instance, maintenance_active, stop_server
 
 ROOT = Path(sys.executable).parent if getattr(sys, "frozen", False) else Path(__file__).resolve().parent.parent
@@ -135,6 +136,7 @@ def run_app(args, instance):
 
     icon = pystray.Icon("CyAICodex", make_image(), "CyAICodex · serveur MCP actif",
         menu=pystray.Menu(pystray.MenuItem(lambda item: translate("Ouvrir CyAICodex", language(store)), open_app, default=True),
+                         pystray.MenuItem("Documentation", lambda icon, item: open_help(language(store))),
                          pystray.MenuItem(lambda item: translate("Démarrer avec Windows", language(store)), lambda icon, item: toggle_startup(icon, item, args.port, args.data_dir), checked=lambda item: startup_enabled()),
                          pystray.Menu.SEPARATOR,
                          pystray.MenuItem(lambda item: translate("Quitter et arrêter le serveur", language(store)), quit_app)))

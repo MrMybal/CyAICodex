@@ -26,10 +26,17 @@ from .mcp_setup import MCPSetup, CLIENTS
 from .i18n import language, translate, translated_status, render_index, browser_catalog
 from . import connectors
 from .updates import Updater
-from .documentation import manual_content, manual_page
+from .documentation import legacy_help_page, open_help
 
 connection_context = ContextVar("connection", default=None)
 WEB = Path(__file__).parent / "web"
+
+
+class HelpRequest(BaseModel):
+    language: Literal['en', 'fr'] = 'en'
+    page: str = Field(default='welcome', max_length=150, pattern=r'^[a-z0-9][a-z0-9-]*$')
+    anchor: str | None = Field(default=None, max_length=150, pattern=r'^[A-Za-z0-9][A-Za-z0-9_-]*$')
+    media: str | None = Field(default=None, max_length=150, pattern=r'^[A-Za-z0-9][A-Za-z0-9_-]*$')
 
 
 class SaveRequest(BaseModel):
@@ -393,13 +400,21 @@ def create_app(folder, port=8765):
             callback()
         return {'language': language(store)}
 
+    @app.post('/api/help/open')
+    def open_documentation(body: HelpRequest):
+        try:
+            url = open_help(body.language, body.page, body.anchor, body.media)
+        except (OSError, ValueError) as exc:
+            raise ValueError(str(exc)) from None
+        return {'opened': True, 'url': url}
+
     @app.get('/help')
     def documentation_page(lang: Literal['en', 'fr'] = 'en'):
-        return HTMLResponse(manual_page(lang))
+        return HTMLResponse(legacy_help_page(lang))
 
     @app.get('/help/content')
     def documentation_content(lang: Literal['en', 'fr'] = 'en'):
-        return manual_content(lang)
+        return JSONResponse({'detail':'Documentation moved to the local CyDoc reader. Open /help or use the tray Documentation menu.','help':'/help?lang='+lang}, status_code=410)
 
     @app.get("/health")
     def health():
