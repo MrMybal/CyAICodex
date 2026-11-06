@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.1
+
+- Update the bundled CyDoc reader with header search, Ctrl+K, hierarchical navigation, title descriptions, themes and reading-position restoration.
+- Provide complete English and French user guides and public MCP/Python help references, with localized screenshots and diagrams.
+- Keep assistant guidance separate in DocAI.md and exclude documentation build files from the installed manual.
+- Install Documentation/Documentation.html beside the executable and preserve existing chapter links and help entry points.
+
 ## 0.9.0
 
 - Migrate the full English/French documentation to the bundled CyDoc file reader.

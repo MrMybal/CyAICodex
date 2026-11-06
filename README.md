@@ -14,24 +14,24 @@ The English interface, shown with sample data.
 
 **Skills library** — browse reusable instructions, search by keyword and filter by project scope.
 
-![CyAICodex Skills library](docs/assets/images/skills-library.jpg)
+![CyAICodex Skills library](.CyDocBuild/assets/images/skills-library.jpg)
 
 <details>
 <summary>Skill editor and project scopes</summary>
 
 **Skill editor** — Markdown instructions, categories, tags and publication settings.
 
-![Editing a Skill in CyAICodex](docs/assets/images/skill-editor.jpg)
+![Editing a Skill in CyAICodex](.CyDocBuild/assets/images/skill-editor.jpg)
 
 **Projects and types** — organize the skills available to each project.
 
-![CyAICodex project scopes](docs/assets/images/project-scopes.jpg)
+![CyAICodex project scopes](.CyDocBuild/assets/images/project-scopes.jpg)
 
 </details>
 
 ## Install
 
-Download **CyAICodex-Setup-0.9.0.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
+Download **CyAICodex-Setup-0.9.1.exe** from the [GitHub releases](https://github.com/MrMybal/CyAICodex/releases), run the installer, and open CyAICodex from the Start menu or desktop shortcut. Python is not required.
 
 **English is the default language.** French is available through **FR / EN** or **Settings > App language**. Existing saved language preferences are preserved. Language selection also applies to the tray menu and the language requested from the assistant; personal skills, projects and images are not automatically translated.
 
@@ -120,15 +120,17 @@ CyAICodex is licensed under the **GNU Affero General Public License, version 3 o
 
 ## Built-in documentation
 
-**Documentation**, the contextual **?** button, **F1**, and the Windows tray menu open the bundled **CyDoc** reader as a local `file://` page. The reader needs no HTTP server, CDN or Internet connection. English is the default; French uses the same page and section IDs. It includes all user chapters, screenshots, diagrams, the repository reference and extracted Python integration documentation.
+**Documentation**, the contextual **?** button, **F1**, and the Windows tray menu open the bundled **CyDoc** reader as a local `file://` page. The reader needs no HTTP server, CDN or Internet connection. English is the default; French uses the same page and section IDs. It includes all user chapters, screenshots, diagrams, public MCP contracts and Python help integration.
 
 Generate it with Node.js 22+:
 
 ```powershell
-npm ci
-npm run docs:build
-npm run docs:check
+npm ci --prefix .CyDocBuild
+npm --prefix .CyDocBuild run build
+npm --prefix .CyDocBuild run check
 .\.venv\Scripts\python.exe run.py --open-help --help-language en --help-page quick-start
 ```
 
-The normal Build-App.ps1 and Build-Installer.ps1 workflows build and package it automatically. Python/Node.js are not required to read the installed manual. Only CyDoc's image module is selected; diagrams compile to static SVG. See [documentation integration](docs/content/en/building-help.md) for authoring, translation tracking, regeneration and compatibility details.
+The normal Build-App.ps1 and Build-Installer.ps1 workflows build and package it automatically. Python/Node.js are not required to read the installed manual. Only CyDoc's image module is selected; diagrams compile to static SVG. See [documentation build instructions](.CyDocBuild/README.md) for authoring, translation tracking, regeneration and compatibility details.
+
+The generated reader is `Documentation/Documentation.html`; its complete `DocData` folder and separate `DocAI.md` ship with the app. Authoring sources and tooling stay in `.CyDocBuild` and are excluded from the distribution.

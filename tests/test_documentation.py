@@ -12,7 +12,8 @@ from skills import documentation
 from skills.server import create_app
 
 ROOT = Path(__file__).resolve().parents[1]
-EXPORT = ROOT / 'build' / 'help'
+EXPORT = ROOT / 'Documentation'
+DATA = EXPORT / 'DocData'
 ORIGINAL_IDS = set('welcome quick-start skills search history projects images mcp manual-setup permissions assistant providers windows language backup updates troubleshooting tools example-workflow about'.split())
 
 
@@ -30,65 +31,76 @@ class Resources(HTMLParser):
 
 @pytest.fixture(scope='module')
 def manifest():
-    assert (EXPORT / 'manifest.json').is_file(), 'Run npm ci and npm run docs:build before pytest.'
-    return json.loads((EXPORT / 'manifest.json').read_text(encoding='utf-8'))
+    assert (DATA / 'manifest.json').is_file(), 'Run npm ci --prefix .CyDocBuild and npm --prefix .CyDocBuild run build before pytest.'
+    return json.loads((DATA / 'manifest.json').read_text(encoding='utf-8'))
 
 
 def test_complete_bilingual_export_and_translation_tracking(manifest):
     assert manifest['defaultLocale'] == 'en'
     groups = {lang: {p['id']: p for p in manifest['pages'] if p['locale'] == lang} for lang in ('en','fr')}
     assert groups['en'].keys() == groups['fr'].keys()
-    assert ORIGINAL_IDS | {'help-integration','building-help','project-readme','license','changelog','translation-report'} == groups['en'].keys()
+    api = {'api-' + name.replace('_','-') + '-' + name.replace('_','-') for name in ('get_context','get_setup_guide','search_skills','get_skill','create_skill','update_skill','search_images','get_image','view_image','import_image','update_image')}
+    assert ORIGINAL_IDS | {'help-integration','license','changelog','data-contracts'} | api == groups['en'].keys()
+    assert not {'building-help','project-readme','translation-report','DocAI'} & groups['en'].keys()
     for name, english in groups['en'].items():
         french = groups['fr'][name]
         assert english['html'] and french['html']
+        assert english['text'] != french['text']
+        assert english.get('parent') == french.get('parent')
+        if english.get('parent'): assert english['parent'] in groups['en']
+        assert english['kind'] != 'source'
+        assert 'def create_app' not in english['text']
         assert {h['id'] for h in english['headings']} == {h['id'] for h in french['headings']}
-    report = json.loads((EXPORT / 'translation-report.json').read_text(encoding='utf-8'))
+    report = json.loads((DATA / 'translation-report.json').read_text(encoding='utf-8'))
     assert report['missing'] == report['outdated'] == report['untracked'] == []
-    assert report['current'] == len(groups['en']) - 1
+    assert report['current'] == len(groups['en'])
     api = groups['en']['help-integration']
     assert api['source'].startswith('skills/documentation.py:') and api['symbol'] == 'help_url'
     assert 'open_help' in api['text']
 
 
 def test_export_resources_are_local_and_only_image_is_bundled(manifest):
-    config = json.loads((ROOT/'cydoc.config.json').read_text(encoding='utf-8'))
+    config = json.loads((ROOT/'.CyDocBuild/cydoc.config.json').read_text(encoding='utf-8'))
     assert config['modules'] == ['image']
-    assert {p.name for p in EXPORT.glob('media-*.js')} == {'media-image.js'}
-    assert not (ROOT/'node_modules/three').exists()
+    assert {p.name for p in DATA.glob('media-*.js')} == {'media-image.js'}
+    assert not (ROOT/'.CyDocBuild/node_modules/three').exists()
     parser = Resources()
-    index = (EXPORT/'index.html').read_text(encoding='utf-8')
+    index = (EXPORT/'Documentation.html').read_text(encoding='utf-8')
     parser.feed(index)
+    for src in parser.sources:
+        assert not urlsplit(src).scheme and not src.startswith(('/', '//'))
+        assert (EXPORT/unquote(src)).is_file(), src
+    parser = Resources()
     for page in manifest['pages']:
         parser.feed(page['html'])
         for asset in page.get('assets', []):
             assert asset.startswith('assets/')
-            assert (EXPORT/unquote(asset)).is_file()
+            assert (DATA/unquote(asset)).is_file()
     for src in parser.sources:
         if src.startswith('data:'):
             continue
         assert not urlsplit(src).scheme and not src.startswith(('/', '//'))
-        assert (EXPORT/unquote(src)).is_file(), src
+        assert (DATA/unquote(src)).is_file(), src
     assert '<html lang="en">' in index and 'type="module"' not in index
-    assert (EXPORT/'data.js').read_text(encoding='utf-8').startswith('globalThis.CYDOC_DATA=')
+    assert (DATA/'data.js').read_text(encoding='utf-8').startswith('globalThis.CYDOC_DATA=')
     for file in ('viewer.js','media-image.js'):
-        code = (EXPORT/file).read_text(encoding='utf-8')
+        code = (DATA/file).read_text(encoding='utf-8')
         assert 'fetch(' not in code
-    assert (EXPORT/'CyDoc.LICENSE.txt').is_file()
+    assert (DATA/'CyDoc.LICENSE.txt').is_file()
     for lang in ('en','fr'):
         pages = [p for p in manifest['pages'] if p['locale'] == lang]
-        assert sum('data-cydoc-id=' in p['html'] for p in pages) >= 4
+        assert {p['id'] for p in pages if 'data-cydoc-id=' in p['html']} == {'quick-start','skills','projects'}
         assert sum('<svg' in p['html'] for p in pages) >= 4
 
 
 def test_local_urls_encode_paths_and_preserve_targets(tmp_path, monkeypatch, manifest):
     local = tmp_path/'Manual # été with spaces'
-    local.mkdir()
-    (local/'index.html').write_text('<!doctype html>', encoding='utf-8')
-    (local/'manifest.json').write_text(json.dumps(manifest), encoding='utf-8')
+    (local/'DocData').mkdir(parents=True)
+    (local/'Documentation.html').write_text('<!doctype html>', encoding='utf-8')
+    (local/'DocData/manifest.json').write_text(json.dumps(manifest), encoding='utf-8')
     monkeypatch.setattr(documentation, 'help_root', lambda: local)
     url = documentation.help_url('fr','backup','restore')
-    assert url.startswith(local.as_uri()+'/index.html#/fr/backup/restore')
+    assert url.startswith(local.as_uri()+'/Documentation.html#/fr/backup/restore')
     assert '%23' in url and '%20' in url and '%C3%A9' in url
     assert documentation.help_url('en','quickstart').endswith('#/en/quick-start')
     assert documentation.help_url('en','skills',media='skills-illustration').endswith('#/en/skills?media=skills-illustration')
@@ -100,7 +112,7 @@ def test_local_urls_encode_paths_and_preserve_targets(tmp_path, monkeypatch, man
         with pytest.raises(ValueError): documentation.help_url(*args)
     monkeypatch.setattr(documentation.webbrowser, 'open', lambda *a,**kw: False)
     with pytest.raises(OSError): documentation.open_help()
-    (local/'index.html').unlink()
+    (local/'Documentation.html').unlink()
     with pytest.raises(FileNotFoundError): documentation.help_url()
 
 
@@ -108,8 +120,9 @@ def test_missing_translation_falls_back_and_alias_cycles_fail(tmp_path, monkeypa
     manifest = json.loads(json.dumps(manifest))
     manifest['pages'] = [p for p in manifest['pages'] if (p['id'],p['locale']) != ('backup','fr')]
     manifest['aliases'].update({'cycle-a':'cycle-b','cycle-b':'cycle-a'})
-    (tmp_path/'index.html').write_text('reader',encoding='utf-8')
-    (tmp_path/'manifest.json').write_text(json.dumps(manifest),encoding='utf-8')
+    (tmp_path/'Documentation.html').write_text('reader',encoding='utf-8')
+    (tmp_path/'DocData').mkdir()
+    (tmp_path/'DocData/manifest.json').write_text(json.dumps(manifest),encoding='utf-8')
     monkeypatch.setattr(documentation,'help_root',lambda:tmp_path)
     assert documentation.help_url('fr','backup','restore').endswith('#/fr/backup/restore')
     with pytest.raises(ValueError, match='alias'): documentation.help_url('en','cycle-a')
@@ -121,7 +134,7 @@ def test_help_launch_is_authenticated_and_legacy_links_remain(tmp_path, monkeypa
     def fake_open(*args):
         calls.append(args)
         if args[1] == 'unknown': raise ValueError('Unknown documentation page')
-        return 'file:///fixture/help/index.html#/en/welcome'
+        return 'file:///fixture/Documentation/Documentation.html#/en/welcome'
     monkeypatch.setattr('skills.server.open_help',fake_open)
     with TestClient(app,base_url='http://127.0.0.1:8765') as client:
         assert client.post('/api/help/open',json={}).status_code == 401
@@ -172,3 +185,19 @@ def test_all_declared_contextual_targets_exist(manifest):
                 assert attrs['data-help-section'] in {h['id'] for h in page['headings']}
             if attrs.get('data-help-media'):
                 assert 'data-cydoc-id="'+attrs['data-help-media']+'"' in page['html']
+
+
+def test_new_export_keeps_old_routes_and_excludes_work_files(manifest, monkeypatch, tmp_path):
+    for alias, page in [('building-help','about'), ('project-readme','welcome'), ('translation-report','language')]:
+        assert documentation.help_url('fr',alias).endswith('#/fr/'+page+'/content')
+    assert documentation.help_url('fr','building-help','build').endswith('#/fr/about/content')
+    assert (EXPORT/'DocAI.md').is_file()
+    assert 'CyAICodex assistant guidance' in (EXPORT/'DocAI.md').read_text(encoding='utf-8')
+    assert not (EXPORT/'.CyDocBuild').exists()
+    assert not list(EXPORT.rglob('*.py'))
+    assert {p.relative_to(EXPORT).as_posix() for p in EXPORT.rglob('*.md')} == {'DocAI.md'}
+    redirect = (EXPORT/'index.html').read_text(encoding='utf-8')
+    assert 'Documentation.html' in redirect and 'location.search+location.hash' in redirect
+    monkeypatch.setattr(sys,'frozen',True,raising=False)
+    monkeypatch.setattr(sys,'executable',str(tmp_path/'CyAICodex.exe'))
+    assert documentation.help_root() == tmp_path/'Documentation'

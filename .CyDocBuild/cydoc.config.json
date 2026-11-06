@@ -1,0 +1,31 @@
+{
+  "name": "CyAICodex",
+  "version": "0.9.1",
+  "defaultLocale": "en",
+  "locales": [
+    {
+      "code": "en",
+      "label": "English"
+    },
+    {
+      "code": "fr",
+      "label": "Français"
+    }
+  ],
+  "homePage": "welcome",
+  "content": ".generated/manual",
+  "assets": "assets",
+  "logo": "assets/app-logo.png",
+  "out": "../Documentation",
+  "modules": [
+    "image"
+  ],
+  "aliases": {
+    "overview": "welcome",
+    "quickstart": "quick-start",
+    "api-links": "tools",
+    "building-help": "about#content",
+    "project-readme": "welcome#content",
+    "translation-report": "language#content"
+  }
+}

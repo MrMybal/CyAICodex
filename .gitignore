@@ -35,3 +35,7 @@ test-results/
 CyAICodex.exe
 CyAICodex-MCP.exe
 /skills/web/logo-cy-book.ico
+
+/.CyDocBuild/internal/
+/.CyDocBuild/.generated/
+/Documentation/

@@ -1,0 +1,213 @@
+{
+  "revision": 1,
+  "parameters": {
+    "query": [
+      "Keywords; empty lists published records. Accents are normalized and word prefixes match.",
+      "Mots-clés ; vide pour lister les fiches publiées. Accents normalisés et préfixes de mots reconnus."
+    ],
+    "category": [
+      "Exact category filter; empty accepts all categories.",
+      "Filtre de catégorie exacte ; vide pour toutes les catégories."
+    ],
+    "limit": [
+      "Page size, clamped to 1–100.",
+      "Taille de page ramenée entre 1 et 100."
+    ],
+    "offset": [
+      "Number of results to skip; negative values become zero.",
+      "Nombre de résultats à ignorer ; une valeur négative devient zéro."
+    ],
+    "skill_id": [
+      "ID returned by a Skill search or save.",
+      "Identifiant retourné par une recherche ou un enregistrement de Skill."
+    ],
+    "image_id": [
+      "ID returned by an image search or import.",
+      "Identifiant retourné par une recherche ou un import d’image."
+    ],
+    "expected_version": [
+      "Current version from the last read; stale versions fail with a conflict.",
+      "Version courante de la dernière lecture ; une version dépassée produit un conflit."
+    ],
+    "skill": [
+      "Complete Skill payload; see the data contracts page.",
+      "Fiche Skill complète ; voir les contrats de données."
+    ],
+    "description": [
+      "Complete ImageDescription payload; see the data contracts page.",
+      "Fiche ImageDescription complète ; voir les contrats de données."
+    ],
+    "file_path": [
+      "Absolute path to an existing local file; no UNC share. Leave empty when supplying base64.",
+      "Chemin absolu d’un fichier local existant, sans partage UNC. Laisser vide avec du base64."
+    ],
+    "data_base64": [
+      "Raw base64 bytes, without a data-URL prefix; leave empty when supplying a file path.",
+      "Octets en base64 brut, sans préfixe d’URL data ; laisser vide avec un chemin de fichier."
+    ],
+    "client": [
+      "all, codex, claude_desktop, claude_code, opencode or other.",
+      "all, codex, claude_desktop, claude_code, opencode ou other."
+    ],
+    "language": [
+      "Guide language: en or fr.",
+      "Langue du guide : en ou fr."
+    ]
+  },
+  "tools": {
+    "get_context": {
+      "description": [
+        "Read the authenticated connection’s scope and write permissions.",
+        "Lire la portée et les droits d’écriture de la connexion authentifiée."
+      ],
+      "returns": [
+        "Object containing name, project_id, type_id, include_global and writable. No library content.",
+        "Objet contenant name, project_id, type_id, include_global et writable. Aucun contenu de bibliothèque."
+      ],
+      "refs": [
+        "search_skills",
+        "search_images"
+      ]
+    },
+    "get_setup_guide": {
+      "description": [
+        "Return client-specific setup information. This read-only operation does not configure the client.",
+        "Obtenir les informations de connexion adaptées au client. Cette lecture ne configure pas le client."
+      ],
+      "returns": [
+        "Object with name, version, client, language, clients, mcp_url, guide_url and markdown. No credentials or personal records.",
+        "Objet avec name, version, client, language, clients, mcp_url, guide_url et markdown. Aucun identifiant secret ni fiche personnelle."
+      ],
+      "refs": [
+        "get_context"
+      ]
+    },
+    "search_skills": {
+      "description": [
+        "Search published Skills visible to this connection. Several keywords narrow results; ranking favors titles, summaries and tags.",
+        "Rechercher les Skills publiés visibles dans cette connexion. Plusieurs mots-clés précisent les résultats ; titres, résumés et tags sont favorisés."
+      ],
+      "returns": [
+        "Object {items, total}. Each item contains metadata and an excerpt up to 240 characters; fetch full content with get_skill.",
+        "Objet {items, total}. Chaque élément contient les métadonnées et un extrait de 240 caractères maximum ; get_skill fournit le contenu intégral."
+      ],
+      "refs": [
+        "get_context",
+        "get_skill"
+      ]
+    },
+    "get_skill": {
+      "description": [
+        "Read a complete published Skill in the connection’s scope. An inaccessible or unpublished record fails.",
+        "Lire un Skill publié complet dans la portée de la connexion. Une fiche inaccessible ou non publiée échoue."
+      ],
+      "returns": [
+        "Skill fields, id, version and creation/update timestamps.",
+        "Champs du Skill, id, version et dates de création/modification."
+      ],
+      "refs": [
+        "search_skills",
+        "update_skill"
+      ]
+    },
+    "create_skill": {
+      "description": [
+        "Create a Skill with write permission and an allowed scope. The initial version is 1.",
+        "Créer un Skill avec le droit d’écriture et une portée autorisée. La version initiale est 1."
+      ],
+      "returns": [
+        "The saved Skill with its new id and version.",
+        "Le Skill enregistré avec son nouvel id et sa version."
+      ],
+      "refs": [
+        "get_context",
+        "update_skill"
+      ]
+    },
+    "update_skill": {
+      "description": [
+        "Replace a Skill payload using its current version. Requires write permission and access to both the existing and requested scopes.",
+        "Remplacer une fiche Skill à partir de sa version courante. Exige l’écriture et l’accès aux portées existante et demandée."
+      ],
+      "returns": [
+        "Saved Skill with incremented version; a concurrent edit raises a conflict.",
+        "Skill enregistré avec une version incrémentée ; une modification concurrente produit un conflit."
+      ],
+      "refs": [
+        "get_skill",
+        "create_skill"
+      ]
+    },
+    "search_images": {
+      "description": [
+        "Find published image references in scope by title, tags, description and preservation instructions.",
+        "Retrouver les références d’images publiées dans la portée par titre, tags, description et consignes de préservation."
+      ],
+      "returns": [
+        "Object {items, total}; items contain summary metadata and a description excerpt, not pixels or all instructions.",
+        "Objet {items, total} ; les éléments contiennent des métadonnées synthétiques et un extrait de description, sans pixels ni consignes intégrales."
+      ],
+      "refs": [
+        "get_image",
+        "view_image"
+      ]
+    },
+    "get_image": {
+      "description": [
+        "Read an image’s complete rules and its untouched original-file path. A local path is usable on this PC, not a public download URL.",
+        "Lire les règles complètes d’une image et le chemin de son original intact. Ce chemin fonctionne sur ce PC ; ce n’est pas une URL publique de téléchargement."
+      ],
+      "returns": [
+        "Full image metadata, version, description and original_path.",
+        "Métadonnées complètes de l’image, version, description et original_path."
+      ],
+      "refs": [
+        "search_images",
+        "view_image",
+        "update_image"
+      ]
+    },
+    "view_image": {
+      "description": [
+        "Read preservation instructions and inspect a PNG preview up to 1024 pixels. Use the original for editing.",
+        "Lire les consignes de préservation et examiner un aperçu PNG de 1024 pixels maximum. Utiliser l’original pour les modifications."
+      ],
+      "returns": [
+        "Two MCP content blocks: JSON metadata as TextContent and a base64 PNG preview as ImageContent.",
+        "Deux blocs de contenu MCP : métadonnées JSON dans TextContent et aperçu PNG base64 dans ImageContent."
+      ],
+      "refs": [
+        "get_image",
+        "search_images"
+      ]
+    },
+    "import_image": {
+      "description": [
+        "Import a new original and its instructions. Exactly one input is required: file_path or data_base64. Write access and an allowed scope are required. Still PNG/JPEG/WebP only, up to 20 MiB, 8192 pixels per side and 25 million pixels.",
+        "Importer un nouvel original et ses consignes. Un seul argument est obligatoire parmi file_path et data_base64. Exige l’écriture et une portée autorisée. Images fixes PNG/JPEG/WebP uniquement : 20 Mio, 8192 pixels par côté et 25 millions de pixels maximum."
+      ],
+      "returns": [
+        "Saved image metadata with id and initial version 1; original bytes are preserved.",
+        "Métadonnées de l’image enregistrée avec id et version initiale 1 ; les octets originaux sont préservés."
+      ],
+      "refs": [
+        "get_image",
+        "update_image"
+      ]
+    },
+    "update_image": {
+      "description": [
+        "Replace the description and usage rules with the current version. Requires write access and an allowed scope; never changes the image pixels.",
+        "Remplacer la description et les règles d’utilisation avec la version courante. Exige l’écriture et une portée autorisée ; ne modifie jamais les pixels."
+      ],
+      "returns": [
+        "Saved metadata with incremented version; a stale expected_version raises a conflict.",
+        "Métadonnées enregistrées avec version incrémentée ; une expected_version dépassée produit un conflit."
+      ],
+      "refs": [
+        "get_image",
+        "import_image"
+      ]
+    }
+  }
+}

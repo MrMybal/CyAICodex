@@ -1,5 +1,6 @@
 # Build with: .venv/Scripts/python.exe -m PyInstaller packaging/cyaicodex.spec
 from pathlib import Path
+import shutil
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules, copy_metadata
 
 root = Path(SPECPATH).parent
@@ -11,11 +12,9 @@ web_assets = [
 assets = [(str(root / "skills" / "web" / name), "skills/web") for name in web_assets]
 assets += [(str(root / "skills" / "examples" / name), "skills/examples")
            for name in ("github-privacy.fr.json", "github-privacy.en.json")]
-help_root = root / "build" / "help"
-if not (help_root / "index.html").is_file() or not (help_root / "manifest.json").is_file():
-    raise SystemExit("Build documentation first: npm ci && npm run docs:build")
-assets += [(str(path), str(Path("help") / path.parent.relative_to(help_root)))
-           for path in help_root.rglob("*") if path.is_file()]
+help_root = root / "Documentation"
+if not (help_root / "Documentation.html").is_file() or not (help_root / "DocData" / "manifest.json").is_file():
+    raise SystemExit("Build documentation first: npm ci --prefix .CyDocBuild; npm --prefix .CyDocBuild run build")
 assets += collect_data_files("mcp") + collect_data_files("jsonschema_specifications")
 assets += copy_metadata("mcp", recursive=True)
 
@@ -45,3 +44,9 @@ exe = EXE(
 )
 
 collection = COLLECT(exe, analysis.binaries, analysis.datas, strip=False, upx=False, name="CyAICodex")
+
+# The public reader is installed once, beside the executable. Build sources stay private.
+help_destination = Path(DISTPATH).resolve() / "CyAICodex" / "Documentation"
+if not help_destination.is_relative_to(root.resolve() / "dist"):
+    raise SystemExit("Documentation destination must stay inside the application dist directory")
+shutil.copytree(help_root, help_destination, dirs_exist_ok=True)
