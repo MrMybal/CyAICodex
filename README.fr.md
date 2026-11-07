@@ -142,6 +142,7 @@ Ce tableau présente les composants principaux, pas toutes les dépendances tran
 
 ## Références et liens
 
+- [Vitrine de l’application — génération et aperçu local](website/README.md), avec présentation anglais/français et manuel HTML complet.
 - [Manuel en français](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome) · [English manual](https://mrmybal.github.io/CyAICodex/Documentation.html#/en/welcome).
 - [Changements et limites](CHANGELOG.fr.md) · [Versions publiées](https://github.com/MrMybal/CyAICodex/releases).
 - [Dépôt des sources](https://github.com/MrMybal/CyAICodex) · [Suivi des problèmes](https://github.com/MrMybal/CyAICodex/issues).

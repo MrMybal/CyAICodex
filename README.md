@@ -142,6 +142,7 @@ This table indexes the main components, not every transitive dependency. Retain 
 
 ## References and links
 
+- [Application showcase — local build and preview](website/README.md), with English/French product views and the complete HTML manual.
 - [English manual](https://mrmybal.github.io/CyAICodex/Documentation.html#/en/welcome) · [Manuel en français](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome).
 - [Changes and limitations](CHANGELOG.md) · [Published releases](https://github.com/MrMybal/CyAICodex/releases).
 - [Source repository](https://github.com/MrMybal/CyAICodex) · [Issue tracker](https://github.com/MrMybal/CyAICodex/issues).
