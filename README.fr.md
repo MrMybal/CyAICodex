@@ -1,6 +1,7 @@
 <table width="100%">
   <tr>
     <td width="300" align="left" valign="top">
+      <a href="https://mrmybal.github.io/CyAICodex/showcase/?lang=fr">Vitrine de l’application</a><br>
       <a href="https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome">Manuel</a><br>
       <a href="https://github.com/MrMybal/CyAICodex">Dépôt</a><br>
       <a href="https://github.com/MrMybal/CyAICodex/issues">Signaler un problème</a><br><br>
@@ -142,7 +143,7 @@ Ce tableau présente les composants principaux, pas toutes les dépendances tran
 
 ## Références et liens
 
-- [Vitrine de l’application — génération et aperçu local](website/README.md), avec présentation anglais/français et manuel HTML complet.
+- [Découvrir la vitrine de l’application](https://mrmybal.github.io/CyAICodex/showcase/?lang=fr) · [Génération et aperçu local](website/README.md).
 - [Manuel en français](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome) · [English manual](https://mrmybal.github.io/CyAICodex/Documentation.html#/en/welcome).
 - [Changements et limites](CHANGELOG.fr.md) · [Versions publiées](https://github.com/MrMybal/CyAICodex/releases).
 - [Dépôt des sources](https://github.com/MrMybal/CyAICodex) · [Suivi des problèmes](https://github.com/MrMybal/CyAICodex/issues).

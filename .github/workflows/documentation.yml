@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/documentation.yml'
       - '.CyDocBuild/**'
+      - 'website/**'
       - 'README.md'
       - 'README.fr.md'
       - 'LICENSE'
@@ -43,12 +44,12 @@ jobs:
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Install locked documentation dependencies
         run: npm ci --prefix .CyDocBuild
-      - name: Generate the CyDoc reader
-        run: npm --prefix .CyDocBuild run build
-      - name: Upload documentation only
+      - name: Generate the CyDoc reader and application showcase
+        run: node website/build-pages.mjs
+      - name: Upload documentation and showcase
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: Documentation
+          path: dist/pages
 
   deploy:
     needs: build

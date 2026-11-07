@@ -1,6 +1,7 @@
 <table width="100%">
   <tr>
     <td width="300" align="left" valign="top">
+      <a href="https://mrmybal.github.io/CyAICodex/showcase/">Showcase</a><br>
       <a href="https://mrmybal.github.io/CyAICodex/Documentation.html#/en/welcome">Manual</a><br>
       <a href="https://github.com/MrMybal/CyAICodex">Repository</a><br>
       <a href="https://github.com/MrMybal/CyAICodex/issues">Report an issue</a><br><br>
@@ -142,7 +143,7 @@ This table indexes the main components, not every transitive dependency. Retain 
 
 ## References and links
 
-- [Application showcase — local build and preview](website/README.md), with English/French product views and the complete HTML manual.
+- [Explore the application showcase](https://mrmybal.github.io/CyAICodex/showcase/) · [Build and preview instructions](website/README.md).
 - [English manual](https://mrmybal.github.io/CyAICodex/Documentation.html#/en/welcome) · [Manuel en français](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome).
 - [Changes and limitations](CHANGELOG.md) · [Published releases](https://github.com/MrMybal/CyAICodex/releases).
 - [Source repository](https://github.com/MrMybal/CyAICodex) · [Issue tracker](https://github.com/MrMybal/CyAICodex/issues).
