@@ -1,5 +1,24 @@
 # Changelog
 
+[Français](CHANGELOG.fr.md) · [README](README.md) · [Release 0.9.1](https://github.com/MrMybal/CyAICodex/releases/tag/v0.9.1)
+
+## Current version and status
+
+**CyAICodex 0.9.1 · Beta · Windows x64.** Available for testing and feedback before stable availability.
+
+### Documented limitations
+
+- Only a Windows x64 installer is published. The installer and executable are not Authenticode-signed.
+- The server is local to an awake PC. There is no cloud sync or multi-device library service; a remote cloud client cannot reach this PC's localhost directly.
+- Search is lexical, without embeddings or semantic similarity.
+- Image references are still PNG, JPEG or WebP; CyAICodex stores originals and instructions but does not generate images. Vision support depends on provider and model.
+- The integrated assistant does not provide a resumable native provider session or token-by-token output. Save useful work as Skills or documents.
+- JSON export covers Skills and classification, not a full backup, and there is no general JSON import button. Full backups must include the entire stopped data folder.
+
+### Bug reports
+
+These release notes do not publish a separate bug-by-bug list. Use the [issue tracker](https://github.com/MrMybal/CyAICodex/issues) for current reports and the [troubleshooting guide](https://mrmybal.github.io/CyAICodex/Documentation.html#/en/troubleshooting) for diagnosis. Include the version and redacted reproduction steps when reporting a problem.
+
 ## 0.9.1
 
 - Update the bundled CyDoc reader with header search, Ctrl+K, hierarchical navigation, title descriptions, themes and reading-position restoration.

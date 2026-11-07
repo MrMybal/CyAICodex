@@ -1,264 +1,156 @@
-# CyAICodex
+<table width="100%">
+  <tr>
+    <td width="300" align="left" valign="top">
+      <a href="https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome">Manuel</a><br>
+      <a href="https://github.com/MrMybal/CyAICodex">Dépôt</a><br>
+      <a href="https://github.com/MrMybal/CyAICodex/issues">Signaler un problème</a><br><br>
+      <sub>README</sub><br>
+      <a href="README.md">English</a> · <a href="README.fr.md">Français</a>
+    </td>
+    <td width="400" align="center" valign="middle">
+      <img src="skills/web/logo-cy-book-transparent.png" alt="CyAICodex" width="128">
+    </td>
+    <td width="300" align="right" valign="top">
+      <p><sub>Licence de l’application</sub><br><a href="LICENSE"><strong>AGPL-3.0-only</strong></a></p>
+      <p><sub>Version</sub><br><a href="CHANGELOG.fr.md"><strong>0.9.1</strong></a><br><strong>BÊTA</strong></p>
+      <p><a href="https://github.com/MrMybal/CyAICodex/releases/download/v0.9.1/CyAICodex-Setup-0.9.1.exe"><strong>Télécharger</strong></a><br><sub>Windows x64 · installateur</sub></p>
+    </td>
+  </tr>
+</table>
 
-[English](README.md) · Français
+<h1 align="center">CyAICodex</h1>
+<p align="center">Maintenance : <strong>Cyberalien</strong>.</p>
 
-**[Consulter la documentation](https://mrmybal.github.io/CyAICodex/#/fr/welcome)**
+Une bibliothèque locale partagée de Skills réutilisables et de références visuelles pour travailler avec plusieurs clients IA ou projets. Rédigez une procédure une fois, classez-la par projet et rendez les mêmes ressources publiées accessibles par MCP.
 
-L’anglais est la langue par défaut depuis la version 0.6.3. Les choix de langue déjà enregistrés sont conservés.
+> **BÊTA · 0.9.1**
+>
+> Une version Windows est disponible pour les essais et retours avant une disponibilité stable. Consultez les [changements et limites documentées](CHANGELOG.fr.md) avant l’installation ou la mise à jour.
 
-Maintenance : **Cyberalien**.
+[![La bibliothèque française de Skills avec recherche, filtres de projet et consignes publiées](.CyDocBuild/assets/images/skills-library.fr.jpg)](.CyDocBuild/assets/images/skills-library.fr.jpg)
 
-Application locale pour Windows : une bibliothèque de pratiques réutilisables, consultable et modifiable par des clients IA via MCP. Interface française et anglaise dans le navigateur et processus persistant dans la zone de notification.
+## À propos de CyAICodex
 
-Un skill d’exemple **Confidentialité avant publication GitHub** est fournie avec l’application : contrôle des sources, historique Git, secrets, données personnelles et fichiers de release. Elle est ajoutée une seule fois, en portée globale et à l’état publié, dans chacune des deux langues (français et anglais). Elle peut être adaptée ou archivée ; les mises à jour ne remplacent pas les adaptations. Les bibliothèques personnelles sont stockées séparément des exemples distribués.
+Créez des Skills avec des consignes Markdown, un résumé, des catégories et des tags. Publiez vos pratiques en portée globale, pour un type de projet ou pour un projet précis ; gardez les travaux en cours en brouillon. Par exemple, enregistrez une checklist de publication GitHub relue et rendez-la accessible aux clients des projets concernés.
 
-## Captures d’écran
+Le navigateur sert d’interface. Un processus Windows maintient la bibliothèque et le serveur MCP dans la zone de notification. **Connexions > Configurer et tester** configure Codex, Claude Desktop ou OpenCode. Les autres clients compatibles peuvent utiliser la configuration générée en stdio ou en Streamable HTTP local. Chaque connexion possède sa portée et ses droits de lecture/écriture ; l’accès local sans jeton est un réglage distinct et facultatif. MCP donne accès aux ressources ; les consignes du client déterminent quand une IA les consulte.
 
-L’interface anglaise, présentée avec des données de démonstration.
+[![L’éditeur de Skill avec contenu Markdown, classement, portée et publication](.CyDocBuild/assets/images/skill-editor.fr.jpg)](.CyDocBuild/assets/images/skill-editor.fr.jpg)
 
-**Bibliothèque de Skills** — retrouvez vos consignes, recherchez par mot-clé et filtrez par projet.
-
-![Bibliothèque de Skills CyAICodex](.CyDocBuild/assets/images/skills-library.fr.jpg)
+Les ressources d’images conservent les originaux PNG, JPEG ou WebP avec descriptions, consignes de préservation et usages autorisés. L’assistant intégré peut utiliser des Skills et images sélectionnés pour préparer du contenu réutilisable. Les intégrations disponibles sont Codex, Claude Code, OpenCode, Ollama, OpenAI API, Claude API, Antigravity, Command Code, CodeBuddy, OpenRouter et LM Studio. Installez et connectez le client requis, ou configurez son serveur/accès API ; compte de l’application et identifiants API peuvent être distincts. La prise en charge des images dépend de l’adaptateur et du modèle ; CyAICodex ne génère pas d’images.
 
 <details>
-<summary>Éditeur de Skill et organisation des projets</summary>
+<summary>Portées des projets</summary>
 
-**Éditeur de Skill** — contenu Markdown, catégories, tags et état de publication.
+[![Un projet associé à son type dans l’interface française](.CyDocBuild/assets/images/project-scopes.fr.jpg)](.CyDocBuild/assets/images/project-scopes.fr.jpg)
 
-![Édition d’un Skill dans CyAICodex](.CyDocBuild/assets/images/skill-editor.fr.jpg)
-
-**Projets et types** — organisez les Skills accessibles pour chaque projet.
-
-![Organisation des projets CyAICodex](.CyDocBuild/assets/images/project-scopes.fr.jpg)
+Une connexion projet peut inclure ce projet, son type et les ressources globales. Les autres projets restent hors portée. Plusieurs clients peuvent utiliser des contextes différents simultanément.
 
 </details>
 
-## Démarrer
+## Fonctionnalités
 
-Version Windows 0.9.1 : télécharger **CyAICodex-Setup-0.9.1.exe** depuis les releases GitHub, puis suivre l’installation. Ouvrir ensuite **CyAICodex** depuis le menu Démarrer ou son raccourci. Python n’est pas nécessaire pour cette version. Le logo vert « CY » avec un livre apparaît dans la zone de notification et ouvre l’interface locale. `Start.vbs` utilise aussi l’exécutable lorsqu’il est présent.
+- **Skills réutilisables** : recherche plein texte avec normalisation des accents et préfixes, filtres, pagination, historique et protection contre les modifications concurrentes.
+- **Accès MCP par portée** : ressources publiées uniquement, connexions nommées, jetons révocables et droits d’écriture propres à chaque connexion.
+- **Références visuelles** : originaux préservés, aperçus et consignes d’utilisation avec versions ; une variante d’image est une nouvelle ressource.
+- **Assistant intégré** : clients locaux, serveurs de modèles locaux et fournisseurs API ; transformez une réponse relue en brouillon de Skill avant de l’enregistrer.
+- **Intégration Windows** : commandes dans la zone de notification, démarrage facultatif à l’ouverture de session et mises à jour GitHub avec contrôle de taille et d’empreinte de l’installateur.
+- **Anglais et français** : anglais par défaut, préférence de langue conservée et manuel CyDoc illustré avec recherche, thèmes, F1 et aide contextuelle.
 
-Pour utiliser les sources, installer Python 3.11 ou plus récent, puis exécuter `Install.ps1` dans PowerShell. Il crée un environnement Python isolé et installe les versions figées dans `requirements.lock.txt`. `Build-App.ps1` génère l’exécutable autonome dans `dist/CyAICodex/CyAICodex.exe`, avec ses composants dans `_internal`. Conserver ce dossier à côté de l’exécutable : il évite une extraction dans Temp à chaque lancement. Utiliser l’installateur pour les mises à jour. Avec Inno Setup 6, `Build-Installer.ps1 -Iscc "chemin vers ISCC.exe"` produit l’installateur. Voir aussi `CHANGELOG.md`.
+Le [manuel complet](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome) couvre installation, fournisseurs, droits, sauvegardes et API MCP publique. Le même lecteur est installé dans `Documentation/Documentation.html` avec son dossier `DocData/` ; sa lecture ne nécessite ni serveur ni Internet.
 
-Fermer l’onglet ne coupe pas le serveur. Le menu de l’icône permet de rouvrir l’application, d’activer **Démarrer avec Windows**, ou de quitter et arrêter le serveur. Le démarrage automatique se règle aussi dans **Connexions → Disponibilité du serveur**. Le réglage est partagé avec le menu de l’icône Windows. Il lance le serveur sans ouvrir le navigateur à l’ouverture de la session utilisateur (pas avant la connexion Windows). La version installée conserve les données dans `%LOCALAPPDATA%\CyAICodex\data`, indépendamment des fichiers de l’application. La version portable utilise `data/` à côté de son exécutable. La désinstallation conserve la bibliothèque.
+---
 
-L’interface s’ouvre avec un lien de session depuis l’icône. L’adresse seule peut demander de la rouvrir depuis l’icône. Le jeton de lancement est échangé contre un cookie HttpOnly SameSite=Strict et immédiatement retiré de la barre d’adresse.
+## Installation
 
-## Bibliothèque et contextes
+L’installateur publié cible **Windows x64**. L’environnement Python nécessaire est inclus. Node.js sert uniquement à générer la documentation ; aucun des deux ne doit être installé séparément pour utiliser cette version.
 
-- Fiches avec titre, résumé, contenu Markdown, catégorie et tags.
-- États : publiée, brouillon, archivée. Seules les fiches publiées sont consultables par MCP.
-- Portées : globale, type de projet, projet précis.
-- Recherche SQLite FTS5 : accents normalisés, préfixes, combinaison des mots saisis et classement BM25 privilégiant titre, résumé et tags. Pagination et réponses MCP courtes ; le contenu complet est récupéré à la demande.
-- Historique conservé à chaque modification. « Reprendre cette version » charge une ancienne version dans l’éditeur ; enregistrer crée une nouvelle version.
-- Contrôle de version optimiste : une modification concurrente renvoie un conflit au lieu d’écraser le travail précédent.
-- Export JSON des skills et du classement, sans clés ni jetons. Pour une sauvegarde complète avec historique, arrêter l’application puis copier `data/`. Les clés chiffrées restent liées au compte Windows qui les a créées.
+1. [Téléchargez CyAICodex-Setup-0.9.1.exe](https://github.com/MrMybal/CyAICodex/releases/download/v0.9.1/CyAICodex-Setup-0.9.1.exe). Les [notes et empreintes SHA-256](https://github.com/MrMybal/CyAICodex/releases/tag/v0.9.1) l’accompagnent.
+2. Lancez l’installateur. Il propose un raccourci sur le bureau et le démarrage avec Windows.
+3. Ouvrez **CyAICodex** depuis Démarrer, le raccourci ou l’icône verte CY avec un livre, puis configurez les clients souhaités dans **Connexions**.
 
-Exemple : une connexion pour « Site vitrine », de type « Web », voit les skills de ce projet, les skills « Web », et les globales si la case correspondante est cochée. Elle ne voit pas les skills d’un autre projet. Une connexion limitée à un type voit ce type et éventuellement les globales. Sans projet/type, elle voit uniquement les globales.
+Changez la langue dans **FR / EN** ou **Paramètres > Langue de l’application**. Les préférences déjà enregistrées sont conservées ; vos Skills et descriptions d’images ne sont pas traduits automatiquement.
 
-Le contexte est attaché au jeton, jamais à un réglage global partagé entre les IA. Créer plusieurs connexions permet donc plusieurs contextes simultanés. Les permissions d’écriture couvrent toutes les skills accessibles à cette connexion, y compris les globales si activées.
+Fermer le navigateur laisse le serveur actif. Le menu de l’icône permet de le rouvrir ou de **Quitter et arrêter le serveur**. Le démarrage a lieu après la connexion Windows ; le PC doit rester éveillé pour que les clients locaux accèdent au serveur. Conservez les dossiers installés `_internal/` et `Documentation/` à côté de `CyAICodex.exe`.
 
-## Connecter les IA au serveur MCP
+Votre bibliothèque installée se trouve dans `%LOCALAPPDATA%\CyAICodex\data` et reste conservée après désinstallation. Pour une sauvegarde complète, arrêtez l’application et copiez tout ce dossier ; l’export JSON contient uniquement les Skills et leur classement. La [sauvegarde et restauration](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/backup) explique aussi le chiffrement lié au compte Windows et la migration d’une version portable.
 
-Dans **Connexions**, créer une connexion nommée, choisir son contexte et les droits d’écriture. Copier immédiatement la configuration générée : le jeton n’est affiché qu’une fois et seul son condensat SHA-256 est conservé. Révoquer la connexion invalide le jeton.
+**Paramètres > Mises à jour** vérifie les releases GitHub automatiquement si l’option est active ; l’installation reste une action distincte. Un dépôt privé peut utiliser les identifiants Git locaux ou un jeton limité au dépôt. Les requêtes de l’assistant transmettent conversation et références sélectionnées au fournisseur choisi. La page [droits et confidentialité](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/permissions) détaille ces réglages.
 
-Transport : **Streamable HTTP**, endpoint par défaut `http://127.0.0.1:8765/mcp`, authentification `Authorization: Bearer <jeton>`. Le serveur utilise le SDK MCP officiel Python, en mode stateless, avec réponses JSON. Plusieurs clients peuvent l’utiliser simultanément.
+## Sources, compilation et bibliothèques nécessaires
 
-Outils : `get_context`, `search_methods`, `get_method`, `create_method`, `update_method`. Une ressource `methodes://context` et le prompt `appliquer_methodes` sont également proposés. Les outils déclarent leurs annotations de lecture/écriture.
+<details>
+<summary>Compiler ou lancer depuis les sources</summary>
 
-Dans **Connexions → Configurer et tester**, Codex, Claude Desktop et OpenCode utilisent le même **CyAICodex.exe** avec `--mcp-stdio`. Ce transport intégré démarre le serveur à la demande et partage la bibliothèque entre les clients. Aucune passerelle séparée n’est nécessaire. Les clients HTTP restent compatibles avec le serveur déjà lancé. Les formats génériques ne remplacent pas la configuration propre à chaque client.
-
-Instruction conseillée dans les règles du client IA :
-
-> Au début de chaque tâche, consulte le serveur CyAICodex : get_context, puis search_methods et get_method pour les pratiques applicables. Respecte le contexte de cette connexion. Si une pratique devient réutilisable, enregistre-la quand je te le demande.
-
-MCP donne accès aux pratiques, mais ne peut pas forcer un modèle à les consulter. Les règles de chaque client rendent cette consultation systématique. Une configuration par projet du client permet de sélectionner le jeton correspondant.
-
-## Assistant intégré
-
-### Ressources d’images
-
-L’onglet **Ressources d’images** permet d’importer des PNG, JPEG et WebP fixes (20 Mo maximum, 8192 pixels par côté, 25 mégapixels). Chaque fiche contient une description détaillée, les éléments à préserver, les changements à éviter, les usages autorisés, la source, la catégorie, les tags et la portée globale/type/projet. Les états brouillon, publié et archivé fonctionnent comme pour les skills.
-
-Les fichiers originaux sont conservés sans modification dans `data/images/`, avec leur empreinte SHA-256 et leurs dimensions. Les aperçus sont limités à 1024 pixels et affichent la transparence sur un damier de présentation. « Télécharger l’original » restitue le fichier importé. Modifier les consignes conserve leur historique ; une nouvelle variante visuelle s’importe comme une nouvelle ressource.
-
-Les outils MCP `search_images`, `get_image`, `view_image`, `import_image` et `update_image` permettent aux IA de chercher les références, lire les descriptions, voir les aperçus et actualiser les consignes avec contrôle de version. Les mêmes restrictions de projet et de lecture/écriture s’appliquent. `get_image` fournit aussi le chemin local du fichier original pour les clients sur ce PC. Les brouillons et archives ne sont pas exposés au MCP.
-
-« Utiliser avec l’assistant » sélectionne une image et ses consignes pour la prochaine demande. OpenAI et Claude reçoivent un aperçu PNG ; Codex reçoit le fichier original via son option `--image`. Le modèle choisi doit accepter les images. Le sélecteur affiche les 100 ressources les plus récentes, et une ressource plus ancienne peut être sélectionnée depuis sa fiche. L’assistant peut analyser l’image et rédiger des consignes ; cette version n’intègre pas de génération d’images.
-
-Pour sauvegarder la bibliothèque visuelle et l’historique, copier le dossier `data/` complet après avoir arrêté l’application. L’export JSON de la bibliothèque de skills n’inclut pas les images.
-
-Références des formats d’entrée : [OpenAI — images et vision](https://developers.openai.com/api/docs/guides/images-vision), [Claude — vision](https://platform.claude.com/docs/en/build-with-claude/vision).
-
-### Fournisseurs
-
-- **Codex / compte ChatGPT** : nécessite le client Codex local accessible dans `PATH`. « Vérifier » lit l’état du compte via le protocole officiel `codex app-server`. « Se connecter » propose son URL d’authentification dans le navigateur. Une connexion existante est réutilisée. Les réponses utilisent `codex exec` en lecture seule, dans un dossier temporaire, sans charger la configuration MCP utilisateur et avec session éphémère.
-- **OpenAI API** : clé API et identifiant de modèle ; requêtes à l’API Responses avec `store: false`.
-- **Claude API** : clé Anthropic et identifiant de modèle ; requêtes à l’API Messages. L’abonnement Claude grand public n’est pas une clé API.
-
-Les clés locales sont chiffrées par Windows DPAPI, et ne sont jamais renvoyées au navigateur. Les variables `OPENAI_API_KEY` et `ANTHROPIC_API_KEY` sont aussi reconnues au lancement. La requête envoie le texte de la conversation et la skill de référence choisie au fournisseur. Aucun appel IA n’est nécessaire pour lire, rechercher ou modifier manuellement la bibliothèque.
-
-« En faire une skill » ouvre un brouillon dans l’éditeur. L’assistant propose le texte ; l’enregistrement reste explicite. La conversation intégrée reste en mémoire dans l’onglet et disparaît au rechargement. Le sélecteur de référence présente les 100 skills publiées les plus récentes.
-
-## Portée de cette première version
-
-Le serveur reste accessible uniquement depuis ce PC, lié à `127.0.0.1` avec contrôle Host/Origin. Ce n’est pas un service cloud : ChatGPT web ou un autre service distant ne peuvent pas joindre directement cette adresse. Un relais distant avec authentification demanderait une intégration supplémentaire. Le serveur s’arrête si Windows est éteint ou en veille.
-
-Cette version fournit une recherche lexicale locale, sans embeddings, recherche sémantique ni synchronisation multi-appareils. L’interface s’ouvre dans le navigateur ; l’installateur et l’exécutable ne sont pas encore signés avec un certificat Authenticode. Les skills sont stockées en clair dans SQLite pour permettre leur récupération ; protéger l’accès au compte et au disque Windows reste pertinent.
-
-Le dossier `data/`, l’environnement Python et les fichiers `.env` sont exclus dans `.gitignore`. Conserver les réglages propres au poste dans ce dossier local.
-
-## Développement et vérification
+Utilisez **Windows x64, Python 3.11+, Node.js 22+ et npm**. Git récupère les sources. Inno Setup 6 est nécessaire pour produire l’installateur. Les dépendances Python sont figées dans [requirements.lock.txt](requirements.lock.txt) ; celles de la documentation dans [.CyDocBuild/package-lock.json](.CyDocBuild/package-lock.json).
 
 ```powershell
-.\.venv\Scripts\python.exe run.py --headless --no-open
-.\.venv\Scripts\python.exe -m pytest -q
-node --check skills/web/app.js
+git clone https://github.com/MrMybal/CyAICodex.git
+cd CyAICodex
+.\Install.ps1
+npm ci --prefix .CyDocBuild
+npm --prefix .CyDocBuild run build
+.\.venv\Scripts\python.exe run.py --port 18765
 ```
 
-Options : `--port 8765`, `--data-dir <dossier>`, `--no-open`, `--headless`.
+Le port distinct permet de conserver une version installée en parallèle. Les données de la version source se trouvent par défaut dans le dossier `data/` du dépôt.
 
-Les tests couvrent filtrage par contexte, accents et classement, droits en lecture seule, révocation de jeton, concurrence des versions, historique, export sans secrets, authentification locale, protection Host/Origin, chiffrement DPAPI, adaptateurs API avec réponses simulées, et trois clients MCP réels simultanés sur HTTP. Le test DPAPI nécessite un compte Windows normal ; certains environnements sandbox sans profil utilisateur le bloquent.
+Pour l’exécutable et l’installateur Windows :
 
-Fichiers principaux : `skills/store.py` (SQLite/recherche), `skills/server.py` (HTTP/MCP), `skills/assist.py` (fournisseurs), `skills/desktop.py` (Windows/tray), `skills/web/` (interface sans dépendances CDN).
+```powershell
+.\Build-App.ps1
+.\Build-Installer.ps1
+```
 
-Journal local rotatif : `data/cyaicodex.log`.
+`Build-Installer.ps1` lance aussi le build de l’application ; il peut être utilisé seul. Si Inno Setup est installé ailleurs que dans les emplacements habituels, indiquez le chemin du compilateur avec `-Iscc`. L’application est produite dans `dist/CyAICodex/` et l’installateur dans `dist/`.
 
-## Références d’intégration
+La génération documentaire active uniquement le module image de CyDoc ; les schémas sont compilés en SVG et Three.js n’est pas installé. Les [instructions de génération documentaire](.CyDocBuild/README.md) décrivent régénération et traductions. Les clients CLI et modèles locaux s’installent séparément ; ils ne sont pas inclus dans CyAICodex. [Install-Clients.ps1](Install-Clients.ps1) permet d’installer les versions figées de Claude Code et OpenCode via npm.
 
-- [SDK MCP Python officiel](https://github.com/modelcontextprotocol/python-sdk/tree/v1.x)
-- [Configuration MCP dans Codex](https://developers.openai.com/codex/mcp/)
-- [Authentification via Codex App Server](https://developers.openai.com/codex/app-server/)
-- [API OpenAI Responses](https://developers.openai.com/api/reference/python/resources/responses/skills/create)
-- [API Claude Messages](https://platform.claude.com/docs/en/api/messages/create)
-- [Connexion MCP dans Claude Code](https://code.claude.com/docs/en/mcp)
+</details>
 
-## Version 0.2 — clients locaux et import MCP
-
-`import_image(description, file_path=..., data_base64=...)` importe une nouvelle référence : fournir exactement un chemin absolu local ou du base64 brut. Les mêmes limites de format/taille, droits d’écriture et restrictions de projet s’appliquent. Le fichier original est conservé. Reconnecter les clients MCP après mise à jour pour actualiser leur liste d’outils.
-
-L’onglet **Paramètres** permet d’activer l’accès MCP sans jeton (désactivé par défaut), de sélectionner son contexte et d’autoriser ou non son écriture. Un jeton invalide reste refusé même si l’accès sans jeton est activé. L’administration reste authentifiée et le serveur reste lié à 127.0.0.1. L’option d’écriture par défaut concerne les nouvelles connexions ; celles déjà créées ont chacune leur case Écriture dans Connexions. Les confirmations propres aux clients IA restent gérées dans ces clients.
-
-La détection de Codex consulte aussi son installation desktop, sans dépendre uniquement du PATH hérité d’Explorer. Des chemins .exe personnalisés sont possibles dans Paramètres.
-
-- **Claude Code / compte Claude** : client local officiel, avec bouton de connexion interactif. Le compte Claude Desktop n’est pas automatiquement une connexion Claude Code. L’assistant utilise le mode print avec images, sans outils et sans persistance de session. Il faut connecter son compte une fois.
-- **Claude Desktop / application** : cliquer sur **Configurer et tester** dans Connexions, puis redémarrer Claude. Le même `CyAICodex.exe` assure le transport stdio et démarre le serveur local si nécessaire. Les autres serveurs configurés sont conservés.
-- **OpenCode** : client local et ses fournisseurs configurés ; connexion via le bouton dédié. Modèle au format `fournisseur/modèle`. `ollama/qwen3:0.6b` utilise directement l’adresse Ollama définie dans Paramètres. Un format MCP OpenCode est également proposé dans Connexions.
-- **Ollama** : serveur HTTP local, aucun secret API requis. Vérifier pour lister les modèles installés, puis utiliser le modèle dans l’assistant. Les petits modèles uniquement textuels ne permettent pas d’analyser les images. Pour les références visuelles, choisir un modèle vision.
-
-`Install-Clients.ps1` installe les clients officiels Claude Code et OpenCode dans `data/local-clients/` si Node/npm est présent. Ils ne sont pas inclus dans l’exécutable distribué ; les installations natives existantes sont aussi détectées.
-
-Les tests des adaptateurs utilisent des réponses simulées ; les tests réels nécessitent un client installé et un compte ou modèle disponible.
-
-Références : [Claude Code programmatique](https://code.claude.com/docs/en/headless), [options Claude](https://code.claude.com/docs/en/cli-reference), [OpenCode CLI](https://opencode.ai/docs/cli/), [OpenCode et Ollama](https://opencode.ai/docs/providers/#ollama), [Ollama chat](https://docs.ollama.com/api/chat).
-
-## Version 0.3 — connexion guidée et diagnostic MCP
-
-Dans **Connexions → Connecter une IA en un clic**, choisir l’accès puis **Configurer et tester** sur Codex, Claude Desktop ou OpenCode. Le bouton écrit une entrée `cyaicodex` dans la configuration utilisateur officielle, conserve les autres serveurs et sauvegarde le fichier précédent dans `.cyaicodex-backups/` à côté de celui-ci. Les commentaires TOML sont conservés ; les fichiers JSON/JSONC sont réécrits en JSON formaté (l’original et ses commentaires restent dans la sauvegarde). Un fichier invalide ou une entrée du même nom pointant ailleurs n’est pas écrasé.
-
-Le mode sans jeton reprend les droits et le contexte déjà activés dans Paramètres. Le mode avec jeton crée un accès distinct pour chaque client avec le contexte et les droits choisis. Cliquer de nouveau avec les mêmes réglages ne crée pas de doublon. Un jeton révoqué peut être réparé ; seuls les anciens jetons créés par cette configuration automatique sont remplacés. Les connexions manuelles restent conservées.
-
-Le diagnostic sépare **Serveur lancé**, **Client configuré** et **Connexion MCP testée**. Il lit la configuration écrite puis exécute réellement initialize, tools/list et get_context, avec le transport et le jeton configurés. Il ne simule pas une réponse de modèle et ne prouve pas qu’une application déjà ouverte a rechargé ses outils : reconnecter le serveur ou redémarrer le client après configuration. Aucun jeton n’apparaît dans le diagnostic.
-
-Chemins détectés : CODEX_HOME/config.toml (ou ~/.codex/config.toml), Claude Desktop standard ou Microsoft Store, OPENCODE_CONFIG ou XDG_CONFIG_HOME/opencode/opencode.json[c]. Plusieurs profils Claude concurrents sont signalés au lieu de choisir au hasard.
-
-`http://127.0.0.1:8765/mcp-info` expose les informations de connexion sans jeton ni contenu privé. Une simple requête navigateur sur `/mcp` n’est pas un test MCP valide ; utiliser le diagnostic intégré. Le serveur reste local : une IA distante dans un service cloud ne peut pas joindre le localhost de ce PC.
-
-Références : [Codex MCP](https://developers.openai.com/codex/mcp), [Claude Desktop et serveurs locaux](https://modelcontextprotocol.io/docs/develop/connect-local-servers), [OpenCode MCP](https://opencode.ai/docs/mcp-servers/).
-## Langues / Languages
-
-CyAICodex propose le français et l’anglais : sélecteur **FR / EN** en haut à droite,
-ou **Paramètres > Langue de l’application**. Le choix est conservé localement et
-s’applique aussi au menu de notification Windows et à la langue demandée à l’assistant.
-Les fiches, projets et ressources ne sont pas traduits automatiquement.
-
-CyAICodex supports French and English. Use the **FR / EN** selector or
-**Settings > App language**. The preference is saved locally; user content is unchanged.
-
-Les traductions sont regroupées dans `skills/web/translations.tsv` (français,
-tabulation, anglais). `uiText` traduit un libellé ; `uiHTML` traduit uniquement les
-segments statiques des modèles JavaScript, jamais leurs valeurs interpolées.
-Les messages de fournisseurs externes non reconnus restent dans leur langue d’origine.
-Validation : `python -m pytest -q` et `node tests/i18n_browser.cjs`.
-
-## Version 0.5 — connecteurs supplémentaires
-
-Dans **Paramètres → Connecteurs supplémentaires**, configurez le client ou serveur,
-enregistrez, puis utilisez **Vérifier**, **Charger les modèles** ou **Tester une réponse**.
-Le test de réponse envoie un message de contrôle au fournisseur choisi ; il peut
-consommer son quota. Il ne transmet pas les fiches de la bibliothèque.
-
-| Connecteur | Accès | Transport | Images dans cet adaptateur |
-|---|---|---|---|
-| Antigravity | Compte du CLI `agy` | stream-json, résultat terminal obligatoire | Non |
-| Command Code | CLI `cmdc` / `command-code` | NDJSON, résultat terminal obligatoire | Non |
-| CodeBuddy | CLI `codebuddy` / `cbc` | stream-json, outils désactivés | Non |
-| OpenRouter | Clé API | HTTPS Chat Completions | Selon le modèle |
-| LM Studio | Serveur local démarré dans LM Studio | HTTP Chat Completions sur loopback | Selon le modèle |
-
-Ces cinq connecteurs s’ajoutent à Codex, Claude Code, OpenCode, Ollama, OpenAI API
-et Claude API. La connexion de l’application graphique et celle de son CLI peuvent
-être distinctes. **Ouvrir le client** permet de terminer sa connexion native.
-Command Code et CodeBuddy sont également détectés dans leurs installations npm.
-
-Antigravity et Command Code utilisent le mode plan natif, dans un dossier temporaire ;
-leurs règles de lecture et intégrations restent celles du client. Cette application
-ne relaie pas leurs demandes d’approbation et n’active pas leurs modes d’exécution sans
-confirmation. Pour un assistant sans outils, utiliser CodeBuddy, les adaptateurs
-API, Ollama ou LM Studio.
-
-Les réponses sont affichées une fois terminées. L’historique de l’onglet est renvoyé
-à chaque demande : cette version ne propose pas de reprise de session native pour
-les nouveaux connecteurs. Elle n’affiche pas de progression token par token.
-Un modèle manuel reste possible lorsque le catalogue du client n’est pas disponible.
-Aucun modèle n’est installé automatiquement par ces boutons.
-
-Les clés sont enregistrées avec Windows DPAPI. Laisser le champ vide conserve la
-clé ; **Retirer la clé enregistrée** l’efface. LM Studio accepte uniquement une adresse
-HTTP locale finissant par `/v1`. OpenRouter utilise son adresse officielle fixe.
-Les métadonnées du dernier test sont locales ; un test réussi ne garantit pas
-l’accès ultérieur à tous les modèles.
-
-Le code des transports se trouve dans `skills/connectors.py`. Il reprend les
-conventions de protocole de CyAI Connector Lab sans dépendre d’une installation du Lab.
-Les contrats sont testés dans `tests/test_connectors.py` : résultats terminaux,
-erreurs, tailles de sortie, délais, résolveur npm et conservation des clés.
-
-Références : [Antigravity](https://antigravity.google/docs/cli/headless/),
-[Command Code](https://commandcode.ai/docs/headless),
-[CodeBuddy](https://www.codebuddy.ai/docs/cli/cli-reference),
-[OpenRouter](https://openrouter.ai/docs/api/reference/overview),
-[LM Studio](https://lmstudio.ai/docs/developer/openai-compat/chat-completions).
-
-## Version 0.6 — installation et mises à jour
-
-L’installateur est propre au compte Windows, sans élévation administrateur. Il crée une entrée dans le menu Démarrer, propose un raccourci sur le bureau et le démarrage avec Windows. Le même exécutable gère l’interface, le serveur et le transport MCP stdio. La fermeture d’un client MCP ne ferme pas l’application dans la zone de notification.
-
-Pour migrer depuis une version portable, quitter l’ancienne application et lancer l’installateur avec `/LEGACYDATA="chemin complet du dossier data"`. La bibliothèque est copiée avec une sauvegarde SQLite cohérente ; l’original reste intact. Une bibliothèque déjà présente à destination n’est jamais remplacée. Les configurations MCP reconnues sont adaptées au nouveau chemin en conservant leurs jetons et les autres serveurs. En cas de configuration non reconnue, utiliser **Connexions → Configurer et tester**.
-
-**Paramètres → Mises à jour** vérifie la dernière release stable au démarrage et toutes les six heures (option désactivable). Le bouton **Télécharger et installer** récupère l’installateur, vérifie sa taille et son empreinte SHA-256 GitHub, puis ouvre l’assistant d’installation. L’installation ferme temporairement les connexions MCP ; recharger les clients après la mise à jour. L’installation intégrée concerne Windows et le port standard 8765.
-
-Pour un dépôt privé, activer la connexion GitHub locale de Git ou fournir un jeton limité au dépôt avec **Contents: read**. Le jeton est chiffré par Windows DPAPI et n’est jamais renvoyé par l’API locale. Il n’est transmis qu’à `api.github.com`, jamais aux adresses de redirection des fichiers. Si le dépôt devient public, la vérification et le téléchargement fonctionnent sans compte, même si une ancienne connexion privée est devenue invalide.
-
-Publication d’une mise à jour : créer un tag `vMAJEUR.MINEUR.CORRECTIF` et une release stable contenant `CyAICodex-Setup-MAJEUR.MINEUR.CORRECTIF.exe`. GitHub doit fournir le champ `digest` SHA-256 de cet asset. Les brouillons, préversions, versions plus anciennes et fichiers sans empreinte vérifiable ne sont pas installés.
-
-Références : [MCP Codex](https://developers.openai.com/codex/mcp), [MCP OpenCode](https://opencode.ai/docs/mcp-servers/), [assets des releases GitHub](https://docs.github.com/en/rest/releases/assets), [Inno Setup](https://jrsoftware.org/isinfo.php).
-
-Les nouveaux outils MCP sont `search_skills`, `get_skill`, `create_skill` et `update_skill`. Les anciens noms restent compatibles. Les fiches Skills ne sont pas automatiquement des paquets SKILL.md installés chez les clients.
-
-## Aider votre IA à expliquer la connexion
-
-Dans Connexions, téléchargez le guide pour votre IA en français ou en anglais, puis joignez le fichier Markdown à la conversation. Une IA déjà connectée peut appeler `get_setup_guide(client, language)`. Le guide décrit les étapes, la vérification et le dépannage ; il ne configure rien tout seul et ne contient aucun jeton ni donnée de votre bibliothèque.
+---
 
 ## Licence
 
-Copyright (c) 2026 Cyberalien.
+CyAICodex utilise la [GNU Affero General Public License, version 3 uniquement](LICENSE) (`AGPL-3.0-only`). Copyright © 2026 Cyberalien. Les composants tiers conservent leurs propres conditions.
 
-CyAICodex est distribué sous la **GNU Affero General Public License, version 3 uniquement** (`AGPL-3.0-only`). Le texte intégral est disponible dans [LICENSE](LICENSE). Les composants tiers conservent leurs licences respectives.
+### Bibliothèques tierces et outils de compilation
 
-## Documentation intégrée
+| Bibliothèque · sources | Licence · texte | Utilisation / périmètre |
+| --- | --- | --- |
+| [CPython 3.11](https://github.com/python/cpython) | [PSF et notices des composants](https://docs.python.org/3.11/license.html) | Interpréteur Python inclus dans la version Windows. |
+| [SQLite](https://sqlite.org/) | [Domaine public](https://sqlite.org/copyright.html) | Base locale et recherche plein texte via Python. |
+| [MCP Python SDK 1.30.0](https://github.com/modelcontextprotocol/python-sdk) | [MIT](https://github.com/modelcontextprotocol/python-sdk/blob/v1.30.0/LICENSE) | Transports serveur et clients MCP à l’exécution. |
+| [FastAPI 0.141.1](https://github.com/fastapi/fastapi) | [MIT](https://github.com/fastapi/fastapi/blob/0.141.1/LICENSE) | Interface HTTP locale de l’application. |
+| [Uvicorn 0.52.4](https://github.com/Kludex/uvicorn) | [BSD-3-Clause](https://github.com/Kludex/uvicorn/blob/0.52.4/LICENSE.md) | Serveur ASGI local. |
+| [HTTPX 0.28.1](https://github.com/encode/httpx) | [BSD-3-Clause](https://github.com/encode/httpx/blob/0.28.1/LICENSE.md) | Requêtes HTTP des fournisseurs, de MCP et des mises à jour. |
+| [Pydantic 2.13.5](https://github.com/pydantic/pydantic) | [MIT](https://github.com/pydantic/pydantic/blob/v2.13.5/LICENSE) | Validation des fiches et requêtes. |
+| [Pillow 12.3.0](https://github.com/python-pillow/Pillow) | [MIT-CMU](https://github.com/python-pillow/Pillow/blob/12.3.0/LICENSE) | Images, aperçus et icône Windows ; les codecs inclus conservent leurs notices. |
+| [pystray 0.19.5](https://github.com/moses-palmer/pystray) | [LGPL-3.0](https://github.com/moses-palmer/pystray/blob/v0.19.5/COPYING.LGPL) | Intégration à la zone de notification Windows. |
+| [pywin32 312](https://github.com/mhammond/pywin32) | [PSF et notices des composants](https://github.com/mhammond/pywin32/blob/b312/win32/License.txt) | Accès aux API Windows ; certains composants ont leurs propres conditions. |
+| [tomlkit 0.15.1](https://github.com/python-poetry/tomlkit) | [MIT](https://github.com/python-poetry/tomlkit/blob/0.15.1/LICENSE) | Lecture et modification des configurations client TOML prises en charge. |
+| [json5 0.15.0](https://github.com/dpranke/pyjson5) | [Apache-2.0 et notices des composants](https://github.com/dpranke/pyjson5/blob/v0.15.0/LICENSE) | Lecture des configurations client JSON5/JSONC ; les fichiers de mesure en amont ont leurs propres notices. |
+| [CyDoc 0.1.0](https://github.com/MrMybal/CyDoc) | [MIT](.CyDocBuild/vendor/LICENSE) | Lecteur du manuel et d’images embarqué, et génération documentaire. |
+| [marked 17.0.6](https://github.com/markedjs/marked) | [MIT](https://github.com/markedjs/marked/blob/v17.0.6/LICENSE.md) | Compilation Markdown lors de la génération. |
+| [PrismJS 1.30.0](https://github.com/PrismJS/prism) | [MIT](https://github.com/PrismJS/prism/blob/v1.30.0/LICENSE) | Coloration du code lors de la génération. |
+| [esbuild 0.25.12](https://github.com/evanw/esbuild) | [MIT](https://github.com/evanw/esbuild/blob/v0.25.12/LICENSE.md) | Assemblage des scripts documentaires lors du build. |
+| [PyInstaller 6.22.3](https://github.com/pyinstaller/pyinstaller) | [GPL-2.0-or-later et exception du lanceur](https://github.com/pyinstaller/pyinstaller/blob/v6.22.3/COPYING.txt) | Outil de packaging Windows et lanceur distribué. |
+| [Inno Setup 6](https://jrsoftware.org/isinfo.php) | [Inno Setup License](https://jrsoftware.org/files/is/license.txt) | Compilateur d’installateur Windows ; nécessaire uniquement pour les produire. |
+| [pytest 9.1.1](https://github.com/pytest-dev/pytest) | [MIT](https://github.com/pytest-dev/pytest/blob/9.1.1/LICENSE) | Tests de développement, exclus de l’application distribuée. |
 
-**Documentation**, le bouton contextuel **?**, **F1** et le menu de l’icône Windows ouvrent le lecteur **CyDoc** embarqué dans une page `file://`. Sa lecture ne nécessite ni serveur HTTP, ni CDN, ni Internet. L’anglais est la langue par défaut ; le français partage les identifiants de pages et de sections. Chapitres utilisateur, captures, schémas, contrats MCP publics et intégration de l’aide Python sont inclus.
+Ce tableau présente les composants principaux, pas toutes les dépendances transitives. Conservez les notices complètes des licences et composants fournies avec les dépendances et la distribution ; la licence MIT de CyDoc ne remplace pas l’AGPL de CyAICodex. Les clients IA externes et services fournisseurs ont des conditions distinctes.
 
-Régénération avec Node.js 22+ : `npm ci --prefix .CyDocBuild`, `npm --prefix .CyDocBuild run build`, puis `npm --prefix .CyDocBuild run check`. Les scripts Build-App.ps1 et Build-Installer.ps1 l’intègrent automatiquement. Python et Node.js ne sont pas nécessaires pour lire le manuel installé. Seul le module image est activé ; les schémas sont des SVG statiques. Voir [les instructions de génération](.CyDocBuild/README.md).
+## Références et liens
 
-Le lecteur généré est `Documentation/Documentation.html`. Tout son dossier `DocData` et le fichier séparé `DocAI.md` accompagnent l’application. Les sources et outils restent dans `.CyDocBuild`, hors distribution.
+- [Manuel en français](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/welcome) · [English manual](https://mrmybal.github.io/CyAICodex/Documentation.html#/en/welcome).
+- [Changements et limites](CHANGELOG.fr.md) · [Versions publiées](https://github.com/MrMybal/CyAICodex/releases).
+- [Dépôt des sources](https://github.com/MrMybal/CyAICodex) · [Suivi des problèmes](https://github.com/MrMybal/CyAICodex/issues).
+- [Connexion des clients](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/mcp) · [Fournisseurs](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/providers) · [Dépannage](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/troubleshooting).
+
+<details>
+<summary><strong>AI Usage</strong></summary>
+
+- [Guide IA pour la documentation et la connexion](https://mrmybal.github.io/CyAICodex/DocAI.md) — métadonnées documentaires publiques et aide de connexion bilingue, séparées du lecteur humain.
+- [Générer la documentation de cette application](.CyDocBuild/README.md) — organisation des sources, génération, traductions et extraction de l’API publique.
+
+</details>
