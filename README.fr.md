@@ -78,6 +78,12 @@ Votre bibliothèque installée se trouve dans `%LOCALAPPDATA%\CyAICodex\data` et
 
 **Paramètres > Mises à jour** vérifie les releases GitHub automatiquement si l’option est active ; l’installation reste une action distincte. Un dépôt privé peut utiliser les identifiants Git locaux ou un jeton limité au dépôt. Les requêtes de l’assistant transmettent conversation et références sélectionnées au fournisseur choisi. La page [droits et confidentialité](https://mrmybal.github.io/CyAICodex/Documentation.html#/fr/permissions) détaille ces réglages.
 
+## Skill Agent pour Codex et Claude
+
+[Télécharger le ZIP du Skill](https://mrmybal.github.io/CyAICodex/AgentSkills/CyAICodex-Skill.zip) · [Lire SKILL.md](integrations/skills/cyaicodex/SKILL.md) · [Guide d’installation](integrations/skills/README.fr.md).
+
+Depuis les sources, lancez `pwsh -File .\integrations\skills\Install-Skill.ps1 -Client all` pour installer le même Skill dans Codex et Claude Code. Dans l’application Claude, importez le ZIP dans Personnaliser > Skills si cette fonction est disponible. Le Skill guide la consultation de la bibliothèque ; connectez MCP séparément. Il n’installe pas votre bibliothèque personnelle dans le client.
+
 ## Sources, compilation et bibliothèques nécessaires
 
 <details>

@@ -7,6 +7,8 @@ on:
       - '.github/workflows/documentation.yml'
       - '.CyDocBuild/**'
       - 'website/**'
+      - 'integrations/skills/**'
+      - 'tools/package_agent_skill.py'
       - 'README.md'
       - 'README.fr.md'
       - 'LICENSE'

@@ -4,8 +4,8 @@ title: Configurer un autre client MCP
 description: Configurer un autre client MCP et obtenir une aide adaptée à ce client.
 section: Connexions
 order: 8
-revision: 2
-sourceRevision: 2
+revision: 3
+sourceRevision: 3
 parent: mcp
 ---
 
@@ -26,3 +26,17 @@ La découverte locale passe par /mcp-info et le guide par /mcp-guide. Ils ne con
 ```callout
 {"type": "tip", "title": "À retenir", "body": "Une IA cloud ne peut pas joindre directement le localhost de ce PC. Utilisez un client local ou un environnement d’exécution local compatible ; n’exposez pas le serveur sur Internet pour contourner cette limite."}
 ```
+
+## Installer le Skill Agent portable {#agent-skill}
+
+CyAICodex fournit un même `cyaicodex/SKILL.md` standard pour Codex, Claude Code et les clients compatibles Agent Skills. Il indique au client quand et comment consulter cette bibliothèque MCP. Il n’installe pas l’application, ne connecte pas MCP et ne copie pas vos fiches personnelles dans le client.
+
+[Télécharger le ZIP du Skill](https://mrmybal.github.io/CyAICodex/AgentSkills/CyAICodex-Skill.zip). Les compilations depuis les sources placent aussi le ZIP dans `Documentation/AgentSkills/CyAICodex-Skill.zip` ; les versions déjà installées peuvent utiliser le téléchargement séparé.
+
+- **Codex :** extrayez l’archive et copiez son dossier `cyaicodex` dans `~/.agents/skills/` (tous les projets) ou dans `.agents/skills/` du projet. Un client ancien ou personnalisé qui lit `~/.codex/skills/` peut utiliser le même dossier à cet endroit à la place.
+- **Claude Code :** copiez le même dossier dans `~/.claude/skills/` ou dans `.claude/skills/` du projet.
+- **Application Claude / claude.ai :** importez et activez le ZIP dans Personnaliser > Skills si votre offre et votre espace autorisent les Skills personnalisés. Un environnement cloud ne peut toujours pas joindre directement le localhost du PC.
+
+Actualisez les Skills du client ou démarrez une nouvelle session, puis appelez `$cyaicodex` dans Codex ou `/cyaicodex` dans Claude Code. Vérifiez un véritable appel `get_context`. La sélection automatique dépend du client et de la tâche ; ajoutez une consigne permanente si chaque tâche doit consulter la bibliothèque.
+
+Depuis les sources, PowerShell 7 peut installer pour les deux clients locaux avec `pwsh -File .\integrations\skills\Install-Skill.ps1 -Client all`. Les personnalisations existantes sont préservées sans demande explicite de mise à jour. Les consignes communes sont en anglais ; l’agent répond dans votre langue. [Instructions d’installation détaillées](https://github.com/MrMybal/CyAICodex/blob/main/integrations/skills/README.fr.md).

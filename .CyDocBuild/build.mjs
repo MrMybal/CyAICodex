@@ -72,4 +72,5 @@ for(const id of new Set(manifest.pages.map(p=>p.id))) {
  if(anchors(translated[0])!==anchors(translated[1]))throw Error('Translated anchors differ: '+id);
 }
 if(manifest.pages.some(p=>['project-readme','building-help','translation-report','DocAI'].includes(p.id)||p.kind==='source'))throw Error('Internal content in human manual');
+run(python,[join(root,'tools/package_agent_skill.py'),'--output',join(out,'AgentSkills')]);
 console.log('CyAICodex: '+manifest.pages.length+' translated pages; image module only; ready in Documentation/Documentation.html.');

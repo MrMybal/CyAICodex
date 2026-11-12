@@ -22,3 +22,5 @@ Both commands regenerate `Documentation/`; `check` is not read-only. `Build-App.
 - `.generated` is disposable build input. `internal` holds private work notes and previous integration references; neither is published or installed.
 
 The build validates links and translation revisions; it also checks matching translated anchors. Review actual language quality and inspect browser layout separately. Browser file-origin storage policies can affect bookmarks and reading-position persistence.
+
+The documentation build also packages `integrations/skills/cyaicodex` with the standard-library helper `tools/package_agent_skill.py`. The ZIP, raw SKILL.md and checksums are sidecar downloads in `Documentation/AgentSkills/`, outside the human navigation/search. Application builds copy these with the complete manual; existing released installers are not retroactively modified.

@@ -195,7 +195,8 @@ def test_new_export_keeps_old_routes_and_excludes_work_files(manifest, monkeypat
     assert 'CyAICodex assistant guidance' in (EXPORT/'DocAI.md').read_text(encoding='utf-8')
     assert not (EXPORT/'.CyDocBuild').exists()
     assert not list(EXPORT.rglob('*.py'))
-    assert {p.relative_to(EXPORT).as_posix() for p in EXPORT.rglob('*.md')} == {'DocAI.md'}
+    # The explicitly packaged agent Skill is a sidecar, not human manual content.
+    assert {p.relative_to(EXPORT).as_posix() for p in EXPORT.rglob('*.md')} == {'DocAI.md', 'AgentSkills/SKILL.md'}
     redirect = (EXPORT/'index.html').read_text(encoding='utf-8')
     assert 'Documentation.html' in redirect and 'location.search+location.hash' in redirect
     monkeypatch.setattr(sys,'frozen',True,raising=False)

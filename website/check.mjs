@@ -39,7 +39,7 @@ export async function checkSite(directory) {
     const match=local.match(/^assets\/.+\.([a-f0-9]{12})\.(css|js|jpg|png)$/);
     if(match&&createHash('sha256').update(await readFile(path)).digest('hex').slice(0,12)!==match[1])throw Error('Asset revision mismatch: '+local);
   }
-  for(const path of ['manual/Documentation.html','manual/DocAI.md','manual/DocData/data.js','manual/DocData/viewer.js','manual/DocData/viewer.css','manual/DocData/media-image.js','manual/DocData/CyDoc.LICENSE.txt','LICENSE.txt','NOTICES.txt'])await stat(join(root,path));
+  for(const path of ['manual/Documentation.html','manual/DocAI.md','manual/DocData/data.js','manual/DocData/viewer.js','manual/DocData/viewer.css','manual/DocData/media-image.js','manual/DocData/CyDoc.LICENSE.txt','manual/AgentSkills/CyAICodex-Skill.zip','manual/AgentSkills/SKILL.md','manual/AgentSkills/SHA256SUMS.txt','LICENSE.txt','NOTICES.txt'])await stat(join(root,path));
   if(files.some(p=>/(?:media-mesh|three(?:\.min)?\.js)/i.test(p)))throw Error('Unexpected mesh dependency.');
   if(html.includes('DocAI.md')||html.includes('type="module"')||html.includes('<iframe'))throw Error('Human showcase must keep its dedicated classic-script reader link.');
   console.log('Showcase checks passed: '+Object.keys(copy.en).length+' matching strings, '+shotIds.length+' views, '+manifest.pages.length+' manual pages, '+files.length+' packaged files.');

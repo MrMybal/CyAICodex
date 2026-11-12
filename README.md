@@ -78,6 +78,12 @@ Your installed library is stored in `%LOCALAPPDATA%\CyAICodex\data` and survives
 
 **Settings > Updates** checks GitHub releases automatically when enabled; installation remains a separate action. Private repository access can use local Git credentials or a limited repository token. Assistant requests send the conversation and selected references to the chosen provider. [Permissions and privacy](https://mrmybal.github.io/CyAICodex/Documentation.html#/en/permissions) explains these controls.
 
+## Agent Skill for Codex and Claude
+
+[Download the portable Skill ZIP](https://mrmybal.github.io/CyAICodex/AgentSkills/CyAICodex-Skill.zip) · [Read SKILL.md](integrations/skills/cyaicodex/SKILL.md) · [Installation guide](integrations/skills/README.md).
+
+From a source checkout, run `pwsh -File .\integrations\skills\Install-Skill.ps1 -Client all` to install the same Skill for Codex and Claude Code. In the Claude app, upload the ZIP under Customize > Skills where supported. The Skill guides library consultation; connect MCP separately. It does not install your personal library into the client.
+
 ## Source, build and required libraries
 
 <details>
